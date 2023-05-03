@@ -1,0 +1,7 @@
+"http://{default}/":
+  type: upstream
+  upstream: "origenes:http"
+
+"http://{all}/":
+  type: upstream
+  upstream: "origenes:http"
