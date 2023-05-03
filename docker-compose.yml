@@ -1,0 +1,234 @@
+# ./vendor/bin/ece-docker 'build:compose' --mode=developer --sync-engine=native --with-cron --set-docker-host --with-xdebug --expose-db-port=3306
+version: '2.1'
+services:
+  db:
+    hostname: db.magento2.docker
+    image: 'mariadb:10.6'
+    shm_size: 2gb
+    environment:
+      - MYSQL_ROOT_PASSWORD=magento2
+      - MYSQL_DATABASE=magento2
+      - MYSQL_USER=magento2
+      - MYSQL_PASSWORD=magento2
+    ports:
+      - '3306:3306'
+    volumes:
+      - '.:/app:delegated'
+      - 'origenes-magento-db:/var/lib/mysql'
+    healthcheck:
+      test: 'mysqladmin ping -h localhost -pmagento2'
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    networks:
+      magento:
+        aliases:
+          - db.magento2.docker
+  redis:
+    hostname: redis.magento2.docker
+    image: 'redis:7.0'
+    volumes:
+      - '.:/app:delegated'
+    ports:
+      - 6379
+    sysctls:
+      net.core.somaxconn: 1024
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
+    healthcheck:
+      test: 'redis-cli ping || exit 1'
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    networks:
+      magento:
+        aliases:
+          - redis.magento2.docker
+  opensearch:
+    hostname: opensearch.magento2.docker
+    image: 'magento/magento-cloud-docker-opensearch:2.4-1.3.5'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    environment:
+      - cluster.name=docker-cluster
+      - discovery.type=single-node
+      - discovery.seed_hosts=opensearch
+      - bootstrap.memory_lock=true
+      - DISABLE_SECURITY_PLUGIN=true
+    ports:
+      - '9200:9200'
+    networks:
+      magento:
+        aliases:
+          - opensearch.magento2.docker
+  fpm:
+    hostname: fpm.magento2.docker
+    image: 'magento/magento-cloud-docker-php:8.2-fpm-1.3.5'
+    extends: generic
+    volumes:
+      - '.:/app:delegated'
+    networks:
+      magento:
+        aliases:
+          - fpm.magento2.docker
+    depends_on:
+      db:
+        condition: service_healthy
+  web:
+    hostname: web.magento2.docker
+    image: 'magento/magento-cloud-docker-nginx:1.19-1.3.5'
+    extends: generic
+    volumes:
+      - '.:/app:delegated'
+    environment:
+      - WITH_XDEBUG=1
+      - NGINX_WORKER_PROCESSES=1
+      - NGINX_WORKER_CONNECTIONS=1024
+    networks:
+      magento:
+        aliases:
+          - web.magento2.docker
+    depends_on:
+      fpm:
+        condition: service_started
+  varnish:
+    hostname: varnish.magento2.docker
+    image: 'magento/magento-cloud-docker-varnish:6.6-1.3.5'
+    networks:
+      magento:
+        aliases:
+          - varnish.magento2.docker
+    depends_on:
+      web:
+        condition: service_started
+  tls:
+    hostname: tls.magento2.docker
+    image: 'magento/magento-cloud-docker-nginx:1.19-1.3.5'
+    extends: generic
+    networks:
+      magento:
+        aliases:
+          - magento2.docker
+    environment:
+      - NGINX_WORKER_PROCESSES=1
+      - NGINX_WORKER_CONNECTIONS=1024
+      - UPSTREAM_HOST=varnish
+      - UPSTREAM_PORT=80
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      varnish:
+        condition: service_started
+  fpm_xdebug:
+    hostname: fpm_xdebug.magento2.docker
+    image: 'magento/magento-cloud-docker-php:8.2-fpm-1.3.5'
+    extends: generic
+    volumes:
+      - '.:/app:delegated'
+    environment:
+      - 'PHP_EXTENSIONS=bcmath bz2 calendar exif gd gettext intl mysqli pcntl pdo_mysql soap sockets sysvmsg sysvsem sysvshm opcache zip xsl sodium xdebug'
+    networks:
+      magento:
+        aliases:
+          - fpm_xdebug.magento2.docker
+    depends_on:
+      db:
+        condition: service_started
+  generic:
+    hostname: generic.magento2.docker
+    image: 'magento/magento-cloud-docker-php:8.2-cli-1.3.5'
+    env_file: ./.docker/config.env
+    environment:
+      - MAGENTO_RUN_MODE=developer
+      - 'PHP_EXTENSIONS=bcmath bz2 calendar exif gd gettext intl mysqli pcntl pdo_mysql soap sockets sysvmsg sysvsem sysvshm opcache zip xsl sodium xdebug'
+      - 'SENDMAIL_PATH=/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025'
+  build:
+    hostname: build.magento2.docker
+    image: 'magento/magento-cloud-docker-php:8.2-cli-1.3.5'
+    extends: generic
+    volumes:
+      - '.:/app:delegated'
+    networks:
+      magento-build:
+        aliases:
+          - build.magento2.docker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      opensearch:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+  deploy:
+    hostname: deploy.magento2.docker
+    image: 'magento/magento-cloud-docker-php:8.2-cli-1.3.5'
+    extends: generic
+    volumes:
+      - '.:/app:delegated'
+    networks:
+      magento:
+        aliases:
+          - deploy.magento2.docker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      opensearch:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+  rabbitmq:
+    hostname: rabbitmq.magento2.docker
+    image: 'rabbitmq:3.9'
+    networks:
+      magento:
+        aliases:
+          - rabbitmq.magento2.docker
+  mailhog:
+    hostname: mailhog.magento2.docker
+    image: 'magento/magento-cloud-docker-mailhog:1.0-1.3.5'
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    networks:
+      magento:
+        aliases:
+          - mailhog.magento2.docker
+  cron:
+    hostname: cron.magento2.docker
+    image: 'magento/magento-cloud-docker-php:8.2-cli-1.3.5'
+    extends: generic
+    command: run-cron
+    environment:
+      CRONTAB: '*/5 * * * * root cd /app && /usr/local/bin/php bin/magento cron:run >> /app/var/log/cron.log'
+    volumes:
+      - '.:/app:delegated'
+    networks:
+      magento:
+        aliases:
+          - cron.magento2.docker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      opensearch:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+volumes:
+  origenes-magento-db: {  }
+networks:
+  magento:
+    driver: bridge
+  magento-build:
+    driver: bridge

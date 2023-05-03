@@ -1,0 +1,22 @@
+@theitnerd-admin-icons-font-path: '@{baseDir}TheITNerd_Core/fonts/theitnerd';
+@theitnerd-admin-icons-font-name: 'theitnerd';
+@theitnerd-admin-icon-logo: '\e900';
+
+
+.lib-font-face(
+    @family-name: @theitnerd-admin-icons-font-name,
+    @font-path: @theitnerd-admin-icons-font-path,
+    @font-weight: normal,
+    @font-style: normal
+);
+
+#menu-theitnerd-core-core {
+    > a {
+        &:before {
+            content: @theitnerd-admin-icon-logo;
+            font-family: @theitnerd-admin-icons-font-name;
+        }
+    }
+}
+
+
