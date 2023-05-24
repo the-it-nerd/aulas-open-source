@@ -9,10 +9,11 @@ interface AddressObjectInterface
     public const COMPLEMENT = 'complement';
     public const NEIGHBORHOOD = 'neighborhood';
     public const CITY = 'city';
+    public const REGION_ID = 'region_id';
+
     public const REGION_CODE = 'region_code';
     public const CITY_CODE = 'city_code';
     public const CALLING_CODE = 'calling_code';
-
     public const COUNTRY = 'country';
 
     /**
@@ -80,6 +81,17 @@ interface AddressObjectInterface
      * @return self
      */
     public function setRegionCode(string $value): self;
+
+    /**
+     * @return string|null
+     */
+    public function getRegionId(): string|null;
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setRegionId(string $value): self;
 
     /**
      * @return string|null

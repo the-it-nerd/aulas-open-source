@@ -34,7 +34,7 @@ class PostcodeClientAdapter implements PostcodeClientInterface
     /**
      * @inheritDoc
      */
-    public function searchPostcode(AddressObjectInterface $addressObject): array
+    public function searchPostcode(AddressObjectInterface $addressObject): array|null
     {
         return $this->adapter->searchPostcode($addressObject);
     }

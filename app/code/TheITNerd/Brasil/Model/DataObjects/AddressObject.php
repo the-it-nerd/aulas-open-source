@@ -150,4 +150,22 @@ class AddressObject extends DataObject implements AddressObjectInterface
     {
         return $this->setData(self::COUNTRY, $value);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRegionId(): string|null
+    {
+        return $this->getData(self::REGION_ID);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setRegionId(string $value): AddressObjectInterface
+    {
+        return $this->setData(self::REGION_ID, $value);
+    }
+
+
 }

@@ -2,18 +2,21 @@
 
 namespace TheITNerd\Brasil\Plugin\Magento\Checkout\Block\Cart;
 
+use Magento\Checkout\Block\Cart\LayoutProcessor;
+
 class LayoutProcessorPlugin
 {
 
     /**
-     * @param \Magento\Checkout\Block\Cart\LayoutProcessor $subject
+     * @param LayoutProcessor $subject
      * @param array $jsLayout
      * @return void
      */
     public function afterProcess(
-        \Magento\Checkout\Block\Cart\LayoutProcessor $subject,
-        array $jsLayout
-    ) {
+        LayoutProcessor $subject,
+        array           $jsLayout
+    )
+    {
 
         unset($jsLayout['components']['block-summary']['children']['block-shipping']['children']['address-fieldsets']['children']['city']);
         unset($jsLayout['components']['block-summary']['children']['block-shipping']['children']['address-fieldsets']['children']['country_id']);

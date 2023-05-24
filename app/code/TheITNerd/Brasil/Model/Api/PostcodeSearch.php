@@ -3,28 +3,15 @@
 namespace TheITNerd\Brasil\Model\Api;
 
 use Magento\Framework\Exception\LocalizedException;
+use TheITNerd\Brasil\Api\Objects\AddressObjectInterface;
 use TheITNerd\Brasil\Api\PostcodeSearchInterface;
 use Magento\Framework\App\Request\Http;
 use TheITNerd\Brasil\Model\Adapters\PostcodeClientAdapter;
 use TheITNerd\Brasil\Model\DataObjects\AddressObjectFactory;
+use function PHPUnit\Framework\isNull;
 
 class PostcodeSearch implements PostcodeSearchInterface
 {
-
-    /**
-     * @var Http
-     */
-    private Http $request;
-
-    /**
-     * @var PostcodeClientAdapter
-     */
-    private PostcodeClientAdapter $adapter;
-
-    /**
-     * @var AddressObjectFactory
-     */
-    private AddressObjectFactory $addressObjectFactory;
 
     /**
      * @param Http $request
@@ -32,18 +19,16 @@ class PostcodeSearch implements PostcodeSearchInterface
      * @param AddressObjectFactory $addressObjectFactory
      */
     public function __construct(
-        Http                  $request,
-        PostcodeClientAdapter $adapter,
-        AddressObjectFactory  $addressObjectFactory
+        private readonly Http         $request,
+        private readonly PostcodeClientAdapter $adapter,
+        private readonly AddressObjectFactory $addressObjectFactory
     )
     {
-        $this->request = $request;
-        $this->adapter = $adapter;
-        $this->addressObjectFactory = $addressObjectFactory;
     }
 
     /**
      * {@inheritdoc}
+     * @throws LocalizedException
      */
     public function searchAddress(): array
     {
@@ -51,12 +36,19 @@ class PostcodeSearch implements PostcodeSearchInterface
             throw new LocalizedException(__('Please inform the postcode'));
         }
 
-        return [$this->adapter->searchAddress($this->request->getParam('postcode'))->toArray()];
+        $address = $this->adapter->searchAddress($this->request->getParam('postcode'));
+
+        if(!$address instanceof AddressObjectInterface) {
+            throw new LocalizedException(__('Something went wrong, please check the provided information and try again'));
+        }
+
+        return [$address->toArray()];
 
     }
 
     /**
      * {@inheritdoc}
+     * @throws LocalizedException
      */
     public function searchPostcode(): array
     {
@@ -82,7 +74,12 @@ class PostcodeSearch implements PostcodeSearchInterface
             ->setCity($this->request->getParam('city'))
             ->setStreet($this->request->getParam('street'));
 
-        return [$this->adapter->searchPostcode($addressObject)];
+        $data = $this->adapter->searchPostcode($addressObject);
 
+        if(!is_null($data)){
+            return [$data];
+        }
+
+        throw new LocalizedException(__('Something went wrong, please check the provided information and try again'));
     }
 }

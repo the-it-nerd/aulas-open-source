@@ -19,7 +19,7 @@ interface PostcodeClientInterface
 
     /**
      * @param AddressObjectInterface $addressObject
-     * @return array
+     * @return array|null
      */
-    public function searchPostcode(AddressObjectInterface $addressObject): array;
+    public function searchPostcode(AddressObjectInterface $addressObject): array|null;
 }
