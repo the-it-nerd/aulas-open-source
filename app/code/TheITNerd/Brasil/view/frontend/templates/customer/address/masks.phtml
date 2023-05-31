@@ -1,3 +1,8 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Customer\ViewModel\Address\RegionProvider $regionProvider */
+$regionProvider = $block->getRegionProvider();
+?>
 <script type="text/x-magento-init">
 {
     "#telephone": {
@@ -6,8 +11,9 @@
         }
     },
     "#zip": {
-        "TheITNerd_Core/js/inputMask": {
-            "mask": "00000-000"
+        "TheITNerd_Brasil/js/postcode": {
+            "mask": "00000-000",
+            "regionJson": <?= $regionProvider->getRegionJson() ?>
         }
     },
     "#vat_id": {

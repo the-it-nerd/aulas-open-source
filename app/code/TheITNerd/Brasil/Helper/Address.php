@@ -44,11 +44,20 @@ class Address extends AbstractHelper
      */
     public function getWrapperValidationClass(int $id): string
     {
-        if(isset(self::STREET_ADDRESS_CONFIG[$id]['required']) && self::STREET_ADDRESS_CONFIG[$id]['required']) {
+        if($this->getFieldIsRequired($id)) {
             return 'required';
         }
 
         return '';
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     */
+    public function getFieldIsRequired(int $id): bool
+    {
+        return isset(self::STREET_ADDRESS_CONFIG[$id]['required']) && self::STREET_ADDRESS_CONFIG[$id]['required'];
     }
 
     /**

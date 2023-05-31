@@ -39,25 +39,25 @@ define([
                 $('#'+this.options.modalID).modal('closeModal');
             }, this));
 
-            this.options.formElement.loader();
+            this.options.formElementWrapper.loader();
 
             let self = this;
             $(this.element).on('blur', function() {
                 let value = $(this).val();
                 if(value.length === self.options.mask.length) {
 
-                    self.options.formElement.loader('show');
+                    self.options.formElementWrapper.loader('show');
 
                     postcodeClient.searchAddress(value,
                         function(value) {
-                            self.options.formElement.loader('hide');
+                            self.options.formElementWrapper.loader('hide');
                             if(value.hasOwnProperty(0)) {
                                 value = value[0];
                                 self.options.countryElement.val(value.country).trigger('change');
-                                self.options.streetElement.val(value.street);
-                                self.options.neighborhoodElement.val(value.neighborhood);
-                                self.options.cityElement.val(value.city);
-                                self.options.regionIdElement.val(value.region_id);
+                                self.options.streetElement.val(value.street).trigger('change');
+                                self.options.neighborhoodElement.val(value.neighborhood).trigger('change');
+                                self.options.cityElement.val(value.city).trigger('change');
+                                self.options.regionIdElement.val(value.region_id).trigger('change');
                             } else {
                                 alert({
                                     title: $.mage.__('Error'),
@@ -67,7 +67,7 @@ define([
                             }
                         },
                         function(value) {
-                            self.options.formElement.loader('hide');
+                            self.options.formElementWrapper.loader('hide');
                             alert({
                                 title: $.mage.__('Error'),
                                 content: $.mage.__('Postcode is invalid, please check your data an try again'),
@@ -98,12 +98,18 @@ define([
             this.options.modalID = this.options.uniqueID+'-modal';
             this.options.parentElement = this.element.closest(this.options.parent);
             this.options.formElement = this.element.closest(this.options.form);
+            this.options.formElementWrapper = this.options.formElement.parent();
             this.options.streetElement = this.options.formElement.find(this.options.addressFields.street);
             this.options.neighborhoodElement = this.options.formElement.find(this.options.addressFields.neighborhood);
             this.options.cityElement = this.options.formElement.find(this.options.addressFields.city);
             this.options.regionIdElement = this.options.formElement.find(this.options.addressFields.region_id);
             this.options.regionElement = this.options.formElement.find(this.options.addressFields.region);
             this.options.countryElement = this.options.formElement.find(this.options.addressFields.country);
+
+
+            if(!this.options.hasOwnProperty('regionJson')) {
+                this.options.regionJson = window.regionJson;
+            }
 
             return this;
         },
