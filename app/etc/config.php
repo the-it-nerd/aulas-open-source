@@ -74,7 +74,7 @@ return [
                 ],
                 'template' => [
                     'allow_symlink' => null,
-                    'minify_html' => '0'
+                    'minify_html' => '1'
                 ],
                 'js' => [
                     'merge_files' => '1',
@@ -89,7 +89,7 @@ return [
                     ]
                 ],
                 'css' => [
-                    'merge_css_files' => null,
+                    'merge_css_files' => '1',
                     'minify_files' => '1',
                     'use_css_critical_path' => '0',
                     'minify_exclude' => [
@@ -478,7 +478,8 @@ return [
         'Smile_ElasticsuiteRating' => 1,
         'Temando_ShippingRemover' => 1,
         'TheITNerd_Core' => 1,
-        'TheITNerd_Brasil' => 1
+        'TheITNerd_Brasil' => 1,
+        'TheITNerd_Performance' => 1
     ],
     'admin_user' => [
         'locale' => [

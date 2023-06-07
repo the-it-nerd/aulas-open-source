@@ -165,16 +165,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.271.4",
+            "version": "3.271.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "bc19179c5f070b3d7ca7fe8a87eaeda1464b94e5"
+                "reference": "8593b1a898f2d0be56bea94aa9b379e670ae1eb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/bc19179c5f070b3d7ca7fe8a87eaeda1464b94e5",
-                "reference": "bc19179c5f070b3d7ca7fe8a87eaeda1464b94e5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8593b1a898f2d0be56bea94aa9b379e670ae1eb3",
+                "reference": "8593b1a898f2d0be56bea94aa9b379e670ae1eb3",
                 "shasum": ""
             },
             "require": {
@@ -254,9 +254,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.271.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.271.9"
             },
-            "time": "2023-05-30T18:21:41+00:00"
+            "time": "2023-06-06T18:22:57+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -771,16 +771,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "74780ccf8c19d6acb8d65c5f39cd72110e132bbd"
+                "reference": "90d087e988ff194065333d16bc5cf649872d9cdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/74780ccf8c19d6acb8d65c5f39cd72110e132bbd",
-                "reference": "74780ccf8c19d6acb8d65c5f39cd72110e132bbd",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/90d087e988ff194065333d16bc5cf649872d9cdb",
+                "reference": "90d087e988ff194065333d16bc5cf649872d9cdb",
                 "shasum": ""
             },
             "require": {
@@ -827,7 +827,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.3.5"
+                "source": "https://github.com/composer/ca-bundle/tree/1.3.6"
             },
             "funding": [
                 {
@@ -843,7 +843,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-11T08:27:00+00:00"
+            "time": "2023-06-06T12:02:59+00:00"
         },
         {
             "name": "composer/class-map-generator",
@@ -1526,25 +1526,29 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "8cffffb2218e01f3b370bf763e00e81697725259"
+                "reference": "612a3ee5ab0d5dd97b7cf3874a6efe24325efac3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/8cffffb2218e01f3b370bf763e00e81697725259",
-                "reference": "8cffffb2218e01f3b370bf763e00e81697725259",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/612a3ee5ab0d5dd97b7cf3874a6efe24325efac3",
+                "reference": "612a3ee5ab0d5dd97b7cf3874a6efe24325efac3",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0"
+                "php": "^7.1 || ^8.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^9",
-                "phpunit/phpunit": "^7.5|^8.5|^9.5",
-                "psr/log": "^1|^2|^3"
+                "phpstan/phpstan": "1.4.10 || 1.10.15",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "psalm/plugin-phpunit": "0.18.4",
+                "psr/log": "^1 || ^2 || ^3",
+                "vimeo/psalm": "4.30.0 || 5.12.0"
             },
             "suggest": {
                 "psr/log": "Allows logging deprecations via PSR-3 logger implementation"
@@ -1563,9 +1567,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/v1.1.0"
+                "source": "https://github.com/doctrine/deprecations/tree/v1.1.1"
             },
-            "time": "2023-05-29T18:55:17+00:00"
+            "time": "2023-06-03T09:27:29+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -4533,16 +4537,16 @@
         },
         {
             "name": "laminas/laminas-validator",
-            "version": "2.31.0",
+            "version": "2.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "7dc274aa5afd5e23be0dbea13363e3d66ba5808b"
+                "reference": "c5f73b1dc9b657af24736b56318bcd880d9fee94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/7dc274aa5afd5e23be0dbea13363e3d66ba5808b",
-                "reference": "7dc274aa5afd5e23be0dbea13363e3d66ba5808b",
+                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/c5f73b1dc9b657af24736b56318bcd880d9fee94",
+                "reference": "c5f73b1dc9b657af24736b56318bcd880d9fee94",
                 "shasum": ""
             },
             "require": {
@@ -4558,7 +4562,6 @@
                 "laminas/laminas-coding-standard": "^2.5",
                 "laminas/laminas-db": "^2.18",
                 "laminas/laminas-filter": "^2.32",
-                "laminas/laminas-http": "^2.18",
                 "laminas/laminas-i18n": "^2.23",
                 "laminas/laminas-session": "^2.16",
                 "laminas/laminas-uri": "^2.10.0",
@@ -4566,7 +4569,7 @@
                 "psalm/plugin-phpunit": "^0.18.4",
                 "psr/http-client": "^1.0.2",
                 "psr/http-factory": "^1.0.2",
-                "vimeo/psalm": "^5.11"
+                "vimeo/psalm": "^5.12"
             },
             "suggest": {
                 "laminas/laminas-db": "Laminas\\Db component, required by the (No)RecordExists validator",
@@ -4614,7 +4617,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2023-05-19T09:42:26+00:00"
+            "time": "2023-06-01T08:43:15+00:00"
         },
         {
             "name": "laminas/laminas-view",
@@ -23632,26 +23635,25 @@
     "packages-dev": [
         {
             "name": "allure-framework/allure-codeception",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/allure-framework/allure-codeception.git",
-                "reference": "92a7684f32ab5ebb34056505f6738eda1efc7819"
+                "reference": "d28f6ba7139406974b977e5611bc65b59c492a55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/allure-framework/allure-codeception/zipball/92a7684f32ab5ebb34056505f6738eda1efc7819",
-                "reference": "92a7684f32ab5ebb34056505f6738eda1efc7819",
+                "url": "https://api.github.com/repos/allure-framework/allure-codeception/zipball/d28f6ba7139406974b977e5611bc65b59c492a55",
+                "reference": "d28f6ba7139406974b977e5611bc65b59c492a55",
                 "shasum": ""
             },
             "require": {
-                "allure-framework/allure-php-commons": "^2",
-                "codeception/codeception": "^5",
+                "allure-framework/allure-php-commons": "^2.3.1",
+                "codeception/codeception": "^5.0.3",
                 "ext-json": "*",
                 "php": "^8"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.5",
                 "psalm/plugin-phpunit": "^0.18.4",
                 "remorhaz/php-json-data": "^0.5.3",
                 "remorhaz/php-json-path": "^0.7.7",
@@ -23696,7 +23698,7 @@
                 "issues": "https://github.com/allure-framework/allure-codeception/issues",
                 "source": "https://github.com/allure-framework/allure-codeception"
             },
-            "time": "2023-05-23T11:45:24+00:00"
+            "time": "2023-05-31T14:10:46+00:00"
         },
         {
             "name": "allure-framework/allure-php-commons",
@@ -25498,16 +25500,16 @@
         },
         {
             "name": "magento/magento2-functional-testing-framework",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magento/magento2-functional-testing-framework.git",
-                "reference": "b1506191ded7a09f20e40e0202574bf5ca02a54d"
+                "reference": "4b4214e6b1542f92ec9e1a9a66e38ed597becefe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magento/magento2-functional-testing-framework/zipball/b1506191ded7a09f20e40e0202574bf5ca02a54d",
-                "reference": "b1506191ded7a09f20e40e0202574bf5ca02a54d",
+                "url": "https://api.github.com/repos/magento/magento2-functional-testing-framework/zipball/4b4214e6b1542f92ec9e1a9a66e38ed597becefe",
+                "reference": "4b4214e6b1542f92ec9e1a9a66e38ed597becefe",
                 "shasum": ""
             },
             "require": {
@@ -25587,9 +25589,9 @@
             ],
             "support": {
                 "issues": "https://github.com/magento/magento2-functional-testing-framework/issues",
-                "source": "https://github.com/magento/magento2-functional-testing-framework/tree/4.3.0"
+                "source": "https://github.com/magento/magento2-functional-testing-framework/tree/4.3.1"
             },
-            "time": "2023-05-03T04:08:55+00:00"
+            "time": "2023-06-01T03:46:02+00:00"
         },
         {
             "name": "magento/quality-patches",
@@ -26226,16 +26228,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.15",
+            "version": "1.10.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "762c4dac4da6f8756eebb80e528c3a47855da9bd"
+                "reference": "352bdbb960bb523e3d71b834862589f910921c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/762c4dac4da6f8756eebb80e528c3a47855da9bd",
-                "reference": "762c4dac4da6f8756eebb80e528c3a47855da9bd",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/352bdbb960bb523e3d71b834862589f910921c23",
+                "reference": "352bdbb960bb523e3d71b834862589f910921c23",
                 "shasum": ""
             },
             "require": {
@@ -26284,7 +26286,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-09T15:28:01+00:00"
+            "time": "2023-06-05T08:21:46+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
