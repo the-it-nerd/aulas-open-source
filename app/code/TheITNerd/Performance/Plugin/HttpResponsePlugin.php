@@ -25,7 +25,9 @@ class HttpResponsePlugin
             'script' => '/(src)="([^>"]+\.js)"/',
             'style' => '/(href)="([^>"]+\.css|.+css[0-9A-Za-z?=:+&,@;]+)"/',
             'font' => '/(src|href)="([^>"]+\.(eot|ttf|otf|woff|woff2))"/'
-        ]
+        ],
+        'move_print_css' => '/\<link(.*?)?media="print"(.*?)?\>/',
+        'images' => '/\<img(.*?)?\>/'
     ];
 
     /**
@@ -54,11 +56,54 @@ class HttpResponsePlugin
 
         $this->addPreloads($body)
             ->addPreconnect($body)
+            ->moveElementsToBottom($body)
+            ->lazyLoadImages($body)
             ->addServerPushHeader($response, $body);
+
 
         $response->setBody($body);
 
         return $response;
+    }
+
+    /**
+     * @param string $body
+     * @return self
+     */
+    private function lazyLoadImages(string &$body): self
+    {
+
+        preg_match_all(self::MATCH_REGEX['images'], $body, $matches, PREG_SET_ORDER);
+        $matches = array_column($matches, 0);
+
+        foreach($matches as $key => $match) {
+            if(str_contains($match, 'loading="lazy"')) {
+                unset($matches[$key]);
+            } else {
+                $lazyMatch = str_replace('<img ', '<img loading="lazy" ', $match);
+                $body = str_replace($match, $lazyMatch, $body);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @return self
+     */
+    private function moveElementsToBottom(string &$body): self
+    {
+        preg_match_all(self::MATCH_REGEX['move_print_css'], $body, $matches, PREG_SET_ORDER);
+        $matches = array_column($matches, 0);
+
+        foreach ($matches as $match) {
+            $body = str_replace($match, '',$body);
+        }
+
+        $body = str_replace('</body>', implode("\n", $matches).'</body>', $body);
+
+        return $this;
     }
 
     /**

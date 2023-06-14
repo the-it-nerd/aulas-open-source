@@ -70,7 +70,10 @@ hooks:
     build: |
         set -e
         composer install
+        npm install
         php ./vendor/bin/ece-tools run scenario/build/generate.xml
+        mv pub/static/frontend/Magento/luma/pt_BR pub/static/frontend/Magento/luma/pt_BR_base
+        ./node_modules/.bin/r.js -o build.js
         php ./vendor/bin/ece-tools run scenario/build/transfer.xml
     # We run deploy hook after your application has been deployed and started.
     deploy: |
