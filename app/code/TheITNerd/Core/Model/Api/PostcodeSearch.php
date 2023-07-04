@@ -1,15 +1,18 @@
 <?php
 
-namespace TheITNerd\Brasil\Model\Api;
+namespace TheITNerd\Core\Model\Api;
 
-use Magento\Framework\Exception\LocalizedException;
-use TheITNerd\Brasil\Api\Objects\AddressObjectInterface;
-use TheITNerd\Brasil\Api\PostcodeSearchInterface;
 use Magento\Framework\App\Request\Http;
-use TheITNerd\Brasil\Model\Adapters\PostcodeClientAdapter;
-use TheITNerd\Brasil\Model\DataObjects\AddressObjectFactory;
-use function PHPUnit\Framework\isNull;
+use Magento\Framework\Exception\LocalizedException;
+use TheITNerd\Core\Model\DataObjects\AddressObjectFactory;
+use TheITNerd\Core\Api\Objects\AddressObjectInterface;
+use TheITNerd\Core\Api\PostcodeSearchInterface;
+use TheITNerd\Core\Model\Adapters\PostcodeClientAdapter;
 
+/**
+ * Class PostcodeSearch
+ * @package TheITNerd\Core\Model\Api
+ */
 class PostcodeSearch implements PostcodeSearchInterface
 {
 
@@ -19,9 +22,9 @@ class PostcodeSearch implements PostcodeSearchInterface
      * @param AddressObjectFactory $addressObjectFactory
      */
     public function __construct(
-        private readonly Http         $request,
+        private readonly Http                  $request,
         private readonly PostcodeClientAdapter $adapter,
-        private readonly AddressObjectFactory $addressObjectFactory
+        private readonly AddressObjectFactory  $addressObjectFactory
     )
     {
     }
@@ -38,7 +41,7 @@ class PostcodeSearch implements PostcodeSearchInterface
 
         $address = $this->adapter->searchAddress($this->request->getParam('postcode'));
 
-        if(!$address instanceof AddressObjectInterface) {
+        if (!$address instanceof AddressObjectInterface) {
             throw new LocalizedException(__('Something went wrong, please check the provided information and try again'));
         }
 
@@ -76,7 +79,7 @@ class PostcodeSearch implements PostcodeSearchInterface
 
         $data = $this->adapter->searchPostcode($addressObject);
 
-        if(!is_null($data)){
+        if (!is_null($data)) {
             return [$data];
         }
 

@@ -4,6 +4,10 @@ namespace TheITNerd\Brasil\Plugin\Magento\Checkout\Block\Cart;
 
 use Magento\Checkout\Block\Cart\LayoutProcessor;
 
+/**
+ * Class LayoutProcessorPlugin
+ * @package TheITNerd\Brasil\Plugin\Magento\Checkout\Block\Cart
+ */
 class LayoutProcessorPlugin
 {
 

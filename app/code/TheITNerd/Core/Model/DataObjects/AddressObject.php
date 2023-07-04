@@ -1,9 +1,14 @@
 <?php
 
-namespace TheITNerd\Brasil\Model\DataObjects;
+namespace TheITNerd\Core\Model\DataObjects;
 
-use TheITNerd\Brasil\Api\Objects\AddressObjectInterface;
 use Magento\Framework\DataObject;
+use TheITNerd\Core\Api\Objects\AddressObjectInterface;
+
+/**
+ * Class AddressObject
+ * @package TheITNerd\Core\Model\DataObjects
+ */
 class AddressObject extends DataObject implements AddressObjectInterface
 {
 

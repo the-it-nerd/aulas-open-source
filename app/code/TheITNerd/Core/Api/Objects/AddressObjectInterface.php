@@ -1,7 +1,11 @@
 <?php
 
-namespace TheITNerd\Brasil\Api\Objects;
+namespace TheITNerd\Core\Api\Objects;
 
+/**
+ * Interface AddressObjectInterface
+ * @package TheITNerd\Core\Api\Objects
+ */
 interface AddressObjectInterface
 {
     public const POSTCODE = 'postcode';

@@ -1,7 +1,7 @@
 define([
     'jquery',
     'jquery/ui',
-    'TheITNerd_Core/js/libs/jquery.mask'
+    'TheITNerd_Core/js/lib/jquery.mask'
 ], function($) {
     'use strict';
 

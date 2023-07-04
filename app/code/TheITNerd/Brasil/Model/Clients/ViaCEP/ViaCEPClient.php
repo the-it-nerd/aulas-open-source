@@ -7,10 +7,14 @@ use Magento\Directory\Model\Region;
 use Magento\Directory\Model\RegionFactory;
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\HTTP\Client\Curl;
-use TheITNerd\Brasil\Api\Adapters\PostcodeClientInterface;
-use TheITNerd\Brasil\Api\Objects\AddressObjectInterface;
-use TheITNerd\Brasil\Model\DataObjects\AddressObjectFactory;
+use TheITNerd\Core\Model\DataObjects\AddressObjectFactory;
+use TheITNerd\Core\Api\Adapters\PostcodeClientInterface;
+use TheITNerd\Core\Api\Objects\AddressObjectInterface;
 
+/**
+ * Class ViaCEPClient
+ * @package TheITNerd\Brasil\Model\Clients\ViaCEP
+ */
 class ViaCEPClient implements PostcodeClientInterface
 {
     public const API_URL = "https://viacep.com.br/ws/";

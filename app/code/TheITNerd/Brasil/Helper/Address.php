@@ -3,11 +3,11 @@
 namespace TheITNerd\Brasil\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\Helper\Context;
-use Magento\Framework\App\ObjectManager;
-use Magento\Store\Model\ScopeInterface;
-use TheITNerd\Brasil\Api\Adapters\PostcodeClientInterface;
 
+/**
+ * Class Address
+ * @package TheITNerd\Brasil\Helper
+ */
 class Address extends AbstractHelper
 {
     public const STREET_ADDRESS_CONFIG = [
@@ -35,7 +35,7 @@ class Address extends AbstractHelper
      */
     public function getFieldLabel(int $id): string|null
     {
-        return self::STREET_ADDRESS_CONFIG[$id]['label']??null;
+        return self::STREET_ADDRESS_CONFIG[$id]['label'] ?? null;
     }
 
     /**
@@ -44,7 +44,7 @@ class Address extends AbstractHelper
      */
     public function getWrapperValidationClass(int $id): string
     {
-        if($this->getFieldIsRequired($id)) {
+        if ($this->getFieldIsRequired($id)) {
             return 'required';
         }
 
@@ -66,7 +66,7 @@ class Address extends AbstractHelper
      */
     public function getFieldValidationClass(int $id): string
     {
-        if(isset(self::STREET_ADDRESS_CONFIG[$id]['required']) && self::STREET_ADDRESS_CONFIG[$id]['required']) {
+        if (isset(self::STREET_ADDRESS_CONFIG[$id]['required']) && self::STREET_ADDRESS_CONFIG[$id]['required']) {
             return 'required-entry';
         }
 

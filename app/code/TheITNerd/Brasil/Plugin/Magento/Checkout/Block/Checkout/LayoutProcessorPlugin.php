@@ -3,16 +3,23 @@
 namespace TheITNerd\Brasil\Plugin\Magento\Checkout\Block\Checkout;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessor;
+use TheITNerd\Brasil\Helper\Address;
 
+/**
+ * Class LayoutProcessorPlugin
+ * @package TheITNerd\Brasil\Plugin\Magento\Checkout\Block\Checkout
+ */
 class LayoutProcessorPlugin
 {
 
     /**
-     * @param \TheITNerd\Brasil\Helper\Address $addressHelper
+     * @param Address $addressHelper
      */
     public function __construct(
-        private readonly \TheITNerd\Brasil\Helper\Address $addressHelper
-    ) {}
+        private readonly Address $addressHelper
+    )
+    {
+    }
 
     /**
      * @param LayoutProcessor $subject
@@ -53,7 +60,7 @@ class LayoutProcessorPlugin
      */
     protected function modifyAddressStreetFields(array &$data): self
     {
-        foreach($data['street']['children'] as $key => &$streetLine) {
+        foreach ($data['street']['children'] as $key => &$streetLine) {
             $streetLine['label'] = __($this->addressHelper->getFieldLabel($key));
             $streetLine['validation']['required-entry'] = $this->addressHelper->getFieldIsRequired($key);
         }

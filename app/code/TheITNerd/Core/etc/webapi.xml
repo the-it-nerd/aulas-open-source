@@ -4,14 +4,14 @@
 
 
     <route url="/V1/postcode/search" method="POST">
-        <service class="TheITNerd\Brasil\Api\PostcodeSearchInterface" method="searchPostcode"/>
+        <service class="TheITNerd\Core\Api\PostcodeSearchInterface" method="searchPostcode"/>
         <resources>
             <resource ref="anonymous" />
         </resources>
     </route>
 
     <route url="/V1/address/search" method="POST">
-        <service class="TheITNerd\Brasil\Api\PostcodeSearchInterface" method="searchAddress"/>
+        <service class="TheITNerd\Core\Api\PostcodeSearchInterface" method="searchAddress"/>
         <resources>
             <resource ref="anonymous" />
         </resources>

@@ -3,9 +3,10 @@
 namespace TheITNerd\Brasil\Setup\Patch\Data;
 
 
+use Magento\Customer\Api\AddressMetadataInterface;
+use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Magento\Eav\Setup\EavSetupFactory;
 
 /**
  * Class UpdateAddressStreetLinesNumber
@@ -20,8 +21,9 @@ class UpdateAddressStreetLinesNumber implements DataPatchInterface
      */
     public function __construct(
         private readonly ModuleDataSetupInterface $moduleDataSetup,
-        private readonly EavSetupFactory $eavSetupFactory
-    ) {
+        private readonly EavSetupFactory          $eavSetupFactory
+    )
+    {
     }
 
     /**
@@ -58,7 +60,7 @@ class UpdateAddressStreetLinesNumber implements DataPatchInterface
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
         $eavSetup->updateAttribute(
-            \Magento\Customer\Api\AddressMetadataInterface::ATTRIBUTE_SET_ID_ADDRESS,
+            AddressMetadataInterface::ATTRIBUTE_SET_ID_ADDRESS,
             'street',
             'multiline_count',
             4

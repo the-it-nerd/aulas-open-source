@@ -7,11 +7,11 @@ $regionProvider = $block->getRegionProvider();
 {
     "#telephone": {
         "TheITNerd_Core/js/inputMask": {
-            "mask": "(00) 0000-00000"
+            "mask": "(00) 0000-00009"
         }
     },
     "#zip": {
-        "TheITNerd_Brasil/js/postcode": {
+        "TheITNerd_Core/js/postcode": {
             "mask": "00000-000",
             "regionJson": <?= $regionProvider->getRegionJson() ?>
         }

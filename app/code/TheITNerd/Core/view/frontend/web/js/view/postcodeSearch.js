@@ -1,7 +1,7 @@
 define([
     'uiComponent',
-    'TheITNerd_Brasil/js/lib/postcode',
-    'TheITNerd_Brasil/js/model/postcode',
+    'TheITNerd_Core/js/lib/postcode',
+    'TheITNerd_Core/js/model/postcode',
     'ko',
     'jquery',
     'loader'

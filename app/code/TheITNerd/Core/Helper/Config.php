@@ -1,13 +1,16 @@
 <?php
 
-namespace TheITNerd\Brasil\Helper;
+namespace TheITNerd\Core\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\Helper\Context;
 use Magento\Framework\App\ObjectManager;
 use Magento\Store\Model\ScopeInterface;
-use TheITNerd\Brasil\Api\Adapters\PostcodeClientInterface;
+use TheITNerd\Core\Api\Adapters\PostcodeClientInterface;
 
+/**
+ * Class Config
+ * @package TheITNerd\Core\Helper
+ */
 class Config extends AbstractHelper
 {
     public const ADDRESS_SEARCH_API_ENABLED_CONFIG_PATH = "address_search/api/enabled";

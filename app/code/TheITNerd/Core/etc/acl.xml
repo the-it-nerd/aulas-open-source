@@ -3,11 +3,11 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="TheItNerd_Core::core" title="The IT Nerd" translate="title" sortOrder="30"/>
+                <resource id="TheITNerd_Core::core" title="The IT Nerd" translate="title" sortOrder="30"/>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="TheItNerd_Core::core_config" title="The IT Nerd configutation" translate="title" />
+                            <resource id="TheITNerd_Core::core_config" title="The IT Nerd - Core Configuration" translate="title" />
                         </resource>
                     </resource>
                 </resource>

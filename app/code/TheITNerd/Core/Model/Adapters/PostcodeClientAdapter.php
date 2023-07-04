@@ -1,11 +1,15 @@
 <?php
 
-namespace TheITNerd\Brasil\Model\Adapters;
+namespace TheITNerd\Core\Model\Adapters;
 
-use TheITNerd\Brasil\Helper\Config;
-use TheITNerd\Brasil\Api\Adapters\PostcodeClientInterface;
-use TheITNerd\Brasil\Api\Objects\AddressObjectInterface;
+use TheITNerd\Core\Helper\Config;
+use TheITNerd\Core\Api\Adapters\PostcodeClientInterface;
+use TheITNerd\Core\Api\Objects\AddressObjectInterface;
 
+/**
+ * Class PostcodeClientAdapter
+ * @package TheITNerd\Core\Model\Adapters
+ */
 class PostcodeClientAdapter implements PostcodeClientInterface
 {
 

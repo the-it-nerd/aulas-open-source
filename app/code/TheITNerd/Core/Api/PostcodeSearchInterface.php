@@ -1,7 +1,11 @@
 <?php
 
-namespace TheITNerd\Brasil\Api;
+namespace TheITNerd\Core\Api;
 
+/**
+ * Interface PostcodeSearchInterface
+ * @package TheITNerd\Core\Api
+ */
 interface PostcodeSearchInterface
 {
     /**

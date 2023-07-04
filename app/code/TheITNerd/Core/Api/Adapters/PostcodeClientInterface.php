@@ -1,8 +1,13 @@
 <?php
 
-namespace TheITNerd\Brasil\Api\Adapters;
+namespace TheITNerd\Core\Api\Adapters;
 
-use TheITNerd\Brasil\Api\Objects\AddressObjectInterface;
+use TheITNerd\Core\Api\Objects\AddressObjectInterface;
+
+/**
+ * Interface PostcodeClientInterface
+ * @package TheITNerd\Core\Api\Adapters
+ */
 interface PostcodeClientInterface
 {
 
