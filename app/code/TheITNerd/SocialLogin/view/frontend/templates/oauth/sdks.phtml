@@ -12,7 +12,7 @@ $helper = $this->helper(\TheITNerd\SocialLogin\Helper\Config::class);
          data-client_id="<?= $helper->getGoogleClientId() ?>"
          data-context="signin"
          data-ux_mode="popup"
-         data-login_uri="<?= $block->getUrl('social-login/auth/callback/type/google'); ?>"
+         data-login_uri="<?= $block->getUrl('social-login/auth/callback/type/google') ?>"
          data-auto_prompt="false">
     </div>
 <?php endif; ?>
@@ -50,7 +50,7 @@ $helper = $this->helper(\TheITNerd\SocialLogin\Helper\Config::class);
             });
         }
     </script>
-    <form id="facebook_login_callback" action="<?= $helper->getFacebookLoginCallback(); ?>" method="post">
+    <form id="facebook_login_callback" action="<?= $helper->getFacebookLoginCallback() ?>" method="post">
         <input type="hidden" id="facebook_login_accessToken" name="accessToken" value="" />
     </form>
 <?php endif; ?>

@@ -28,6 +28,7 @@ use Magento\Framework\Stdlib\Cookie\PhpCookieManager;
 use Magento\Framework\UrlFactory;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
 use TheITNerd\SocialLogin\Model\OAuth;
 
 
@@ -54,6 +55,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
      * @param CustomerRepository $customerRepository
      * @param CookieMetadataFactory $cookieMetadataFactory
      * @param PhpCookieManager $cookieMetadataManager
+     * @param LoggerInterface $logger
      * @param UrlFactory $urlFactory
      */
     public function __construct(
@@ -68,6 +70,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
         private readonly CustomerRepository         $customerRepository,
         private readonly CookieMetadataFactory      $cookieMetadataFactory,
         private readonly PhpCookieManager           $cookieMetadataManager,
+        private readonly LoggerInterface            $logger,
         UrlFactory                                  $urlFactory
     )
     {
@@ -124,7 +127,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
             // else create customer
             return $this->createCustomer($customer);
         } catch (Exception $e) {
-            //TODO: add log here
+            $this->logger->critical('Social Login Error', ['e' => $e]);
             $this->messageManager->addErrorMessage(__('Sorry we were unable to log you in.'));
             $resultRedirect = $this->resultRedirectFactory->create();
             $resultRedirect->setPath('/');

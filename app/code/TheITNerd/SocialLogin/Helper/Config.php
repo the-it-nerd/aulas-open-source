@@ -33,7 +33,7 @@ class Config extends AbstractHelper
      */
     public function isGoogleEnabled(): bool
     {
-        return (bool)$this->scopeConfig->getValue(self::SOCIAL_LOGIN_GOOGLE_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE) && $this->isEnabled();
+        return $this->scopeConfig->getValue(self::SOCIAL_LOGIN_GOOGLE_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE) && $this->isEnabled();
     }
 
     /**
@@ -57,7 +57,7 @@ class Config extends AbstractHelper
      */
     public function isFacebookEnabled(): bool
     {
-        return (bool)$this->scopeConfig->getValue(self::SOCIAL_LOGIN_FACEBOOK_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE) && $this->isEnabled();
+        return $this->scopeConfig->getValue(self::SOCIAL_LOGIN_FACEBOOK_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE) && $this->isEnabled();
     }
 
     /**
