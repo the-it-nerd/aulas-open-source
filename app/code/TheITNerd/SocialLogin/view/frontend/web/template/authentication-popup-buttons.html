@@ -1,0 +1,18 @@
+
+<!-- ko if is_google_enabled: -->
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="outline"
+     data-text="signin_with"
+     data-size="large"
+     data-locale="pt-BR"
+     data-logo_alignment="left">
+</div>
+<!-- /ko -->
+<!-- ko if is_facebook_enabled: -->
+<fb:login-button
+    scope="public_profile,email"
+    onlogin="checkLoginState();">
+</fb:login-button>
+<!-- /ko -->

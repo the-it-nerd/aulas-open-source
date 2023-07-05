@@ -14,8 +14,10 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Forward;
 use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -26,7 +28,7 @@ use Magento\Framework\Stdlib\Cookie\PhpCookieManager;
 use Magento\Framework\UrlFactory;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use TheITNerd\SocialLogin\Model\OAuth\Google;
+use TheITNerd\SocialLogin\Model\OAuth;
 
 
 /**
@@ -43,7 +45,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
     /**
      * @param Action\Context $context
      * @param Session $session
-     * @param Google $googleOauth
+     * @param OAuth $oauthAdapter
      * @param ScopeConfigInterface $scopeConfig
      * @param StoreManagerInterface $storeManager
      * @param AccountManagementInterface $accountManagement
@@ -57,7 +59,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
     public function __construct(
         private readonly Action\Context             $context,
         private readonly Session                    $session,
-        private readonly Google                     $googleOauth,
+        private readonly OAuth                      $oauthAdapter,
         private readonly ScopeConfigInterface       $scopeConfig,
         private readonly StoreManagerInterface      $storeManager,
         private readonly AccountManagementInterface $accountManagement,
@@ -85,7 +87,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
     }
 
     /**
-     * @inheritDoc
+     * @return ResponseInterface|Forward|Redirect|ResultInterface
      */
     public function execute()
     {
@@ -102,22 +104,18 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
                 ->setUrl($this->_redirect->error($url));
         }
 
-        //TODO: change this for a xml injected models
-        //Get customer Data from Oauth
-        switch ($this->getRequest()->getParam('type')) {
-            case 'google':
-                $customer = $this->googleOauth->getCustomerData($this->getRequest());
-            break;
-            default:
+        try {
+
+            $adapter = $this->oauthAdapter->getOathAdapter($this->getRequest()->getParam('type'));
+            if (!is_null($adapter)) {
+                $customer = $adapter->getCustomerData($this->getRequest());
+            } else {
                 $this->messageManager->addErrorMessage(__('The login method is not available'));
                 $resultRedirect = $this->resultRedirectFactory->create();
-                $resultRedirect->setPath('/');
+                $resultRedirect->setPath('/customer/account/login');
                 return $resultRedirect;
-            break;
+            }
 
-        }
-
-        try {
             //If existing customer login
             if ($existingCustomer = $this->getCustomer($customer)) {
                 return $this->loginCustomer($existingCustomer, true);
@@ -125,7 +123,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
 
             // else create customer
             return $this->createCustomer($customer);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             //TODO: add log here
             $this->messageManager->addErrorMessage(__('Sorry we were unable to log you in.'));
             $resultRedirect = $this->resultRedirectFactory->create();
@@ -161,7 +159,7 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
     {
         $this->session->setCustomerDataAsLoggedIn($customer);
 
-        if($withMessage) {
+        if ($withMessage) {
             $message = $this->messageManager
                 ->createMessage(MessageInterface::TYPE_SUCCESS)
                 ->setText(
@@ -188,8 +186,6 @@ class Callback extends Action\Action implements CsrfAwareActionInterface
             $metadata->setPath('/');
             $this->cookieMetadataManager->deleteCookie('mage-cache-sessid', $metadata);
         }
-
-
 
         return $resultRedirect;
     }

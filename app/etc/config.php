@@ -73,7 +73,7 @@ return [
                     'type' => 'server_side_compilation'
                 ],
                 'template' => [
-                    'allow_symlink' => null,
+                    'allow_symlink' => '1',
                     'minify_html' => '1'
                 ],
                 'js' => [

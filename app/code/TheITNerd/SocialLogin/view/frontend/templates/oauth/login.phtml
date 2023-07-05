@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var \TheITNerd\SocialLogin\Helper\Config $helper
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+$helper = $this->helper(\TheITNerd\SocialLogin\Helper\Config::class);
+?>
+
+<?php if(!$helper->isLoggedIn()): ?>
+<div class="social-login">
+    <div class="social-login--google">
+    <?php if($helper->isGoogleEnabled()): ?>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="signin_with"
+             data-size="large"
+             data-locale="pt-BR"
+             data-logo_alignment="left">
+        </div>
+    <?php endif; ?>
+    </div>
+
+    <div class="social-login--facebook">
+    <?php if($helper->isFacebookEnabled()): ?>
+        <div class="fb-login-button" data-width="245" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="true" scope="public_profile,email" onlogin="checkLoginState();"></div>
+    <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>

@@ -3,20 +3,25 @@
 namespace TheITNerd\SocialLogin\Model\OAuth;
 
 
-use Magento\Customer\Api\Data\CustomerInterface;
-use Magento\Framework\App\Request\Http;
 use Google_Client;
+use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Customer\Api\Data\CustomerInterfaceFactory;
+use Magento\Framework\App\Request\Http;
+use TheITNerd\SocialLogin\Api\OauthInterface;
+use TheITNerd\SocialLogin\Helper\Config;
 
 /**
  * Class Google
  * @package TheITNerd\SocialLogin\Model\OAuth
  */
-class Google implements \TheITNerd\SocialLogin\Api\OauthInterface
+class Google implements OauthInterface
 {
     public function __construct(
-        private readonly \Magento\Customer\Api\Data\CustomerInterfaceFactory $customerInterfaceFactory,
-        private readonly \TheITNerd\SocialLogin\Helper\Config $config
-    ){}
+        private readonly CustomerInterfaceFactory $customerInterfaceFactory,
+        private readonly Config                   $config
+    )
+    {
+    }
 
     /**
      * @inheritDoc

@@ -24,7 +24,9 @@
         "magento/framework" : ">=102.0.0",
         "magento/magento-composer-installer" : "*",
         "the_it_nerd/module-core" : "*",
-        "google/apiclient": "*"
+        "facebook/graph-sdk": "*",
+        "google/apiclient": "^2.15",
+        "league/oauth2-facebook": "^2.0"
     },
     "autoload" : {
         "files" : [
