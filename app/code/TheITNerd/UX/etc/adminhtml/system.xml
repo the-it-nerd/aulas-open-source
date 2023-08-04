@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+        <section id="ux" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>UX</label>
+            <tab>theitnerd</tab>
+            <resource>TheITNerd_Performance::config</resource>
+            <group id="pdp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Page Improvements</label>
+                <field id="enabled_qty_btn" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Qty Button</label>
+                    <comment>This will enable +/- button on the qty for the product page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="cash_discount" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Pay in Cash Discount announcement</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>This will enable to show the discount on PDP and PLP.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="amount" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Discount amount in %</label>
+                    <depends>
+                        <field id="ux/cash_discount/enabled">1</field>
+                    </depends>
+                    <validate>validate-zero-or-greater</validate>
+                </field>
+
+                <field id="payment_type" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Type</label>
+                    <comment>The name of the payment type to show in the storefront (ex: PIX or Boleto)</comment>
+                    <depends>
+                        <field id="ux/cash_discount/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="installment" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Installments Announcement</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>This will enable to show the installments on PDP and PLP.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="min_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>The minimum installment value</label>
+                    <depends>
+                        <field id="ux/cash_discount/enabled">1</field>
+                    </depends>
+                    <validate>validate-digits validate-zero-or-greater</validate>
+                </field>
+                <field id="max_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>The maximum installments count</label>
+                    <depends>
+                        <field id="ux/cash_discount/enabled">1</field>
+                    </depends>
+                    <validate>validate-digits validate-zero-or-greater</validate>
+                </field>
+
+                <field id="no_tax_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Installments count without tax</label>
+                    <depends>
+                        <field id="ux/cash_discount/enabled">1</field>
+                    </depends>
+                    <validate>validate-digits validate-zero-or-greater</validate>
+                </field>
+
+                <field id="installment_tx" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Installments tax</label>
+                    <depends>
+                        <field id="ux/cash_discount/enabled">1</field>
+                    </depends>
+                    <validate>validate-zero-or-greater</validate>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

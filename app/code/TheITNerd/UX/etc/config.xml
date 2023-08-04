@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ux>
+            <pdp>
+                <enabled_qty_btn>1</enabled_qty_btn>
+            </pdp>
+            <cash_discount>
+                <enabled>1</enabled>
+                <amount>5</amount>
+                <payment_type>PIX</payment_type>
+            </cash_discount>
+            <installment>
+                <enabled>1</enabled>
+                <min_installment>10</min_installment>
+                <max_installment>12</max_installment>
+                <no_tax_installment>3</no_tax_installment>
+                <installment_tx>1.99</installment_tx>
+            </installment>
+        </ux>
+    </default>
+</config>

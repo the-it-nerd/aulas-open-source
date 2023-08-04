@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var $helper \TheITNerd\UX\Helper\Config
+ */
+$helper = $this->helper('TheITNerd\UX\Helper\Config');
+if($helper->canShowPDPQtyButtons()) :
+?>
+<script type="text/x-magento-init">
+    {
+        "#qty": {
+            "TheITNerd_UX/js/qtyButtons": {}
+        }
+    }
+</script>
+<?php endif; ?>

@@ -1,0 +1,54 @@
+<?php
+/**
+ * @var $block \TheITNerd\UX\Block\Product\PriceInfo
+ * @var $priceHelper \Magento\Framework\Pricing\Helper\Data
+ */
+
+$priceHelper  = $this->helper('Magento\Framework\Pricing\Helper\Data');
+
+?>
+
+
+<?php if($block->canShowCashDiscount()): ?>
+<div class="cash-discount">
+    <span class="cash-discount--price">
+        <?= $priceHelper->currency($block->getProductCashDiscountedPrice()); ?>
+    </span>
+    <span class="cash-discount--text">
+        <?= __("Paying with <strong>%1</strong> you have up to <strong>%2% OFF</strong>", $block->getCashDiscountPaymentType(), $block->getCashDiscountAmount()) ?>
+    </span>
+</div>
+<?php endif; ?>
+<?php if($block->canShowInstallments()): ?>
+    <div class="installments">
+        <?php if($block->getInstallmentsWithoutTax()): ?>
+        <div class="installments--no-interest">
+            <?= __("Or in <strong>%1</strong> easy installments of <strong>%2</strong> with no tax", $block->getInstallmentsWithoutTax(), $priceHelper->currency($block->getInstallmentsWithoutTaxAmount())) ?>
+        </div>
+        <?php endif; ?>
+        <a href="javascript:void(0)"  class="installments--trigger"><?= __('More installment options') ?></a>
+        <div class="installments--table" style="display: none">
+            <?php foreach($block->getInstallmentsTableArray() as $item): ?>
+            <div class="installments--table--item">
+                <?= __('%1 easy installments of %2%3', $item['qty'], $priceHelper->currency($item['price']), ($item['hasTax'])? '*' : '') ?>
+            </div>
+            <?php endforeach; ?>
+            <?php if($block->hasInterest()): ?>
+            <small><?= __('* With interest of %1%/month', $block->getInstallmentInterest()); ?></small>
+            <?php endif; ?>
+        </div>
+        <script type="text/x-magento-init">
+            {
+                ".installments--table": {
+                    "Magento_Ui/js/modal/modal": {
+                        "buttons": false,
+                        "modalClass": "modal-installments",
+                        "trigger": ".installments--trigger",
+                        "title": "<?= $block->escapeHtmlAttr('Installments') ?>"
+                    }
+                }
+            }
+        </script>
+    </div>
+
+<?php endif; ?>
