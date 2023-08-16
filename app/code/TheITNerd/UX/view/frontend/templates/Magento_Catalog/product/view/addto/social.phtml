@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var \TheITNerd\UX\Helper\Social $helper
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+$helper = $this->helper(\TheITNerd\UX\Helper\Social::class);
+$currentUrl = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+?>
+
+<?php if($helper->canShowFacebook()): ?>
+    <?php if($helper->getFacebookLinkType() === \TheITNerd\UX\Model\Config\Source\LinkType::POPUP_LINK_TYPE): ?>
+        <a class="fb-xfbml-parse-ignore facebook-share" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($currentUrl) ?>&amp;src=sdkpreparse','popup','width=<?= $helper->getFacebookPopupWidth() ?>,height=<?= $helper->getFacebookPopupHeight() ?>,scrollbars=<?= $helper->getFacebookPopupScrollbars() ? 'yes' : 'no' ?>,resizable=<?= $helper->getFacebookPopupResizable() ? 'yes' : 'no' ?>'); return" href="javascript:void(0)"><span><?= $helper->getFacebookLinkText() ?></span></a>
+    <?php else: ?>
+        <a class="fb-xfbml-parse-ignore facebook-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($currentUrl) ?>&amp;src=sdkpreparse" ><span><?= $helper->getFacebookLinkText() ?></span></a>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php if($helper->canShowTwitter()): ?>
+    <?php if($helper->getTwitterLinkType() === \TheITNerd\UX\Model\Config\Source\LinkType::POPUP_LINK_TYPE): ?>
+        <a class="twitter-share-button twitter-share" onclick="window.open('https://twitter.com/intent/tweet?text=<?= urlencode(__($helper->getTwitterShareText(), $currentUrl)) ?>','popup','width=<?= $helper->getTwitterPopupWidth() ?>,height=<?= $helper->getTwitterPopupHeight() ?>,scrollbars=<?= $helper->getTwitterPopupScrollbars() ? 'yes' : 'no' ?>,resizable=<?= $helper->getTwitterPopupResizable() ? 'yes' : 'no' ?>'); return" href="javascript:void(0)"><span><?= $helper->getTwitterLinkText() ?></span></a>
+    <?php else: ?>
+        <a class="twitter-share-button twitter-share" target="_blank" href="https://twitter.com/intent/tweet?text=<?= urlencode(__($helper->getTwitterShareText(), $currentUrl)) ?>"><span><?= $helper->getTwitterLinkText() ?></span></a>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php if($helper->canShowWhatsapp()) : ?>
+<a class="whatsapp-share" href="whatsapp://send?text=<?= urlencode(__($helper->getWhatsappShareText(), $currentUrl)) ?>" data-action="share/whatsapp/share"><span><?= $helper->getWhatsappLinkText() ?></span></a>
+<?php endif; ?>

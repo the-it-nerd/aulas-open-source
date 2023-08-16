@@ -3,71 +3,61 @@
 namespace TheITNerd\UX\Block\Product;
 
 
-use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Catalog\Block\Product\Context;
-use Magento\Catalog\Block\Product\View;
-use Magento\Catalog\Helper\Product;
-use Magento\Catalog\Model\ProductTypes\ConfigInterface;
-use Magento\Customer\Model\Session;
-use Magento\Framework\Json\EncoderInterface;
-use Magento\Framework\Locale\FormatInterface;
-use Magento\Framework\Pricing\PriceCurrencyInterface;
-use Magento\Framework\Stdlib\StringUtils;
-use TheITNerd\UX\Helper\Config;
+use Magento\Catalog\Model\Product;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
+use TheITNerd\UX\Helper\Product as UxProductHelper;
 
 /**
  * Class PriceInfo
  * @package TheITNerd\UX\Block\Product
  */
-class PriceInfo extends View
+class PriceInfo extends Template
 {
 
     /**
+     * @var string
+     */
+    private string $uniqueID;
+
+    /**
      * @param Context $context
-     * @param \Magento\Framework\Url\EncoderInterface $urlEncoder
-     * @param EncoderInterface $jsonEncoder
-     * @param StringUtils $string
-     * @param Product $productHelper
-     * @param ConfigInterface $productTypeConfig
-     * @param FormatInterface $localeFormat
-     * @param Session $customerSession
-     * @param ProductRepositoryInterface $productRepository
-     * @param PriceCurrencyInterface $priceCurrency
-     * @param Config $configHelper
+     * @param UxProductHelper $uxProductHelper
      * @param array $data
      */
     public function __construct(
-        Context                                 $context,
-        \Magento\Framework\Url\EncoderInterface $urlEncoder,
-        EncoderInterface                        $jsonEncoder,
-        StringUtils                             $string,
-        Product                                 $productHelper,
-        ConfigInterface                         $productTypeConfig,
-        FormatInterface                         $localeFormat,
-        Session                                 $customerSession,
-        ProductRepositoryInterface              $productRepository,
-        PriceCurrencyInterface                  $priceCurrency,
-        private readonly Config                 $configHelper,
-        array                                   $data = []
+        Context                          $context,
+        private readonly UxProductHelper $uxProductHelper,
+        array                            $data = []
     )
     {
-        parent::__construct($context, $urlEncoder, $jsonEncoder, $string, $productHelper, $productTypeConfig, $localeFormat, $customerSession, $productRepository, $priceCurrency, $data);
+        $this->uniqueID = str_replace('.', '', uniqid('installments-modal-', true));
+        parent::__construct($context, $data);
     }
 
     /**
-     * @return bool
+     * @param Product $product
+     * @return PriceInfo
      */
-    public function canShowCashDiscount(): bool
+    public function setProduct(Product $product): self
     {
-        return $this->configHelper->canShowCashDiscount();
+        return $this->setData('product', $product);
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getCashDiscountAmount(): float
+    public function getUID(): string
     {
-        return $this->configHelper->getCashDiscountAmount();
+        return $this->uniqueID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTriggerUID(): string
+    {
+        return $this->uniqueID . '--trigger';
     }
 
     /**
@@ -75,64 +65,55 @@ class PriceInfo extends View
      */
     public function getCashDiscountPaymentType(): string|null
     {
-        return $this->configHelper->getCashDiscountPaymentType();
+        return $this->uxProductHelper->getCashDiscountPaymentType();
     }
 
     /**
      * @return float|null
      */
-    public function getProductCashDiscountedPrice() : float|null
+    public function getProductCashDiscountedPrice(): float|null
     {
-        if(
+        if (
             $this->canShowCashDiscount()
             && $this->getCashDiscountAmount() > 0
             && $price = $this->getProduct()->getFinalPrice()
         ) {
-            return  $price - ($price * ($this->getCashDiscountAmount()/100));
+            return $price - ($price * ($this->getCashDiscountAmount() / 100));
         }
 
         return null;
     }
 
+    /**
+     * @return bool
+     */
+    public function canShowCashDiscount(): bool
+    {
+        return $this->uxProductHelper->canShowCashDiscount();
+    }
+
+    /**
+     * @return float
+     */
+    public function getCashDiscountAmount(): float
+    {
+        return $this->uxProductHelper->getCashDiscountAmount();
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->getData('product');
+    }
 
     /**
      * @return bool
      */
     public function canShowInstallments(): bool
     {
-        return $this->configHelper->canShowInstallments();
-    }
-
-    /**
-     * @return float
-     */
-    public function getMinInstallmentAmount(): float
-    {
-        return $this->configHelper->getMinInstallmentAmount();
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxInstallments(): int
-    {
-        return $this->configHelper->getMaxInstallments();
-    }
-
-    /**
-     * @return int
-     */
-    public function getInstallmentsWithoutTax(): int
-    {
-        return $this->configHelper->getInstallmentsWithoutTax();
-    }
-
-    /**
-     * @return float
-     */
-    function getInstallmentInterest(): float
-    {
-        return $this->configHelper->getInstallmentTax();
+        return $this->uxProductHelper->canShowInstallments();
     }
 
     /**
@@ -144,6 +125,14 @@ class PriceInfo extends View
     }
 
     /**
+     * @return int
+     */
+    public function getInstallmentsWithoutTax(): int
+    {
+        return $this->uxProductHelper->getInstallmentsWithoutTax();
+    }
+
+    /**
      * @return array
      */
     public function getInstallmentsTableArray(): array
@@ -152,11 +141,11 @@ class PriceInfo extends View
 
         $data = [];
 
-        for($i = 2; $i <= $this->getMaxInstallments(); $i ++) {
+        for ($i = 2; $i <= $this->getMaxInstallments(); $i++) {
             $hasTax = $this->getInstallmentsWithoutTax() < $i;
-            $value = ($hasTax) ?$this->getCompoundTaxInstallmentValue($price, $this->getInstallmentInterest(), $i) : $price/$i;
+            $value = ($hasTax) ? $this->getCompoundTaxInstallmentValue($price, $this->getInstallmentInterest(), $i) : $price / $i;
 
-            if($value >= $this->getMinInstallmentAmount()) {
+            if ($value >= $this->getMinInstallmentAmount()) {
                 $data[] = [
                     'hasTax' => $hasTax,
                     'qty' => $i,
@@ -171,6 +160,14 @@ class PriceInfo extends View
     }
 
     /**
+     * @return int
+     */
+    public function getMaxInstallments(): int
+    {
+        return $this->uxProductHelper->getMaxInstallments();
+    }
+
+    /**
      * @param float $value
      * @param float $tax
      * @param int $installments
@@ -178,15 +175,31 @@ class PriceInfo extends View
      */
     protected function getCompoundTaxInstallmentValue(float $value, float $tax, int $installments): float
     {
-        $finalAmount = $value * pow((1+$tax/100), $installments);
+        $finalAmount = $value * ((1 + $tax / 100) ** $installments);
 
-        return $finalAmount/$installments;
+        return $finalAmount / $installments;
+    }
+
+    /**
+     * @return float
+     */
+    public function getInstallmentInterest(): float
+    {
+        return $this->uxProductHelper->getInstallmentInterest();
+    }
+
+    /**
+     * @return float
+     */
+    public function getMinInstallmentAmount(): float
+    {
+        return $this->uxProductHelper->getMinInstallmentAmount();
     }
 
     /**
      * @return bool
      */
-    public function hasInterest() :bool
+    public function hasInterest(): bool
     {
         return ($this->getProduct()->getFinalPrice() / $this->getMinInstallmentAmount()) > $this->getInstallmentsWithoutTax();
     }

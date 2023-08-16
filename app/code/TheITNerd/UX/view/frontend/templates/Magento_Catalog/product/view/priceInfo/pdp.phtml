@@ -1,18 +1,17 @@
-<?php
+<?php /** @noinspection PhpFullyQualifiedNameUsageInspection */
 /**
  * @var $block \TheITNerd\UX\Block\Product\PriceInfo
  * @var $priceHelper \Magento\Framework\Pricing\Helper\Data
  */
 
-$priceHelper  = $this->helper('Magento\Framework\Pricing\Helper\Data');
-
+$priceHelper  = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
 ?>
 
 
 <?php if($block->canShowCashDiscount()): ?>
 <div class="cash-discount">
     <span class="cash-discount--price">
-        <?= $priceHelper->currency($block->getProductCashDiscountedPrice()); ?>
+        <?= $priceHelper->currency($block->getProductCashDiscountedPrice()) ?>
     </span>
     <span class="cash-discount--text">
         <?= __("Paying with <strong>%1</strong> you have up to <strong>%2% OFF</strong>", $block->getCashDiscountPaymentType(), $block->getCashDiscountAmount()) ?>
@@ -23,7 +22,7 @@ $priceHelper  = $this->helper('Magento\Framework\Pricing\Helper\Data');
     <div class="installments">
         <?php if($block->getInstallmentsWithoutTax()): ?>
         <div class="installments--no-interest">
-            <?= __("Or in <strong>%1</strong> easy installments of <strong>%2</strong> with no tax", $block->getInstallmentsWithoutTax(), $priceHelper->currency($block->getInstallmentsWithoutTaxAmount())) ?>
+            <?= __("Or in <strong>%1</strong> easy installments of <strong>%2</strong> without interest", $block->getInstallmentsWithoutTax(), $priceHelper->currency($block->getInstallmentsWithoutTaxAmount())) ?>
         </div>
         <?php endif; ?>
         <a href="javascript:void(0)"  class="installments--trigger"><?= __('More installment options') ?></a>
@@ -34,7 +33,7 @@ $priceHelper  = $this->helper('Magento\Framework\Pricing\Helper\Data');
             </div>
             <?php endforeach; ?>
             <?php if($block->hasInterest()): ?>
-            <small><?= __('* With interest of %1%/month', $block->getInstallmentInterest()); ?></small>
+            <small><?= __('* With interest of %1%/month', $block->getInstallmentInterest()) ?></small>
             <?php endif; ?>
         </div>
         <script type="text/x-magento-init">

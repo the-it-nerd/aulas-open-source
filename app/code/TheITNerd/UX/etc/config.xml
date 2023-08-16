@@ -5,11 +5,13 @@
             <pdp>
                 <enabled_qty_btn>1</enabled_qty_btn>
             </pdp>
+
             <cash_discount>
                 <enabled>1</enabled>
                 <amount>5</amount>
                 <payment_type>PIX</payment_type>
             </cash_discount>
+
             <installment>
                 <enabled>1</enabled>
                 <min_installment>10</min_installment>
@@ -17,6 +19,33 @@
                 <no_tax_installment>3</no_tax_installment>
                 <installment_tx>1.99</installment_tx>
             </installment>
+
+            <facebook_share>
+                <enabled>1</enabled>
+                <link_text>Share</link_text>
+                <link_type>_popup</link_type>
+                <popup_width>600</popup_width>
+                <popup_height>500</popup_height>
+                <popup_scrollbars>0</popup_scrollbars>
+                <popup_resizable>0</popup_resizable>
+            </facebook_share>
+
+            <twitter_share>
+                <enabled>1</enabled>
+                <link_text>Tweet</link_text>
+                <share_text><![CDATA[Check out this amazing product, that I just found %1]]></share_text>
+                <link_type>_popup</link_type>
+                <popup_width>600</popup_width>
+                <popup_height>300</popup_height>
+                <popup_scrollbars>0</popup_scrollbars>
+                <popup_resizable>0</popup_resizable>
+            </twitter_share>
+
+            <whatsapp_share>
+                <enabled>1</enabled>
+                <link_text>Share</link_text>
+                <share_text><![CDATA[Check out this amazing product, that I just found %1]]></share_text>
+            </whatsapp_share>
         </ux>
     </default>
 </config>

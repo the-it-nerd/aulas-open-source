@@ -5,8 +5,12 @@
             <block class="Magento\Framework\View\Element\Template" template="TheITNerd_UX::Magento_Catalog/product/view/addtocartQty.phtml" />
         </referenceContainer>
         <referenceContainer name="product.info.price">
-            <block class="TheITNerd\UX\Block\Product\PriceInfo" template="TheITNerd_UX::Magento_Catalog/product/view/priceInfo.phtml" />
+            <block class="TheITNerd\UX\Block\Product\PriceInfoPDP" template="TheITNerd_UX::Magento_Catalog/product/view/priceInfoPDP.phtml" />
         </referenceContainer>
+
+        <referenceBlock name="product.info.addto">
+            <block class="Magento\Framework\View\Element\Template" template="TheITNerd_UX::Magento_Catalog/product/view/addto/social.phtml" />
+        </referenceBlock>
 
     </body>
 </page>

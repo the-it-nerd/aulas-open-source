@@ -1,7 +1,53 @@
+@import 'variables/_icons';
+
 //
 //  Common (styles-m.css)
 //  _____________________________________________
 & when (@media-common = true) {
+    .lib-font-face(
+        @family-name: @ux-icon-font,
+        @font-path: '@{baseDir}TheITNerd_UX/fonts/social_icons',
+        @font-weight: normal,
+        @font-style: normal,
+        @font-display: block
+    );
+
+    .product-social-links {
+        .product-addto-links {
+
+            .whatsapp-share,
+            .twitter-share,
+            .facebook-share
+            {
+                &:extend(.abs-action-addto-product all);
+                &:extend(.abs-actions-addto all);
+            }
+            .whatsapp-share {
+                .lib-icon-font(
+                    @ux-icon-whatsapp,
+                    @_icon-font: @ux-icon-font
+                );
+            }
+
+            .twitter-share {
+                .lib-icon-font(
+                        @ux-icon-twitter,
+                    @_icon-font: @ux-icon-font
+                );
+            }
+
+            .facebook-share {
+                .lib-icon-font(
+                        @ux-icon-facebook,
+                    @_icon-font: @ux-icon-font
+                );
+            }
+        }
+
+    }
+
+
+
     .btn-qty {
         .lib-button();
     }
@@ -24,7 +70,13 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    // your code
+    .product-social-links {
+        .product-addto-links {
+            .whatsapp-share {
+                display: none !important;
+            }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {

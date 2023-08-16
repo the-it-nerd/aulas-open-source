@@ -1,0 +1,30 @@
+<?php /** @noinspection PhpFullyQualifiedNameUsageInspection */
+/**
+ * @var $block \TheITNerd\UX\Block\Product\PriceInfo
+ * @var $priceHelper \Magento\Framework\Pricing\Helper\Data
+ */
+
+$priceHelper  = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
+?>
+
+
+<?php if($block->canShowCashDiscount()): ?>
+<div class="cash-discount">
+    <span class="cash-discount--price">
+        <?= $priceHelper->currency($block->getProductCashDiscountedPrice()) ?>
+    </span>
+    <span class="cash-discount--text">
+        <?= __("Paying with <strong>%1</strong>", $block->getCashDiscountPaymentType()) ?>
+    </span>
+</div>
+<?php endif; ?>
+<?php if($block->canShowInstallments()): ?>
+    <div class="installments">
+        <?php if($block->getInstallmentsWithoutTax()): ?>
+        <div class="installments--no-interest">
+            <?= __("or <strong>%1</strong> installments of <strong>%2</strong>", $block->getInstallmentsWithoutTax(), $priceHelper->currency($block->getInstallmentsWithoutTaxAmount())) ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
+<?php endif; ?>

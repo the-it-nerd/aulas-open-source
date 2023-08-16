@@ -74,7 +74,7 @@ return [
                 ],
                 'template' => [
                     'allow_symlink' => '1',
-                    'minify_html' => '1'
+                    'minify_html' => '0'
                 ],
                 'js' => [
                     'merge_files' => '0',
@@ -89,8 +89,8 @@ return [
                     ]
                 ],
                 'css' => [
-                    'merge_css_files' => '1',
-                    'minify_files' => '1',
+                    'merge_css_files' => '0',
+                    'minify_files' => '0',
                     'use_css_critical_path' => '0',
                     'minify_exclude' => [
                         'tiny_mce' => '/tiny_mce/'

@@ -1,8 +1,8 @@
-<?php
+<?php /** @noinspection PhpFullyQualifiedNameUsageInspection */
 /**
- * @var $helper \TheITNerd\UX\Helper\Config
+ * @var $helper \TheITNerd\UX\Helper\Product
  */
-$helper = $this->helper('TheITNerd\UX\Helper\Config');
+$helper = $this->helper(\TheITNerd\UX\Helper\Product::class);
 if($helper->canShowPDPQtyButtons()) :
 ?>
 <script type="text/x-magento-init">

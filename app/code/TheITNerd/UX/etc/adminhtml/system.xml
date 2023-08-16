@@ -80,6 +80,174 @@
                 </field>
             </group>
 
+
+            <group id="facebook_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Facebook Share</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>This will enable to show facebook share on the PDP.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Text</label>
+                    <depends>
+                        <field id="ux/facebook_share/enabled">1</field>
+                    </depends>
+                    <comment>The text to show on the link</comment>
+                </field>
+
+                <field id="link_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link type</label>
+                    <source_model>TheITNerd\UX\Model\Config\Source\LinkType</source_model>
+                    <depends>
+                        <field id="ux/facebook_share/enabled">1</field>
+                    </depends>
+                    <comment>Choose the link open as popup or in a new browser tab</comment>
+                </field>
+
+                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Width</label>
+                    <depends>
+                        <field id="ux/facebook_share/enabled">1</field>
+                        <field id="ux/facebook_share/link_type">_popup</field>
+                    </depends>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>The popup width</comment>
+                </field>
+
+                <field id="popup_height" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Height</label>
+                    <depends>
+                        <field id="ux/facebook_share/enabled">1</field>
+                        <field id="ux/facebook_share/link_type">_popup</field>
+                    </depends>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>The popup height</comment>
+                </field>
+
+                <field id="popup_scrollbars" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Popup Scrollbars</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="ux/facebook_share/enabled">1</field>
+                        <field id="ux/facebook_share/link_type">_popup</field>
+                    </depends>
+                    <comment>Should we show scrollbar on the popup?</comment>
+                </field>
+
+                <field id="popup_resizable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Popup Resize</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="ux/facebook_share/enabled">1</field>
+                        <field id="ux/facebook_share/link_type">_popup</field>
+                    </depends>
+                    <comment>Should we bew able to resize the popup?</comment>
+                </field>
+
+            </group>
+
+            <group id="twitter_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Twitter Share</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>This will enable to show Twitter share on the PDP.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Text</label>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                    </depends>
+                    <comment>The text to show on the link</comment>
+                </field>
+
+                <field id="share_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Share Text</label>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                    </depends>
+                    <comment>The text to use while tweeting, please add the %s where you want to add the link</comment>
+                </field>
+
+                <field id="link_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link type</label>
+                    <source_model>TheITNerd\UX\Model\Config\Source\LinkType</source_model>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                    </depends>
+                    <comment>Choose the link open as popup or in a new browser tab</comment>
+                </field>
+
+                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Width</label>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                        <field id="ux/twitter_share/link_type">_popup</field>
+                    </depends>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>The popup width</comment>
+                </field>
+
+                <field id="popup_height" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Height</label>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                        <field id="ux/twitter_share/link_type">_popup</field>
+                    </depends>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>The popup height</comment>
+                </field>
+
+                <field id="popup_scrollbars" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Popup Scrollbars</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                        <field id="ux/twitter_share/link_type">_popup</field>
+                    </depends>
+                    <comment>Should we show scrollbar on the popup?</comment>
+                </field>
+
+                <field id="popup_resizable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Popup Resize</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="ux/twitter_share/enabled">1</field>
+                        <field id="ux/twitter_share/link_type">_popup</field>
+                    </depends>
+                    <comment>Should we bew able to resize the popup?</comment>
+                </field>
+
+            </group>
+
+            <group id="whatsapp_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>WhatsApp Share</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>This will enable to show WhatsApp share on the PDP.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Text</label>
+                    <depends>
+                        <field id="ux/whatsapp_share/enabled">1</field>
+                    </depends>
+                    <comment>The text to show on the link</comment>
+                </field>
+
+                <field id="share_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Share Text</label>
+                    <depends>
+                        <field id="ux/whatsapp_share/enabled">1</field>
+                    </depends>
+                    <comment>The text to use while tweeting, please add the %s where you want to add the link</comment>
+                </field>
+            </group>
+
         </section>
     </system>
 </config>
