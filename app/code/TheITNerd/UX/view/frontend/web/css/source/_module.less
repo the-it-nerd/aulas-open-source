@@ -63,6 +63,31 @@
             font-size: @font-size__l;
         }
     }
+
+    /**
+     * This is for the custom wishlist icon
+     */
+    .product-addto-links,
+    .product-social-links,
+    .block-bundle-summary,
+    .product-item,
+    .table-comparison {
+        .action.towishlist {
+            &:before {
+                color: white;
+                -webkit-text-stroke-width: 2px;
+                -webkit-text-stroke-color: @addto-color;
+            }
+
+            &.active {
+                &:before {
+                    color: @addto-color;
+                    -webkit-text-stroke-width: 0;
+                }
+            }
+
+        }
+    }
 }
 
 //

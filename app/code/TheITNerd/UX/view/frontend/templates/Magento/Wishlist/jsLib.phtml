@@ -1,0 +1,20 @@
+
+<?php
+
+
+/**
+ * @var Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist $block
+ * @var TheITNerd\UX\Helper\Customer $customerHelper
+ */
+$customerHelper = $this->helper(\TheITNerd\UX\Helper\Customer::class);
+?>
+
+<?php if($block->getWishlistHelper()->isAllow() && $customerHelper->isLoggedIn()): ?>
+<script type="text/x-magento-init">
+    {
+        "[data-action='add-to-wishlist']": {
+            "TheITNerd_UX/js/wishlist/productWishlistIcon": {}
+        }
+    }
+</script>
+<?php endif; ?>
