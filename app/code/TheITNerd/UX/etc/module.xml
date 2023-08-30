@@ -4,6 +4,7 @@
         <sequence>
             <module name="TheITNerd_Core" />
             <module name="Magento_Catalog" />
+            <module name="Magento_Swatches" />
         </sequence>
     </module>
 </config>

@@ -6,6 +6,10 @@
                 <enabled_qty_btn>1</enabled_qty_btn>
             </pdp>
 
+            <plp>
+                <enabled_second_product_image>1</enabled_second_product_image>
+            </plp>
+
             <cash_discount>
                 <enabled>1</enabled>
                 <amount>5</amount>

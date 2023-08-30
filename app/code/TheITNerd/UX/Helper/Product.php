@@ -5,8 +5,8 @@ namespace TheITNerd\UX\Helper;
 use Magento\Catalog\Model\Product as ProductModel;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
-use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\Pricing\Helper\Data;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Config
@@ -16,6 +16,7 @@ class Product extends AbstractHelper
 {
 
     public const UX_PDP_ENABLED_QTY_BTN_CONFIG_PATH = 'ux/pdp/enabled_qty_btn';
+    public const UX_PLP_ENABLED_SECOND_PRODUCT_IMAGE = 'ux/plp/enabled_second_product_image';
     public const UX_CASH_DISCOUNT_ENABLED_CONFIG_PATH = 'ux/cash_discount/enabled';
     public const UX_CASH_DISCOUNT_AMOUNT_CONFIG_PATH = 'ux/cash_discount/amount';
     public const UX_CASH_DISCOUNT_PAYMENT_TYPE_CONFIG_PATH = 'ux/cash_discount/payment_type';
@@ -27,7 +28,7 @@ class Product extends AbstractHelper
 
 
     public function __construct(
-        Context                                                 $context,
+        Context               $context,
         private readonly Data $priceHelper
     )
     {
@@ -40,6 +41,14 @@ class Product extends AbstractHelper
     public function canShowPDPQtyButtons(): bool
     {
         return $this->scopeConfig->isSetFlag(self::UX_PDP_ENABLED_QTY_BTN_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function canShowPLPSecondImage(): bool
+    {
+        return $this->scopeConfig->isSetFlag(self::UX_PLP_ENABLED_SECOND_PRODUCT_IMAGE, ScopeInterface::SCOPE_STORE);
     }
 
     /**

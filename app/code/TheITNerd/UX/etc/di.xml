@@ -2,8 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="TheITNerd\UX\Rewrite\Magento\Catalog\Block\Product\ListProduct" />
+
+    <!-- Fill wishlist icon feature -->
     <preference for="Magento\Wishlist\CustomerData\Wishlist" type="TheITNerd\UX\Rewrite\Magento\Wishlist\CustomerData\Wishlist" />
     <preference for="Magento\Wishlist\Controller\Index\Remove" type="TheITNerd\UX\Rewrite\Magento\Wishlist\Controller\Index\Remove" />
 
+
+    <!-- Second image feature -->
+    <preference for="Magento\Catalog\Block\Product\ImageFactory" type="TheITNerd\UX\Rewrite\Magento\Catalog\Block\Product\ImageFactory" />
 
 </config>

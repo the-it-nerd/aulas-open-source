@@ -6,12 +6,20 @@
             <class>separator-top</class>
             <label>UX</label>
             <tab>theitnerd</tab>
-            <resource>TheITNerd_Performance::config</resource>
+            <resource>TheITNerd_UX::config</resource>
             <group id="pdp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Product Page Improvements</label>
                 <field id="enabled_qty_btn" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Qty Button</label>
                     <comment>This will enable +/- button on the qty for the product page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="plp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Listing Page (Category/Search) Improvements</label>
+                <field id="enabled_second_product_image" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Second Product Image</label>
+                    <comment>This will enable to switch images on hove on the listing pages.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
