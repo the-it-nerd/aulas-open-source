@@ -1,0 +1,59 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Customer\ViewModel\Address\RegionProvider $regionProvider
+ * @var \TheITNerd\UX\Helper\Product $helper
+ */
+$regionProvider = $block->getRegionProvider();
+$helper = $this->helper(\TheITNerd\UX\Helper\Product::class);
+?>
+
+<?php if($helper->canShowPDPEstimatedShipping()): ?>
+<div class="estimate-shipping-methods">
+    <div class="estimate-shipping-methods--form">
+        <form method="post" action="<?= $block->getUrl() ?>rest/V1/pdp/estimate-shipping-methods" data-mage-init='{"validation": {}, "TheITNerd_UX/js/product/estimateShippingMethodsForm": {}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= __("Estimate shipping rates") ?></span></legend>
+                <div class="field postcode required">
+                    <label class="label" for="postcode"><span><?= __('Postcode') ?></span></label>
+                    <div class="control">
+                        <input type="text" name="postcode" id="postcode"  title="<?= __('Postcode') ?>" class="input-text required-entry" >
+                    </div>
+                    <div class="actions">
+                        <button type="submit" title="<?= __('Calculate'); ?>" class="action primary tocart" id="product-addtocart-button">
+                            <span><?= __('Calculate'); ?></span>
+                        </button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="estimate-shipping-methods--result" data-bind="scope:'estimateShippingMethods'">
+        <!-- ko template: getTemplate() -->
+        <!-- /ko -->
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "estimateShippingMethods": {
+                            "component": "TheITNerd_UX/js/view/estimated-shipping-rates",
+                            "template" : "TheITNerd_UX/product/estimated-shipping-rates"
+                        }
+                    }
+                }
+            },
+            "#postcode": {
+                "TheITNerd_Core/js/postcode": {
+                    "mask": "00000-000",
+                    "regionJson": <?= $regionProvider->getRegionJson() ?>,
+                    "autoSubmit": true
+                }
+            }
+        }
+    </script>
+
+</div>
+<?php endif; ?>

@@ -11,4 +11,6 @@
     <!-- Second image feature -->
     <preference for="Magento\Catalog\Block\Product\ImageFactory" type="TheITNerd\UX\Rewrite\Magento\Catalog\Block\Product\ImageFactory" />
 
+    <!-- PDP shipping methods -->
+    <preference for="TheITNerd\UX\Api\PDPEstimateShippingMethodsInterface" type="TheITNerd\UX\Model\Api\PDPEstimateShippingMethods" />
 </config>

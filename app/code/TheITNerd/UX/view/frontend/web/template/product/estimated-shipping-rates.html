@@ -1,0 +1,30 @@
+<!-- ko if: model.messages() && model.messages().length > 0 -->
+<div aria-atomic="true" role="alert" class="messages" data-bind="foreach: {
+        data: model.messages(), as: 'message'
+    }">
+    <div data-bind="attr: {
+            class: 'message-' + message.type + ' ' + message.type + ' message',
+            'data-ui-id': 'message-' + message.type
+        }">
+        <div data-bind="html: $parent.prepareMessageForHtml(message.text)"></div>
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko if : (isEstimatedShippingRatesVisible()) -->
+<table class="data table">
+    <thead>
+        <tr>
+            <th data-bind="i18n: 'Carrier'"></th>
+            <th data-bind="i18n: 'Cost'"></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: model.rates">
+        <tr>
+            <td data-bind="text: carrier"></td>
+            <td data-bind="text: price"></td>
+        </tr>
+    </tbody>
+</table>
+<!-- /ko -->
+

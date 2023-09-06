@@ -14,6 +14,12 @@
                     <comment>This will enable +/- button on the qty for the product page.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+
+                <field id="enabled_estimate_shipping" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Estimate Shipping</label>
+                    <comment>This will enable customer to estimate shipping methods on the pdp.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
             <group id="plp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Product Listing Page (Category/Search) Improvements</label>

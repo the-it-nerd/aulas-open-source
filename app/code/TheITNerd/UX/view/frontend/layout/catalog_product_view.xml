@@ -2,14 +2,19 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="product.info.main">
-            <block class="Magento\Framework\View\Element\Template" template="TheITNerd_UX::Magento/Catalog/product/view/addtocartQty.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="product.qty" template="TheITNerd_UX::Magento/Catalog/product/view/addtocartQty.phtml" />
         </referenceContainer>
         <referenceContainer name="product.info.price">
-            <block class="TheITNerd\UX\Block\Product\PriceInfoPDP" template="TheITNerd_UX::Magento/Catalog/product/view/priceInfoPDP.phtml" />
+            <block class="TheITNerd\UX\Block\Product\PriceInfoPDP" name="product.info.price.conditions" template="TheITNerd_UX::Magento/Catalog/product/view/priceInfoPDP.phtml" />
         </referenceContainer>
 
         <referenceBlock name="product.info.addto">
-            <block class="Magento\Framework\View\Element\Template" template="TheITNerd_UX::Magento/Catalog/product/view/addto/social.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="product.info.addto.social"  template="TheITNerd_UX::Magento/Catalog/product/view/addto/social.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="product.info.estimate.shipping" template="TheITNerd_UX::Magento/Catalog/product/view/estimate-shipping-methods.phtml" >
+                <arguments>
+                    <argument name="region_provider" xsi:type="object">Magento\Customer\ViewModel\Address\RegionProvider</argument>
+                </arguments>
+            </block>
         </referenceBlock>
 
     </body>

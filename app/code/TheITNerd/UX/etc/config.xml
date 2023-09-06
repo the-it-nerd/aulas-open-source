@@ -4,6 +4,7 @@
         <ux>
             <pdp>
                 <enabled_qty_btn>1</enabled_qty_btn>
+                <enabled_estimate_shipping>1</enabled_estimate_shipping>
             </pdp>
 
             <plp>

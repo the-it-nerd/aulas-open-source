@@ -122,6 +122,8 @@ class ImageFactory extends \Magento\Catalog\Block\Product\ImageFactory
             $images = $this->galleryReadHandler->execute($product);
 
             if (isset($images->getMediaGallery()['images'])) {
+                $secondOriginalFilePath = '';
+
                 foreach ($images->getMediaGallery()['images'] as $image) {
                     if ($image['file'] === $originalFilePath) {
                         continue;
