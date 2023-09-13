@@ -13,4 +13,10 @@
 
     <!-- PDP shipping methods -->
     <preference for="TheITNerd\UX\Api\PDPEstimateShippingMethodsInterface" type="TheITNerd\UX\Model\Api\PDPEstimateShippingMethods" />
+
+    <!-- PDP Gallery configurations -->
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="ProductGalleryConfigurations"
+                type="TheITNerd\UX\Plugin\Magento\Catalog\ProductGalleryConfigurationsPlugin"/>
+    </type>
 </config>

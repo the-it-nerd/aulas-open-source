@@ -7,6 +7,18 @@
                 <enabled_estimate_shipping>1</enabled_estimate_shipping>
             </pdp>
 
+            <pdp_gallery>
+                <enabled>1</enabled>
+                <magnifier_enabled>1</magnifier_enabled>
+                <magnifier_fullscreenzoom>20</magnifier_fullscreenzoom>
+                <magnifier_top>0</magnifier_top>
+                <magnifier_left>0</magnifier_left>
+                <magnifier_width>250</magnifier_width>
+                <magnifier_height>250</magnifier_height>
+                <magnifier_eventType>hover</magnifier_eventType>
+                <magnifier_mode>inside</magnifier_mode>
+            </pdp_gallery>
+
             <plp>
                 <enabled_second_product_image>1</enabled_second_product_image>
             </plp>

@@ -2,42 +2,133 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
 
-        <section id="ux" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="ux" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <class>separator-top</class>
             <label>UX</label>
             <tab>theitnerd</tab>
             <resource>TheITNerd_UX::config</resource>
-            <group id="pdp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="pdp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Product Page Improvements</label>
-                <field id="enabled_qty_btn" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled_qty_btn" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Qty Button</label>
                     <comment>This will enable +/- button on the qty for the product page.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="enabled_estimate_shipping" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled_estimate_shipping" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Estimate Shipping</label>
                     <comment>This will enable customer to estimate shipping methods on the pdp.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
-            <group id="plp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="pdp_gallery" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <label>Product Page - Gallery - Improvements</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Gallery Improvements</label>
+                    <comment>This will overwrite the chane syou made on the theme/etc/view.xml.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+
+                <field id="magnifier_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable The Magnifier</label>
+                    <comment>Enables zoom interaction zoom</comment>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="magnifier_fullscreenzoom" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Fullscreen Zoom</label>
+                    <comment>Zoom for fullscreen (integer)</comment>
+                    <validate>validate-zero-or-greater validate-number</validate>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="magnifier_top" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Top Position</label>
+                    <comment>Top position of magnifier</comment>
+                    <validate>validate-zero-or-greater validate-number</validate>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="magnifier_left" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Left Position</label>
+                    <comment>Left position of magnifier</comment>
+                    <validate>validate-zero-or-greater validate-number</validate>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="magnifier_width" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Width</label>
+                    <comment>Width of magnifier block</comment>
+                    <validate>validate-zero-or-greater validate-number</validate>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="magnifier_height" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Height</label>
+                    <comment>Height of magnifier block</comment>
+                    <validate>validate-zero-or-greater validate-number</validate>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="magnifier_eventType" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Event Type</label>
+                    <comment>Which mouse interaction triggers the zoom</comment>
+                    <source_model>TheITNerd\UX\Model\Config\Source\Magnifier\EventType</source_model>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="magnifier_mode" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Magnifier Mode</label>
+                    <comment>If the zoom shows inside or outside the image</comment>
+                    <source_model>TheITNerd\UX\Model\Config\Source\Magnifier\Mode</source_model>
+                    <depends>
+                        <field id="ux/pdp_gallery/enabled">1</field>
+                        <field id="ux/pdp_gallery/magnifier_enabled">1</field>
+                    </depends>
+                </field>
+
+
+
+            </group>
+            <group id="plp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Product Listing Page (Category/Search) Improvements</label>
-                <field id="enabled_second_product_image" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled_second_product_image" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Second Product Image</label>
                     <comment>This will enable to switch images on hove on the listing pages.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
-            <group id="cash_discount" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="cash_discount" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Pay in Cash Discount announcement</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <comment>This will enable to show the discount on PDP and PLP.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="amount" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="amount" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Discount amount in %</label>
                     <depends>
                         <field id="ux/cash_discount/enabled">1</field>
@@ -45,7 +136,7 @@
                     <validate>validate-zero-or-greater</validate>
                 </field>
 
-                <field id="payment_type" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="payment_type" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Payment Type</label>
                     <comment>The name of the payment type to show in the storefront (ex: PIX or Boleto)</comment>
                     <depends>
@@ -54,22 +145,22 @@
                 </field>
             </group>
 
-            <group id="installment" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="installment" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Installments Announcement</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <comment>This will enable to show the installments on PDP and PLP.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="min_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="min_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>The minimum installment value</label>
                     <depends>
                         <field id="ux/cash_discount/enabled">1</field>
                     </depends>
                     <validate>validate-digits validate-zero-or-greater</validate>
                 </field>
-                <field id="max_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="max_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>The maximum installments count</label>
                     <depends>
                         <field id="ux/cash_discount/enabled">1</field>
@@ -77,7 +168,7 @@
                     <validate>validate-digits validate-zero-or-greater</validate>
                 </field>
 
-                <field id="no_tax_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="no_tax_installment" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Installments count without tax</label>
                     <depends>
                         <field id="ux/cash_discount/enabled">1</field>
@@ -85,7 +176,7 @@
                     <validate>validate-digits validate-zero-or-greater</validate>
                 </field>
 
-                <field id="installment_tx" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="installment_tx" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Installments tax</label>
                     <depends>
                         <field id="ux/cash_discount/enabled">1</field>
@@ -95,15 +186,15 @@
             </group>
 
 
-            <group id="facebook_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="facebook_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Facebook Share</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <comment>This will enable to show facebook share on the PDP.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Link Text</label>
                     <depends>
                         <field id="ux/facebook_share/enabled">1</field>
@@ -111,7 +202,7 @@
                     <comment>The text to show on the link</comment>
                 </field>
 
-                <field id="link_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="link_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Link type</label>
                     <source_model>TheITNerd\UX\Model\Config\Source\LinkType</source_model>
                     <depends>
@@ -120,7 +211,7 @@
                     <comment>Choose the link open as popup or in a new browser tab</comment>
                 </field>
 
-                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup Width</label>
                     <depends>
                         <field id="ux/facebook_share/enabled">1</field>
@@ -130,7 +221,7 @@
                     <comment>The popup width</comment>
                 </field>
 
-                <field id="popup_height" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_height" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup Height</label>
                     <depends>
                         <field id="ux/facebook_share/enabled">1</field>
@@ -140,7 +231,7 @@
                     <comment>The popup height</comment>
                 </field>
 
-                <field id="popup_scrollbars" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_scrollbars" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Popup Scrollbars</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -150,7 +241,7 @@
                     <comment>Should we show scrollbar on the popup?</comment>
                 </field>
 
-                <field id="popup_resizable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_resizable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Popup Resize</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -162,15 +253,15 @@
 
             </group>
 
-            <group id="twitter_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="twitter_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Twitter Share</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <comment>This will enable to show Twitter share on the PDP.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Link Text</label>
                     <depends>
                         <field id="ux/twitter_share/enabled">1</field>
@@ -178,7 +269,7 @@
                     <comment>The text to show on the link</comment>
                 </field>
 
-                <field id="share_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="share_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Share Text</label>
                     <depends>
                         <field id="ux/twitter_share/enabled">1</field>
@@ -186,7 +277,7 @@
                     <comment>The text to use while tweeting, please add the %s where you want to add the link</comment>
                 </field>
 
-                <field id="link_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="link_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Link type</label>
                     <source_model>TheITNerd\UX\Model\Config\Source\LinkType</source_model>
                     <depends>
@@ -195,7 +286,7 @@
                     <comment>Choose the link open as popup or in a new browser tab</comment>
                 </field>
 
-                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_width" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup Width</label>
                     <depends>
                         <field id="ux/twitter_share/enabled">1</field>
@@ -205,7 +296,7 @@
                     <comment>The popup width</comment>
                 </field>
 
-                <field id="popup_height" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_height" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Popup Height</label>
                     <depends>
                         <field id="ux/twitter_share/enabled">1</field>
@@ -215,7 +306,7 @@
                     <comment>The popup height</comment>
                 </field>
 
-                <field id="popup_scrollbars" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_scrollbars" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Popup Scrollbars</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -225,7 +316,7 @@
                     <comment>Should we show scrollbar on the popup?</comment>
                 </field>
 
-                <field id="popup_resizable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="popup_resizable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Popup Resize</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -237,15 +328,15 @@
 
             </group>
 
-            <group id="whatsapp_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="whatsapp_share" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>WhatsApp Share</label>
-                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable</label>
                     <comment>This will enable to show WhatsApp share on the PDP.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
 
-                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="link_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Link Text</label>
                     <depends>
                         <field id="ux/whatsapp_share/enabled">1</field>
@@ -253,7 +344,7 @@
                     <comment>The text to show on the link</comment>
                 </field>
 
-                <field id="share_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="share_text" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Share Text</label>
                     <depends>
                         <field id="ux/whatsapp_share/enabled">1</field>
