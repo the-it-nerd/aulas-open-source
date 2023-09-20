@@ -19,4 +19,8 @@
         <plugin name="ProductGalleryConfigurations"
                 type="TheITNerd\UX\Plugin\Magento\Catalog\ProductGalleryConfigurationsPlugin"/>
     </type>
+
+    <!-- PDP Buy together -->
+    <preference for="Magento\Catalog\Block\Product\ProductList\Related"
+                type="TheITNerd\UX\Rewrite\Magento\Catalog\Block\Product\ProductList\Related"/>
 </config>

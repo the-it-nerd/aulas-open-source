@@ -20,6 +20,12 @@
                     <comment>This will enable customer to estimate shipping methods on the pdp.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+
+                <field id="enable_buy_together" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Buy Together</label>
+                    <comment>This will The Buy together function in the place of the related products</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
             <group id="pdp_gallery" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>Product Page - Gallery - Improvements</label>
@@ -28,7 +34,6 @@
                     <comment>This will overwrite the chane syou made on the theme/etc/view.xml.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-
 
                 <field id="magnifier_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable The Magnifier</label>

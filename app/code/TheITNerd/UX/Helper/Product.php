@@ -16,6 +16,7 @@ class Product extends AbstractHelper
 {
 
     public const UX_PDP_ENABLED_QTY_BTN_CONFIG_PATH = 'ux/pdp/enabled_qty_btn';
+    public const UX_PDP_ENABLE_BUY_TOGETHER_CONFIG_PATH = 'ux/pdp/enable_buy_together';
     public const UX_PDP_ENABLED_ESTIMATE_SHIPPING_CONFIG_PATH = 'ux/pdp/enabled_estimate_shipping';
     public const UX_PLP_ENABLED_SECOND_PRODUCT_IMAGE = 'ux/plp/enabled_second_product_image';
     public const UX_CASH_DISCOUNT_ENABLED_CONFIG_PATH = 'ux/cash_discount/enabled';
@@ -36,6 +37,13 @@ class Product extends AbstractHelper
         parent::__construct($context);
     }
 
+    /**
+     * @return bool
+     */
+    public function isBuyTogetherEnabled(): bool
+    {
+        return $this->scopeConfig->isSetFlag(self::UX_PDP_ENABLE_BUY_TOGETHER_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+    }
     /**
      * @return bool
      */

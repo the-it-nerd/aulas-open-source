@@ -112,6 +112,63 @@
             }
         }
     }
+
+    /**
+     * This is for the PDP Related Products
+     */
+    .block.related.buy-together {
+        .block-content {
+            .product-items {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                .product-item {
+                    display: flex;
+                    align-items: center;
+
+                    &:after {
+                        content: "+";
+                        margin-left: @indent__l;
+                        font-size: @font-size__l;
+                        font-weight: bold;
+                    }
+
+                    &:nth-child(2) {
+                        &:after {
+                            content: "=";
+                        }
+                    }
+
+                    &.related---actions {
+                        flex-direction: column;
+
+                        &:after {
+                            content: unset;
+                        }
+
+                        .related---subtotal-line {
+                            text-align: center;
+
+                            .related---subtotal-label {
+
+                            }
+
+                            .related---subtotal-value {
+                                .lib-font-size(@font-size__l);
+                            }
+                        }
+
+                        .action.primary.tocart {
+                            width: 100%;
+                            margin-top: @indent__s;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 //
