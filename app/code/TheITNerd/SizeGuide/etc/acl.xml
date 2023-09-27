@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="TheITNerd_SizeGuide::SizeGuide" title="SizeGuide" sortOrder="10">
+					<resource id="TheITNerd_SizeGuide::SizeGuide_save" title="Save SizeGuide" sortOrder="10"/>
+					<resource id="TheITNerd_SizeGuide::SizeGuide_delete" title="Delete SizeGuide" sortOrder="20"/>
+					<resource id="TheITNerd_SizeGuide::SizeGuide_update" title="Update SizeGuide" sortOrder="30"/>
+					<resource id="TheITNerd_SizeGuide::SizeGuide_view" title="View SizeGuide" sortOrder="40"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

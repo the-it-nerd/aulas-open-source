@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/theitnerd-sizeguide/sizeguide" method="POST">
+		<service class="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="TheITNerd_SizeGuide::SizeGuide_save"/>
+		</resources>
+	</route>
+	<route url="/V1/theitnerd-sizeguide/sizeguide/search" method="GET">
+		<service class="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="TheITNerd_SizeGuide::SizeGuide_view"/>
+		</resources>
+	</route>
+	<route url="/V1/theitnerd-sizeguide/sizeguide/:entityId" method="GET">
+		<service class="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="TheITNerd_SizeGuide::SizeGuide_view"/>
+		</resources>
+	</route>
+	<route url="/V1/theitnerd-sizeguide/sizeguide/:entityId" method="PUT">
+		<service class="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="TheITNerd_SizeGuide::SizeGuide_update"/>
+		</resources>
+	</route>
+	<route url="/V1/theitnerd-sizeguide/sizeguide/:entityId" method="DELETE">
+		<service class="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="TheITNerd_SizeGuide::SizeGuide_delete"/>
+		</resources>
+	</route>
+</routes>

@@ -481,6 +481,7 @@ return [
         'TheITNerd_Core' => 1,
         'TheITNerd_Brasil' => 1,
         'TheITNerd_Performance' => 1,
+        'TheITNerd_SizeGuide' => 1,
         'TheITNerd_SocialLogin' => 1,
         'TheITNerd_UX' => 1
     ],

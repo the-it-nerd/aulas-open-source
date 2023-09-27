@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" type="TheITNerd\SizeGuide\Model\SizeGuideRepository"/>
+	<preference for="TheITNerd\SizeGuide\Api\Data\SizeGuideInterface" type="TheITNerd\SizeGuide\Model\Data\SizeGuide"/>
+	<preference for="TheITNerd\SizeGuide\Api\Data\SizeGuideSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <virtualType name="TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">theitnerd_sizeguide_entity</argument>
+			<argument name="resourceModel" xsi:type="string">TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection</argument>
+		</arguments>
+	</virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="theitnerd_sizeguide_entity_listing_data_source" xsi:type="string">TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+    <virtualType name="TheITNerd\SizeGuide\ImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">size_guides/tmp</argument>
+            <argument name="basePath" xsi:type="string">size_guides</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+                <item name="svg" xsi:type="string">image/svg</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">TheITNerd\SizeGuide\ImageUploader</argument>
+        </arguments>
+    </type>
+
+    <type name="TheITNerd\SizeGuide\Model\SizeGuide\Attribute\Backend\Image">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">TheITNerd\SizeGuide\ImageUploader</argument>
+        </arguments>
+    </type>
+
+
+</config>
