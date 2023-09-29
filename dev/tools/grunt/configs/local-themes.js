@@ -41,6 +41,16 @@ module.exports = {
         ],
         dsl: 'less'
     },
+    ade: {
+        area: 'frontend',
+        name: 'Ade/Default',
+        locale: 'pt_BR',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
+    },
     backend: {
         area: 'adminhtml',
         name: 'Magento/backend',
