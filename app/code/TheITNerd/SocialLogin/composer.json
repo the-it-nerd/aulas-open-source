@@ -35,5 +35,11 @@
         "psr-4" : {
             "TheITNerd\\SocialLogin\\" : ""
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": true,
+            "magento/magento-composer-installer": true
+        }
     }
 }

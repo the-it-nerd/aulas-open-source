@@ -16,6 +16,7 @@ define([
             mask: '00000-000',
             parent: '.field',
             form: 'form',
+            autoSubmit: false,
             addressFields: {
                 street: '[name="street[0]"]',
                 neighborhood: '[name="street[3]"]',
@@ -32,6 +33,7 @@ define([
                 .createPostcodeSearchLink()
                 .bindEvents();
         },
+
 
         bindEvents: function() {
             postcodeModel.postcode.subscribe($.proxy(function(postcode){
@@ -58,6 +60,9 @@ define([
                                 self.options.neighborhoodElement.val(value.neighborhood).trigger('change');
                                 self.options.cityElement.val(value.city).trigger('change');
                                 self.options.regionIdElement.val(value.region_id).trigger('change');
+                                if(self.options.autoSubmit) {
+                                    self.options.formElement.submit();
+                                }
                             } else {
                                 alert({
                                     title: $.mage.__('Error'),
