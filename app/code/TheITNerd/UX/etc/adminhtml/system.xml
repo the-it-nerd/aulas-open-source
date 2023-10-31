@@ -23,7 +23,11 @@
 
                 <field id="enable_buy_together" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Buy Together</label>
-                    <comment>This will The Buy together function in the place of the related products</comment>
+                    <comment>
+                        This will The Buy together function in the place of the related products.
+                        ATTENTION This will work only for simple products, other products like type configurable will be just showed, but
+                        customer won't select to buy together.
+                    </comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
