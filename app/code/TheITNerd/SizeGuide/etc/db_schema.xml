@@ -4,15 +4,18 @@
 	<table name="theitnerd_sizeguide_entity_text" resource="default" engine="innodb" comment="Size Guide Text Attributes Table">
 		<column xsi:type="int" name="value_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
 		<column xsi:type="smallint" name="attribute_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+		<column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
 		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Entity ID"/>
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="value_id"/>
 		</constraint>
 		<constraint xsi:type="foreign" referenceId="THEITNERD_SIZEGUIDE_ENTITY_TEXT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="theitnerd_sizeguide_entity_text" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
 		<constraint xsi:type="foreign" referenceId="THEITNERD_SIZEGUIDE_ENTITY_TEXT_ENTITY_ID_THEITNERD_SIZEGUIDE_ENTITY_ENTITY_ID" table="theitnerd_sizeguide_entity_text" column="entity_id" referenceTable="theitnerd_sizeguide_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+		<constraint xsi:type="foreign" referenceId="THEITNERD_SIZEGUIDE_ENTITY_TEXT_STORE_ID_STORE_STORE_ID" table="theitnerd_sizeguide_entity_text" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
 		<constraint xsi:type="unique" referenceId="THEITNERD_SIZEGUIDE_ENTITY_TEXT_ENTITY_ID_ATTRIBUTE_ID">
 			<column name="entity_id"/>
 			<column name="attribute_id"/>
+			<column name="store_id"/>
 		</constraint>
 		<index referenceId="THEITNERD_SIZEGUIDE_ENTITY_TEXT_ATTRIBUTE_ID" indexType="btree">
 			<column name="attribute_id"/>
@@ -22,15 +25,18 @@
 	<table name="theitnerd_sizeguide_entity_varchar" resource="default" engine="innodb" comment="Size Guide Varchar Attributes Table">
 		<column xsi:type="int" name="value_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
 		<column xsi:type="smallint" name="attribute_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
 		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Entity ID"/>
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="value_id"/>
 		</constraint>
 		<constraint xsi:type="foreign" referenceId="THEITNERD_SIZEGUIDE_ENTITY_VARCHAR_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="theitnerd_sizeguide_entity_varchar" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
 		<constraint xsi:type="foreign" referenceId="THEITNERD_SIZEGUIDE_ENTITY_VARCHAR_ENTITY_ID_THEITNERD_SIZEGUIDE_ENTITY_ENTITY_ID" table="theitnerd_sizeguide_entity_varchar" column="entity_id" referenceTable="theitnerd_sizeguide_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="THEITNERD_SIZEGUIDE_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID" table="theitnerd_sizeguide_entity_varchar" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
 		<constraint xsi:type="unique" referenceId="THEITNERD_SIZEGUIDE_ENTITY_VARCHAR_ENTITY_ID_ATTRIBUTE_ID">
 			<column name="entity_id"/>
 			<column name="attribute_id"/>
+			<column name="store_id"/>
 		</constraint>
 		<index referenceId="THEITNERD_SIZEGUIDE_ENTITY_VARCHAR_ATTRIBUTE_ID" indexType="btree">
 			<column name="attribute_id"/>
@@ -38,6 +44,7 @@
 		<index referenceId="THEITNERD_SIZEGUIDE_ENTITY_VARCHAR_ENTITY_ID_ATTRIBUTE_ID_VALUE" indexType="btree">
 			<column name="entity_id"/>
 			<column name="attribute_id"/>
+			<column name="store_id"/>
 			<column name="value"/>
 		</index>
 		<column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>

@@ -6,6 +6,14 @@
         <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
     </head>
 	<body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Store\Switcher" name="theitnerd_sizeguidee.store.switcher" template="Magento_Backend::store/switcher.phtml" >
+                <action method="setUseConfirm">
+                    <argument name="params" xsi:type="string">1</argument>
+                </action>
+            </block>
+        </referenceContainer>
+
 		<referenceContainer name="content">
 			<uiComponent name="theitnerd_sizeguide_entity_form"/>
 		</referenceContainer>

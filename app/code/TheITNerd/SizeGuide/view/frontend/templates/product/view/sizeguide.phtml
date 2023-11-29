@@ -1,0 +1,64 @@
+<?php
+/**
+ * @var $block \TheITNerd\SizeGuide\Block\Catalog\Product\View\SizeGuide
+ */
+?>
+<?php if($sizeGuide = $block->getSizeGuide()): ?>
+<div class="sizeGuide--trigger">
+    <a href="javascript:void(0)"><?= __('How to choose my size?') ?></a>
+</div>
+
+<div id="sizeGuide--modal" style="display: none">
+    <div class="modal-body-content">
+        <div class="sizeGuide">
+            <?php if($sizeGuide->getDescription()): ?>
+            <div class="sizeGuide--description">
+                <?= $sizeGuide->getDescription() ?>
+            </div>
+            <?php endif; ?>
+
+            <div class="sizeGuide--content">
+                <?php if($sizeGuide->getImage()): ?>
+                <div class="sizeGuide--content--image">
+                    <img src="<?= $sizeGuide->getImage() ?>" />
+                </div>
+                <?php endif; ?>
+
+                <div class="sizeGuide--content--configuration">
+                    <?= $sizeGuide->getConfiguration() ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require([
+        "jquery",
+        "Magento_Ui/js/modal/modal"
+    ],function($, modal) {
+
+        var options = {
+            type: 'popup',
+            responsive: true,
+            title: '<?= $sizeGuide->getName() ?>',
+            buttons: [{
+                text: $.mage.__('Close'),
+                class: '',
+                click: function () {
+                    this.closeModal();
+                }
+            }]
+        };
+
+        modal(options, $('#sizeGuide--modal'));
+
+        $(".sizeGuide--trigger > a").click(function() {
+            $('#sizeGuide--modal').modal('openModal');
+        });
+    });
+</script>
+
+<?php endif; ?>
+
+

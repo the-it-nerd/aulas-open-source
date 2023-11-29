@@ -1,23 +1,25 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" type="TheITNerd\SizeGuide\Model\SizeGuideRepository"/>
-	<preference for="TheITNerd\SizeGuide\Api\Data\SizeGuideInterface" type="TheITNerd\SizeGuide\Model\Data\SizeGuide"/>
-	<preference for="TheITNerd\SizeGuide\Api\Data\SizeGuideSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
-    <virtualType name="TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-		<arguments>
-			<argument name="mainTable" xsi:type="string">theitnerd_sizeguide_entity</argument>
-			<argument name="resourceModel" xsi:type="string">TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection</argument>
-		</arguments>
-	</virtualType>
+    <preference for="TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface" type="TheITNerd\SizeGuide\Model\SizeGuideRepository"/>
+    <preference for="TheITNerd\SizeGuide\Api\Data\SizeGuideInterface" type="TheITNerd\SizeGuide\Model\Data\SizeGuide"/>
+    <preference for="TheITNerd\SizeGuide\Api\Data\SizeGuideSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <type name="TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Grid\Collection">
+        <arguments>
+            <argument name="resourceModel" xsi:type="string">TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide</argument>
+            <argument name="eventPrefix" xsi:type="string">theitnerd_sizeguide_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">theitnerd_sizeguide_grid_collection</argument>
+        </arguments>
+    </type>
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-		<arguments>
-			<argument name="collections" xsi:type="array">
-				<item name="theitnerd_sizeguide_entity_listing_data_source" xsi:type="string">TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Grid\Collection</item>
-			</argument>
-		</arguments>
-	</type>
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="theitnerd_sizeguide_entity_listing_data_source" xsi:type="string">TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 
     <virtualType name="TheITNerd\SizeGuide\ImageUploader" type="Magento\Catalog\Model\ImageUploader">
         <arguments>
@@ -52,5 +54,59 @@
         </arguments>
     </type>
 
+    <virtualType name="TheITNerd\SizeGuide\Ui\Component\DataProvider\Form\Modifier\Eav" type="TheITNerd\EAV\Ui\DataProvider\Form\Modifier\Eav">
+        <arguments>
+            <argument name="entityType" xsi:type="string">TheITNerd\SizeGuide\Api\Data\SizeGuideInterface</argument>
+            <argument name="entityRegistry" xsi:type="string">theitnerd_sizeguide_sizeguide</argument>
+            <argument name="entityCode" xsi:type="string">theitnerd_sizeguide_entity</argument>
+            <argument name="entityAttributeSource" xsi:type="string">SizeGuide</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="TheITNerd\SizeGuide\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="eav" xsi:type="array">
+                    <item name="class" xsi:type="string">TheITNerd\SizeGuide\Ui\Component\DataProvider\Form\Modifier\Eav</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="TheITNerd\SizeGuide\Model\SizeGuide\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">TheITNerd\SizeGuide\Ui\DataProvider\Product\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="TheITNerd\SizeGuide\Api\Data\SizeGuideInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">theitnerd_sizeguide_entity</item>
+                    <item name="eavEntityType" xsi:type="string">theitnerd_sizeguide_entity</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                    <item name="entityContext" xsi:type="array">
+                        <item name="store" xsi:type="string">Magento\Store\Model\StoreScopeProvider</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="TheITNerd\EAV\Model\AbstractModel">
+        <arguments>
+            <argument name="entityTypes" xsi:type="array">
+                <item name="theitnerd_sizeguide_entity" xsi:type="string">TheITNerd\SizeGuide\Api\Data\SizeGuideInterface</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="TheITNerd\SizeGuide\Model\ResourceModel\Attribute\Collection" type="TheITNerd\EAV\Model\ResourceModel\Attribute\Collection">
+        <arguments>
+            <argument name="entityTypeCode" xsi:type="string">theitnerd_sizeguide_entity</argument>
+        </arguments>
+    </virtualType>
 
 </config>

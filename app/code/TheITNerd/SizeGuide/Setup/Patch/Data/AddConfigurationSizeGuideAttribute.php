@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Setup\Patch\Data;
 
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -51,9 +52,9 @@ class AddConfigurationSizeGuideAttribute implements DataPatchInterface, PatchRev
             \TheITNerd\SizeGuide\Model\SizeGuide::ENTITY,
             'configuration',
             [
-                'type' => 'varchar',
+                'type' => 'text',
                 'label' => 'Configuration',
-                'input' => 'text',
+                'input' => 'textarea',
                 'source' => '',
                 'frontend' => '',
                 'required' => true,
@@ -62,6 +63,10 @@ class AddConfigurationSizeGuideAttribute implements DataPatchInterface, PatchRev
                 'user_defined' => true,
                 'unique' => false,
                 'group' => 'General',
+                'global' => ScopedAttributeInterface::SCOPE_STORE,
+                "is_html_allowed_on_front" => true,
+                "is_wysiwyg_enabled" => true,
+                "is_pagebuilder_enabled" => true
             ]
         );
 

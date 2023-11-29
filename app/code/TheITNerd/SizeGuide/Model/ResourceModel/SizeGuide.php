@@ -7,9 +7,14 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Model\ResourceModel;
 
-class SizeGuide extends \Magento\Eav\Model\Entity\AbstractEntity
-{
 
+
+/**
+ * Class SizeGuide
+ * @package TheITNerd\SizeGuide\Model\ResourceModel
+ */
+class SizeGuide extends \Magento\Catalog\Model\ResourceModel\AbstractResource
+{
     /**
      * Define resource model
      *
@@ -19,5 +24,7 @@ class SizeGuide extends \Magento\Eav\Model\Entity\AbstractEntity
     {
         $this->setType('theitnerd_sizeguide_entity');
     }
+
+
 }
 

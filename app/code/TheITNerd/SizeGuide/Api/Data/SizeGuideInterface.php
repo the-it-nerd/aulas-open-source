@@ -10,8 +10,11 @@ namespace TheITNerd\SizeGuide\Api\Data;
 interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
 
-    const ENTITY_ID = 'entity_id';
-    const TITLE = 'title';
+    public const ENTITY_ID = 'entity_id';
+    public const NAME = 'name';
+    public const CONFIGURATION = 'configuration';
+    public const DESCRIPTION = 'description';
+    public const IMAGE = 'image';
 
     /**
      * Get entity_id
@@ -25,6 +28,51 @@ interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterf
      * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface
      */
     public function setEntityId($entityId);
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setName(string $value): self;
+
+    /**
+     * @return string|null
+     */
+    public function getName(): string | null;
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setConfiguration(string $value): self;
+
+    /**
+     * @return string|null
+     */
+    public function getConfiguration(): string | null;
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setDescription(string $value): self;
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): string | null;
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setImage(string $value): self;
+
+    /**
+     * @return string|null
+     */
+    public function getImage(): string | null;
+
 
     /**
      * Retrieve existing extension attributes object or create a new one.

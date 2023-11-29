@@ -12,6 +12,8 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 interface SizeGuideRepositoryInterface
 {
 
+    public const PRODUCT_ATTRIBUTE = "size_guide";
+
     /**
      * Save SizeGuide
      * @param \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface $sizeGuide

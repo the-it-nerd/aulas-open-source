@@ -50,5 +50,73 @@ class SizeGuide extends \Magento\Framework\Api\AbstractExtensibleObject implemen
     ) {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function setName(string $value): SizeGuideInterface
+    {
+        return $this->setData(self::NAME, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName(): string|null
+    {
+        return $this->_get(self::NAME);
+    }
+
+    public function getData() {
+        return $this->_data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setConfiguration(string $value): SizeGuideInterface
+    {
+        return $this->setData(self::CONFIGURATION, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getConfiguration(): string|null
+    {
+        return $this->_get(self::CONFIGURATION);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setDescription(string $value): SizeGuideInterface
+    {
+        return $this->setData(self::DESCRIPTION, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDescription(): string|null
+    {
+        return $this->_get(self::DESCRIPTION);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setImage(string $value): SizeGuideInterface
+    {
+        return $this->setData(self::IMAGE, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getImage(): string|null
+    {
+        return $this->_get(self::IMAGE);
+    }
 }
 

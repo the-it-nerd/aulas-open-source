@@ -1,0 +1,23 @@
+{
+  "name": "theit-nerd/module-eav",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magento/module-catalog": "104.0.*",
+    "magento/module-eav": "102.1.*",
+    "the_it_nerd/module-core": "*"
+  },
+  "license": [
+    ""
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "TheITNerd\\EAV\\": ""
+    }
+  }
+}

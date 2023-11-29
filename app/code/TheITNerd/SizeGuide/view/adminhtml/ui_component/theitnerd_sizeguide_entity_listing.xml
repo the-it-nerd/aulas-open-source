@@ -23,7 +23,7 @@
 			<updateUrl path="mui/index/render"/>
 		</settings>
 		<aclResource>TheITNerd_SizeGuide::SizeGuide</aclResource>
-		<dataProvider name="theitnerd_sizeguide_entity_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<dataProvider name="theitnerd_sizeguide_entity_listing_data_source" class="TheITNerd\SizeGuide\Ui\Component\Listing\DataProvider">
 			<settings>
 				<requestFieldName>id</requestFieldName>
 				<primaryFieldName>entity_id</primaryFieldName>
@@ -73,10 +73,10 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
-		<column name="title">
+		<column name="name">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">title</label>
+				<label translate="true">Name</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>

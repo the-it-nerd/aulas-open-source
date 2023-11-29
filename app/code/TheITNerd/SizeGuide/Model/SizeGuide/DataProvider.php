@@ -7,12 +7,17 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Model\SizeGuide;
 
-use Magento\Catalog\Model\Category\Attribute\Backend\Image as ImageBackendModel;
 use Magento\Catalog\Model\Category\FileInfo;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Ui\DataProvider\AbstractDataProvider;
+use Magento\Ui\DataProvider\Modifier\ModifierInterface;
+use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\CollectionFactory;
+use TheItNerd\SizeGuide\Model\SizeGuide;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
 
     protected $collection;
@@ -29,8 +34,13 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param DataPersistorInterface $dataPersistor
+     * @param RequestInterface $request
+     * @param FileInfo $fileInfo
+     * @param Image $sizeGuideImage
+     * @param PoolInterface $pool
      * @param array $meta
      * @param array $data
+     * @throws LocalizedException
      */
     public function __construct(
         $name,
@@ -38,13 +48,17 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $requestFieldName,
         CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
+        protected readonly RequestInterface $request,
         protected readonly FileInfo $fileInfo,
-        protected readonly \TheITNerd\SizeGuide\Model\SizeGuide\Image $sizeGuideImage,
+        protected readonly Image $sizeGuideImage,
+        protected readonly PoolInterface $pool,
         array $meta = [],
         array $data = []
-    ) {
+    )
+    {
         $this->collection = $collectionFactory->create();
         $this->collection->addAttributeToSelect('*');
+
         $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
@@ -59,8 +73,13 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
+
+        $storeId = (int)$this->request->getParam('store');
+        $this->collection->setStoreId($storeId);
         $items = $this->collection->getItems();
+
         foreach ($items as $model) {
+            $model->setStoreId($storeId);
             $this->loadedData[$model->getId()] = $model->getData();
         }
         $data = $this->dataPersistor->get('theitnerd_sizeguide_sizeguide');
@@ -70,12 +89,15 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('theitnerd_sizeguide_sizeguide');
+        } else {
+            return $this->prepareData($model, $this->loadedData);
         }
 
         return $this->prepareData($model, $this->loadedData);
     }
 
-    private function prepareData(\TheItNerd\SizeGuide\Model\SizeGuide $model, $loadedData) {
+    private function prepareData(SizeGuide $model, $loadedData)
+    {
         foreach ($model->getAttributes() as $attributeCode => $attribute) {
             if ($attribute->getBackend() instanceof \TheITNerd\SizeGuide\Model\SizeGuide\Attribute\Backend\Image) {
                 unset($loadedData[$model->getId()][$attributeCode]);
@@ -98,5 +120,20 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
         return $loadedData;
     }
-}
 
+    /**
+     * {@inheritdoc}
+     * @since 101.0.0
+     */
+    public function getMeta()
+    {
+        $meta = parent::getMeta();
+
+        /** @var ModifierInterface $modifier */
+        foreach ($this->pool->getModifiersInstances() as $modifier) {
+            $meta = $modifier->modifyMeta($meta);
+        }
+
+        return $meta;
+    }
+}

@@ -1,60 +1,62 @@
 <?xml version="1.0" ?>
-<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-	<argument name="data" xsi:type="array">
-		<item name="js_config" xsi:type="array">
-			<item name="provider" xsi:type="string">theitnerd_sizeguide_entity_form.sizeguide_form_data_source</item>
-		</item>
-		<item name="label" xsi:type="string" translate="true">General Information</item>
-		<item name="template" xsi:type="string">templates/form/collapsible</item>
-	</argument>
-	<settings>
-		<buttons>
-			<button name="back" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\BackButton"/>
-			<button name="delete" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\DeleteButton"/>
-			<button name="save" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\SaveButton"/>
-			<button name="save_and_continue" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\SaveAndContinueButton"/>
-		</buttons>
-		<namespace>theitnerd_sizeguide_entity_form</namespace>
-		<dataScope>data</dataScope>
-		<deps>
-			<dep>theitnerd_sizeguide_entity_form.sizeguide_form_data_source</dep>
-		</deps>
-	</settings>
-	<dataSource name="sizeguide_form_data_source">
-		<argument name="data" xsi:type="array">
-			<item name="js_config" xsi:type="array">
-				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
-			</item>
-		</argument>
-		<settings>
-			<submitUrl path="*/*/save"/>
-		</settings>
-		<dataProvider name="sizeguide_form_data_source" class="TheITNerd\SizeGuide\Model\SizeGuide\DataProvider">
-			<settings>
-				<requestFieldName>entity_id</requestFieldName>
-				<primaryFieldName>entity_id</primaryFieldName>
-			</settings>
-		</dataProvider>
-	</dataSource>
-	<fieldset name="general">
-		<settings>
-			<label>General</label>
-		</settings>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">theitnerd_sizeguide_entity_form.sizeguide_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\BackButton"/>
+            <button name="delete" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\DeleteButton"/>
+            <button name="save" class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\SaveButton"/>
+            <button name="save_and_continue"
+                    class="TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>theitnerd_sizeguide_entity_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>theitnerd_sizeguide_entity_form.sizeguide_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="sizeguide_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider name="sizeguide_form_data_source" class="TheITNerd\SizeGuide\Model\SizeGuide\DataProvider">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
         <field name="name" formElement="input" sortOrder="10">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">SizeGuide</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">Name</label>
-				<dataScope>name</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">true</rule>
-				</validation>
-			</settings>
-		</field>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">SizeGuide</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
 
         <field name="image" sortOrder="20" formElement="imageUploader">
             <argument name="data" xsi:type="array">
@@ -87,19 +89,20 @@
         </field>
 
         <field name="description" formElement="wysiwyg" sortOrder="30">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">SizeGuide</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">Description</label>
-				<dataScope>description</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">SizeGuide</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+
             <formElements>
                 <wysiwyg>
                     <settings>
@@ -107,23 +110,33 @@
                     </settings>
                 </wysiwyg>
             </formElements>
-		</field>
+        </field>
 
-        <field name="configuration" formElement="input" sortOrder="40">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">SizeGuide</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">Configuration</label>
-				<dataScope>configuration</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">true</rule>
-				</validation>
-			</settings>
-		</field>
 
-	</fieldset>
+        <field name="configuration" formElement="wysiwyg" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">SizeGuide</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Configuration</label>
+                <dataScope>configuration</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+
+
+    </fieldset>
 </form>

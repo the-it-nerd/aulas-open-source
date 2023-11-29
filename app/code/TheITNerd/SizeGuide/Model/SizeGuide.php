@@ -7,42 +7,45 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Model;
 
+use Magento\Eav\Api\Data\AttributeInterface;
+use Magento\Framework\Api\AttributeValueFactory;
 use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Api\ExtensionAttributesFactory;
+use Magento\Framework\Data\Collection\AbstractDb;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Store\Model\StoreManagerInterface;
+use TheITNerd\EAV\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
 use TheITNerd\SizeGuide\Api\Data\SizeGuideInterface;
 use TheITNerd\SizeGuide\Api\Data\SizeGuideInterfaceFactory;
+use TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection;
 
-class SizeGuide extends \Magento\Framework\Model\AbstractModel
+class SizeGuide extends AbstractModel
 {
 
     const ENTITY = 'theitnerd_sizeguide_entity';
-    protected $sizeguideDataFactory;
-
-    protected $dataObjectHelper;
 
     protected $_eventPrefix = 'theitnerd_sizeguide_entity';
 
-    /**
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param SizeGuideInterfaceFactory $sizeguideDataFactory
-     * @param DataObjectHelper $dataObjectHelper
-     * @param \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide $resource
-     * @param \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection $resourceCollection
-     * @param array $data
-     */
+
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        SizeGuideInterfaceFactory $sizeguideDataFactory,
-        DataObjectHelper $dataObjectHelper,
-        \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide $resource,
-        \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection $resourceCollection,
-        array $data = []
-    ) {
-        $this->sizeguideDataFactory = $sizeguideDataFactory;
-        $this->dataObjectHelper = $dataObjectHelper;
-        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+        Context                                      $context,
+        Registry                                     $registry,
+        ExtensionAttributesFactory                   $extensionFactory,
+        AttributeValueFactory                        $customAttributeFactory,
+        StoreManagerInterface                        $storeManager,
+        protected readonly SizeGuideInterfaceFactory $sizeguideDataFactory,
+        protected readonly DataObjectHelper          $dataObjectHelper,
+        ResourceModel\SizeGuide                      $resource,
+        array                                        $entityTypes = [],
+        AbstractDb                                   $resourceCollection = null,
+        array                                        $data = []
+    )
+    {
+        parent::__construct($context, $registry, $extensionFactory, $customAttributeFactory, $storeManager, $entityTypes, $resource, $resourceCollection, $data);
     }
+
 
     /**
      * Retrieve sizeguide model with sizeguide data
@@ -66,7 +69,7 @@ class SizeGuide extends \Magento\Framework\Model\AbstractModel
      * Retrieve all attributes
      *
      * @param bool $noDesignAttributes
-     * @return \Magento\Eav\Api\Data\AttributeInterface[]
+     * @return AttributeInterface[]
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function getAttributes($noDesignAttributes = false)

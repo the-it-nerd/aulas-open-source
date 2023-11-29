@@ -1,0 +1,17 @@
+@sizeGuide--borderColor: #ccc;
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .sizeGuide {
+        display: flex;
+        flex-direction: column;
+
+        &--description {
+            border-bottom: 1px solid @sizeGuide--borderColor;
+            margin: @indent__m 0;
+            padding-bottom: @indent__m;
+        }
+
+        &--content {
+            display: flex;
+        }
+    }
+}

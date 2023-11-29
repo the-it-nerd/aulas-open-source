@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Setup\Patch\Data;
 
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -62,6 +63,7 @@ class AddNameSizeGuideAttribute implements DataPatchInterface, PatchRevertableIn
                 'user_defined' => true,
                 'unique' => false,
                 'group' => 'General',
+                'global' => ScopedAttributeInterface::SCOPE_STORE
             ]
         );
 

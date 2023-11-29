@@ -36,10 +36,13 @@ class Edit extends \TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('entity_id');
         $model = $this->_objectManager->create(\TheITNerd\SizeGuide\Model\SizeGuide::class);
-        
+
         // 2. Initial checking
         if ($id) {
-            $model->load($id);
+            $storeId = (int) $this->getRequest()->getParam('store', 0);
+            $model->load($id)
+            ->setStoreId($storeId);
+
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This Sizeguide no longer exists.'));
                 /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
@@ -48,7 +51,7 @@ class Edit extends \TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
             }
         }
         $this->_coreRegistry->register('theitnerd_sizeguide_sizeguide', $model);
-        
+
         // 3. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
