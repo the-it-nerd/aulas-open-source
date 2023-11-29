@@ -116,7 +116,7 @@
     /**
      * This is for the PDP Related Products
      */
-    .block.related.buy-together {
+     .block.related.buy-together {
         .block-content {
             .product-items {
                 display: flex;
@@ -127,9 +127,8 @@
                     display: flex;
                     align-items: center;
 
-                    &:after {
+                    &.display-plus:after {
                         content: "+";
-                        margin-left: @indent__l;
                         font-size: @font-size__l;
                         font-weight: bold;
                     }
@@ -191,4 +190,38 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     // your code
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    /**
+     * This is for the PDP Related Products
+     */
+    .block.related.buy-together {
+        .block-content {
+            .product-items {
+                .product-item {
+                    max-width: 120px;
+
+                    .product-item-info {
+                        width: 70%;
+                    }
+
+                    &.display-plus:after {
+                        margin-left: 10px;
+                    }
+
+                    &.display-plus:after {
+                        margin-left: 5px;
+                    }
+
+                    &:nth-child(2) {
+                        &:after {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
