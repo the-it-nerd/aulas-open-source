@@ -4,11 +4,13 @@ namespace TheITNerd\SizeGuide\Block\Catalog\Product\View;
 
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Block\Product\View;
 use Magento\Catalog\Helper\Product;
 use Magento\Catalog\Model\ProductTypes\ConfigInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\Json\EncoderInterface;
 use Magento\Framework\Locale\FormatInterface;
@@ -25,7 +27,7 @@ use TheITNerd\SizeGuide\Model\SizeGuideRepository;
 class SizeGuide extends View
 {
     public function __construct(
-        \Magento\Catalog\Block\Product\Context                                 $context,
+        Context  $context,
         \Magento\Framework\Url\EncoderInterface $urlEncoder,
         EncoderInterface                        $jsonEncoder,
         StringUtils                             $string,
@@ -52,7 +54,7 @@ class SizeGuide extends View
         if ($sizeGuideId = $this->getProduct()->getData(SizeGuideRepositoryInterface::PRODUCT_ATTRIBUTE)) {
             try {
                 return $this->sizeGuideRepository->get($sizeGuideId);
-            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            } catch (NoSuchEntityException $e) {
                 return null;
             }
         }

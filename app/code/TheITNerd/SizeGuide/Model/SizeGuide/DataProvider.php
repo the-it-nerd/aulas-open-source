@@ -104,7 +104,7 @@ class DataProvider extends AbstractDataProvider
 
                 $fileName = $model->getData($attributeCode);
 
-                if ($this->fileInfo->isExist($fileName)) {
+                if ($fileName && $this->fileInfo->isExist($fileName)) {
                     $stat = $this->fileInfo->getStat($fileName);
                     $mime = $this->fileInfo->getMimeType($fileName);
 
