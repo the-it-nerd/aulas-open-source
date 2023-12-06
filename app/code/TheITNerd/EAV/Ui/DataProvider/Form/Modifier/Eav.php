@@ -442,7 +442,7 @@ class Eav extends AbstractModifier
      */
     private function entityExists()
     {
-        return (bool)$this->getEntity()->getId();
+        return $this->getEntity() && (bool)$this->getEntity()->getId();
     }
 
     private function getEntity()

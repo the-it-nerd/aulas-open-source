@@ -7,16 +7,22 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Model\Data;
 
+use Magento\Framework\Api\AbstractExtensibleObject;
+use TheITNerd\SizeGuide\Api\Data\SizeGuideExtensionInterface;
 use TheITNerd\SizeGuide\Api\Data\SizeGuideInterface;
 
-class SizeGuide extends \Magento\Framework\Api\AbstractExtensibleObject implements SizeGuideInterface
+/**
+ * Class SizeGuide
+ * @package TheITNerd\SizeGuide\Model\Data
+ */
+class SizeGuide extends AbstractExtensibleObject implements SizeGuideInterface
 {
 
     /**
      * Get entity_id
      * @return string|null
      */
-    public function getEntityId()
+    public function getEntityId(): string|null
     {
         return $this->_get(self::ENTITY_ID);
     }
@@ -24,16 +30,35 @@ class SizeGuide extends \Magento\Framework\Api\AbstractExtensibleObject implemen
     /**
      * Set entity_id
      * @param string $entityId
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface
+     * @return SizeGuideInterface
      */
-    public function setEntityId($entityId)
+    public function setEntityId(string $entityId): SizeGuideInterface
+    {
+        return $this->setData(self::ENTITY_ID, $entityId);
+    }
+
+    /**
+     * Get entity_id
+     * @return string|null
+     */
+    public function getId(): string|null
+    {
+        return $this->_get(self::ENTITY_ID);
+    }
+
+    /**
+     * Set entity_id
+     * @param string $entityId
+     * @return SizeGuideInterface
+     */
+    public function setId(string $entityId): SizeGuideInterface
     {
         return $this->setData(self::ENTITY_ID, $entityId);
     }
 
     /**
      * Retrieve existing extension attributes object or create a new one.
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideExtensionInterface|null
+     * @return SizeGuideExtensionInterface|null
      */
     public function getExtensionAttributes()
     {
@@ -42,12 +67,13 @@ class SizeGuide extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set an extension attributes object.
-     * @param \TheITNerd\SizeGuide\Api\Data\SizeGuideExtensionInterface $extensionAttributes
+     * @param SizeGuideExtensionInterface $extensionAttributes
      * @return $this
      */
     public function setExtensionAttributes(
-        \TheITNerd\SizeGuide\Api\Data\SizeGuideExtensionInterface $extensionAttributes
-    ) {
+        SizeGuideExtensionInterface $extensionAttributes
+    ): SizeGuideInterface
+    {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
 
@@ -67,7 +93,8 @@ class SizeGuide extends \Magento\Framework\Api\AbstractExtensibleObject implemen
         return $this->_get(self::NAME);
     }
 
-    public function getData() {
+    public function getData()
+    {
         return $this->_data;
     }
 
@@ -117,6 +144,22 @@ class SizeGuide extends \Magento\Framework\Api\AbstractExtensibleObject implemen
     public function getImage(): string|null
     {
         return $this->_get(self::IMAGE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setStoreId(int $storeId): SizeGuideInterface
+    {
+        return $this->setData(self::STORE_ID, $storeId);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getStoreId(): int|null
+    {
+        return $this->_get(self::STORE_ID);
     }
 }
 

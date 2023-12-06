@@ -37,6 +37,7 @@ class SizeGuide extends View
         Session                                 $customerSession,
         ProductRepositoryInterface              $productRepository,
         PriceCurrencyInterface                  $priceCurrency,
+        protected readonly \Magento\Store\Model\StoreManagerInterface $storeManager,
         protected SizeGuideRepository           $sizeGuideRepository,
         array                                   $data = []
     )
@@ -45,15 +46,15 @@ class SizeGuide extends View
     }
 
     /**
-     * @return SizeGuideInterface|null
+     * @return \TheITNerd\SizeGuide\Model\SizeGuide|null
      * @throws LocalizedException
      */
-    public function getSizeGuide(): SizeGuideInterface|null
+    public function getSizeGuide(): \TheITNerd\SizeGuide\Model\SizeGuide|null
     {
 
         if ($sizeGuideId = $this->getProduct()->getData(SizeGuideRepositoryInterface::PRODUCT_ATTRIBUTE)) {
             try {
-                return $this->sizeGuideRepository->get($sizeGuideId);
+                return $this->sizeGuideRepository->get($sizeGuideId, $this->storeManager->getStore()->getId());
             } catch (NoSuchEntityException $e) {
                 return null;
             }

@@ -7,53 +7,70 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide;
 
+use Exception;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
+use TheITNerd\EAV\Model\EntityUseDefault;
+use TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface;
 
-class Save extends \Magento\Backend\App\Action
+/**
+ * Class Save
+ * @package TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
+ */
+class Save extends Action
 {
 
-    protected $dataPersistor;
-
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * @param Context $context
+     * @param DataPersistorInterface $dataPersistor
+     * @param EntityUseDefault $entityUseDefault
+     * @param SizeGuideRepositoryInterface $sizeGuideRepository
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
-        protected readonly \TheITNerd\EAV\Model\EntityUseDefault $entityUseDefault,
-    ) {
-        $this->dataPersistor = $dataPersistor;
+        Context                                         $context,
+        protected readonly DataPersistorInterface       $dataPersistor,
+        protected readonly EntityUseDefault             $entityUseDefault,
+        protected readonly SizeGuideRepositoryInterface $sizeGuideRepository
+    )
+    {
         parent::__construct($context);
     }
 
     /**
      * Save action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $storeId = (int) $this->getRequest()->getParam('store_id');
+        $storeId = (int)$this->getRequest()->getParam('store_id');
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             $id = $this->getRequest()->getParam('entity_id');
 
-            $model = $this->_objectManager->create(\TheITNerd\SizeGuide\Model\SizeGuide::class)->load($id);
+            $model = (!is_null($id)) ? $this->sizeGuideRepository->get($id) : $this->sizeGuideRepository->create();
             if (!$model->getId() && $id) {
-                $this->messageManager->addErrorMessage(__('This Sizeguide no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This Size Guide no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
 
-            $model->setStoreId($storeId);
-            $model->setData($data);
+            if(isset($data['image'][0]['name'])) {
+                $data['image'] = "/media/size_guides/{$data['image'][0]['name']}";
+            }
+
+            $model->setStoreId($storeId)
+                ->setData($data);
 
             $this->entityUseDefault->apply($model, $data);
 
             try {
-                $model->save();
+                $model = $this->sizeGuideRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the Sizeguide.'));
                 $this->dataPersistor->clear('theitnerd_sizeguide_sizeguide');
 
@@ -63,7 +80,7 @@ class Save extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Sizeguide.'));
             }
 

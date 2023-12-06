@@ -8,7 +8,18 @@ declare(strict_types=1);
 namespace TheITNerd\SizeGuide\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use TheITNerd\SizeGuide\Api\Data\SizeGuideSearchResultsInterface;
+use TheITNerd\SizeGuide\Model\SizeGuide;
 
+/**
+ * Interface SizeGuideRepositoryInterface
+ *
+ * This interface provides methods to interact with the size guide repository.
+ *
+ * @package TheITNerd\SizeGuide\Api
+ */
 interface SizeGuideRepositoryInterface
 {
 
@@ -16,49 +27,49 @@ interface SizeGuideRepositoryInterface
 
     /**
      * Save SizeGuide
-     * @param \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface $sizeGuide
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @param SizeGuide $sizeGuide
+     * @return SizeGuide
+     * @throws LocalizedException
      */
     public function save(
-        \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface $sizeGuide
-    );
+        SizeGuide $sizeGuide
+    ): SizeGuide;
 
     /**
      * Retrieve SizeGuide
      * @param string $entityId
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return SizeGuide
+     * @throws LocalizedException
      */
-    public function get($entityId);
+    public function get(string $entityId, int|null $storeId = null): SizeGuide;
 
     /**
      * Retrieve SizeGuide matching the specified criteria.
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideSearchResultsInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return SizeGuideSearchResultsInterface
+     * @throws LocalizedException
      */
     public function getList(
-        \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-    );
+        SearchCriteriaInterface $searchCriteria
+    ): SizeGuideSearchResultsInterface;
 
     /**
      * Delete SizeGuide
-     * @param \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface $sizeGuide
+     * @param SizeGuide $sizeGuide
      * @return bool true on success
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function delete(
-        \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface $sizeGuide
-    );
+        SizeGuide $sizeGuide
+    ): bool;
 
     /**
      * Delete SizeGuide by ID
      * @param string $entityId
      * @return bool true on success
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
-    public function deleteById($entityId);
+    public function deleteById(string $entityId): bool;
 }
 

@@ -7,20 +7,28 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Api\Data;
 
-interface SizeGuideSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
+use Magento\Framework\Api\SearchResultsInterface;
+
+/**
+ * Interface SizeGuideSearchResultsInterface
+ *
+ * This interface extends the SearchResultsInterface and provides methods to
+ * get and set a list of SizeGuide objects.
+ */
+interface SizeGuideSearchResultsInterface extends SearchResultsInterface
 {
 
     /**
      * Get SizeGuide list.
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface[]
+     * @return SizeGuideInterface[]
      */
-    public function getItems();
+    public function getItems(): array;
 
     /**
      * Set title list.
-     * @param \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface[] $items
+     * @param SizeGuideInterface[] $items
      * @return $this
      */
-    public function setItems(array $items);
+    public function setItems(array $items): self;
 }
 

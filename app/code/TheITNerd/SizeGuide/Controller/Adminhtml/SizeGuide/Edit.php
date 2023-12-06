@@ -7,60 +7,74 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide;
 
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Page;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
+use TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface;
+
+/**
+ * Class Edit
+ * @package TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
+ */
 class Edit extends \TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
 {
 
-    protected $resultPageFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param PageFactory $resultPageFactory
+     * @param SizeGuideRepositoryInterface $sizeGuideRepository
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
-    ) {
-        $this->resultPageFactory = $resultPageFactory;
+        Context                                         $context,
+        Registry                                        $coreRegistry,
+        protected readonly PageFactory                  $resultPageFactory,
+        protected readonly SizeGuideRepositoryInterface $sizeGuideRepository
+    )
+    {
         parent::__construct($context, $coreRegistry);
     }
 
     /**
      * Edit action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('entity_id');
-        $model = $this->_objectManager->create(\TheITNerd\SizeGuide\Model\SizeGuide::class);
-
+        $isEdit = false;
         // 2. Initial checking
         if ($id) {
-            $storeId = (int) $this->getRequest()->getParam('store', 0);
-            $model->load($id)
-            ->setStoreId($storeId);
+            $isEdit = true;
+            $storeId = (int)$this->getRequest()->getParam('store', 0);
+            $model = $this->sizeGuideRepository->get($id);
+            $model->setStoreId($storeId);
 
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This Sizeguide no longer exists.'));
-                /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                /** @var Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
             }
+
+            $this->_coreRegistry->register('theitnerd_sizeguide_sizeguide', $model);
         }
-        $this->_coreRegistry->register('theitnerd_sizeguide_sizeguide', $model);
 
         // 3. Build edit form
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit Sizeguide') : __('New Sizeguide'),
-            $id ? __('Edit Sizeguide') : __('New Sizeguide')
+            $id ? __('Edit Size Guide') : __('New Size Guide'),
+            $id ? __('Edit Size Guide') : __('New Size Guide')
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('Sizeguides'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Sizeguide %1', $model->getId()) : __('New Sizeguide'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Size Guides'));
+        $resultPage->getConfig()->getTitle()->prepend($isEdit ? __('Edit Size Guide %1', $id) : __('New Size Guide'));
         return $resultPage;
     }
 }

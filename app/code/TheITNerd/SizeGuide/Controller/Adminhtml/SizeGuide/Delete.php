@@ -7,31 +7,55 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide;
 
+use Exception;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Registry;
+use TheITNerd\SizeGuide\Model\SizeGuide;
+use TheITNerd\SizeGuide\Api\SizeGuideRepositoryInterface;
+
+/**
+ * Class Delete
+ * @package TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
+ */
 class Delete extends \TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
 {
 
     /**
+     * @param Context $context
+     * @param Registry $_coreRegistry
+     * @param SizeGuideRepositoryInterface $sizeGuideRepository
+     */
+    public function __construct(
+        Context $context,
+        Registry $_coreRegistry,
+        protected readonly SizeGuideRepositoryInterface $sizeGuideRepository
+    )
+    {
+        parent::__construct($context, $_coreRegistry);
+    }
+
+    /**
      * Delete action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     *
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('entity_id');
         if ($id) {
             try {
-                // init model and delete
-                $model = $this->_objectManager->create(\TheITNerd\SizeGuide\Model\SizeGuide::class);
-                $model->load($id);
-                $model->delete();
+                $this->sizeGuideRepository->deleteById($id);
                 // display success message
                 $this->messageManager->addSuccessMessage(__('You deleted the Sizeguide.'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
                 // go back to edit form

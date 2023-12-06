@@ -7,29 +7,36 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide;
 
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Catalog\Model\ImageUploader;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
 
-class Upload extends \Magento\Backend\App\Action
+/**
+ * Class Upload
+ * @package TheITNerd\SizeGuide\Controller\Adminhtml\SizeGuide
+ */
+class Upload extends Action
 {
 
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \TheITNerd\SizeGuide\ImageUploader $imageUploader
+     * @param Context $context
+     * @param ImageUploader $imageUploader
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        protected readonly \Magento\Catalog\Model\ImageUploader $imageUploader
-    ) {
+        Context                          $context,
+        protected readonly ImageUploader $imageUploader
+    )
+    {
         parent::__construct($context);
     }
 
     /**
      * Save action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {

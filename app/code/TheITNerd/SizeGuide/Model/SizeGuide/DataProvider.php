@@ -89,10 +89,9 @@ class DataProvider extends AbstractDataProvider
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('theitnerd_sizeguide_sizeguide');
-        } else {
-            return $this->prepareData($model, $this->loadedData);
+        } else if(!$this->loadedData || count($this->loadedData) === 0) {
+            return [];
         }
-
         return $this->prepareData($model, $this->loadedData);
     }
 

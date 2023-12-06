@@ -8,6 +8,7 @@ use Magento\Catalog\Model\Category\FileInfo;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use TheItNerd\SizeGuide\Model\SizeGuide;
 
 /**
  * Class Image
@@ -16,14 +17,6 @@ use Magento\Store\Model\StoreManagerInterface;
 class Image
 {
     private const ATTRIBUTE_NAME = 'image';
-    /**
-     * @var FileInfo
-     */
-    private $fileInfo;
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
 
     /**
      * Initialize dependencies.
@@ -32,21 +25,21 @@ class Image
      * @param StoreManagerInterface $storeManager
      */
     public function __construct(
-        FileInfo $fileInfo,
-        StoreManagerInterface $storeManager
-    ) {
-        $this->fileInfo = $fileInfo;
-        $this->storeManager = $storeManager;
+        private readonly FileInfo              $fileInfo,
+        private readonly StoreManagerInterface $storeManager
+    )
+    {
     }
+
     /**
      * Resolve Size Guide image URL
      *
-     * @param \TheItNerd\SizeGuide\Model\SizeGuide $sizeGuide
+     * @param SizeGuide $sizeGuide
      * @param string $attributeCode
      * @return string
      * @throws LocalizedException
      */
-    public function getUrl(\TheItNerd\SizeGuide\Model\SizeGuide $sizeGuide, string $attributeCode = self::ATTRIBUTE_NAME): string
+    public function getUrl(SizeGuide $sizeGuide, string $attributeCode = self::ATTRIBUTE_NAME): string
     {
         $url = '';
         $image = $sizeGuide->getData($attributeCode);

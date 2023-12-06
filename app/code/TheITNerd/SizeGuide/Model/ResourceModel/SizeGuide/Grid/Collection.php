@@ -23,8 +23,6 @@ use Psr\Log\LoggerInterface;
  */
 class Collection extends \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection implements SearchResultInterface
 {
-    private mixed $_eventPrefix;
-    private mixed $_eventObject;
 
     public function __construct(
         EntityFactory          $entityFactory,
@@ -37,8 +35,8 @@ class Collection extends \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Coll
         Helper                 $resourceHelper,
         UniversalFactory       $universalFactory,
         StoreManagerInterface  $storeManager,
-                               $eventPrefix,
-                               $eventObject,
+        private readonly mixed $_eventPrefix,
+        private readonly mixed $_eventObject,
                                $resourceModel,
                                $model = 'TheITNerd\SizeGuide\Ui\Component\DataProvider\Document',
         AdapterInterface       $connection = null
@@ -46,8 +44,6 @@ class Collection extends \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Coll
     {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory, $resourceHelper, $universalFactory, $storeManager, $connection);
 
-        $this->_eventPrefix = $eventPrefix;
-        $this->_eventObject = $eventObject;
         $this->_init($model, $resourceModel);
 
 //        $this->addAttributeToSelect("*");

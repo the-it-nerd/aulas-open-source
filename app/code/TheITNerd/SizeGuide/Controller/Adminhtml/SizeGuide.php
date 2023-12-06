@@ -7,35 +7,43 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Controller\Adminhtml;
 
-abstract class SizeGuide extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\Registry;
+
+/**
+ * Class SizeGuide
+ * @package TheITNerd\SizeGuide\Controller\Adminhtml
+ */
+abstract class SizeGuide extends Action
 {
 
-    const ADMIN_RESOURCE = 'TheITNerd_SizeGuide::top_level';
-    protected $_coreRegistry;
+    public const ADMIN_RESOURCE = 'TheITNerd_SizeGuide::top_level';
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
+     * @param Context $context
+     * @param Registry $_coreRegistry
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry
-    ) {
-        $this->_coreRegistry = $coreRegistry;
+        Context                     $context,
+        protected readonly Registry $_coreRegistry
+    )
+    {
         parent::__construct($context);
     }
 
     /**
      * Init page
      *
-     * @param \Magento\Backend\Model\View\Result\Page $resultPage
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @param Page $resultPage
+     * @return Page
      */
-    public function initPage($resultPage)
+    public function initPage(Page $resultPage): Page
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
-            ->addBreadcrumb(__('TheITNerd'), __('TheITNerd'))
-            ->addBreadcrumb(__('Sizeguide'), __('Sizeguide'));
+            ->addBreadcrumb(__('The IT Nerd'), __('The IT Nerd'))
+            ->addBreadcrumb(__('Size Guide'), __('Size Guide'));
         return $resultPage;
     }
 }

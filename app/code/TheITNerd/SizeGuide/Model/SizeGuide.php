@@ -21,14 +21,30 @@ use TheITNerd\SizeGuide\Api\Data\SizeGuideInterface;
 use TheITNerd\SizeGuide\Api\Data\SizeGuideInterfaceFactory;
 use TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Collection;
 
+/**
+ * Class SizeGuide
+ * @package TheITNerd\SizeGuide\Model
+ */
 class SizeGuide extends AbstractModel
 {
 
-    const ENTITY = 'theitnerd_sizeguide_entity';
+    public const ENTITY = 'theitnerd_sizeguide_entity';
 
     protected $_eventPrefix = 'theitnerd_sizeguide_entity';
 
-
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param ExtensionAttributesFactory $extensionFactory
+     * @param AttributeValueFactory $customAttributeFactory
+     * @param StoreManagerInterface $storeManager
+     * @param SizeGuideInterfaceFactory $sizeguideDataFactory
+     * @param DataObjectHelper $dataObjectHelper
+     * @param ResourceModel\SizeGuide $resource
+     * @param array $entityTypes
+     * @param AbstractDb|null $resourceCollection
+     * @param array $data
+     */
     public function __construct(
         Context                                      $context,
         Registry                                     $registry,

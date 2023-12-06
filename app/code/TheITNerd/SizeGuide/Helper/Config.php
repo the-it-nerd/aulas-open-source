@@ -8,23 +8,29 @@ declare(strict_types=1);
 namespace TheITNerd\SizeGuide\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
 
+/**
+ * Class Config
+ * @package TheITNerd\SizeGuide\Helper
+ */
 class Config extends AbstractHelper
 {
 
     /**
-     * @param \Magento\Framework\App\Helper\Context $context
+     * @param Context $context
      */
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context
-    ) {
+        Context $context
+    )
+    {
         parent::__construct($context);
     }
 
     /**
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return true;
     }

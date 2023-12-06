@@ -7,7 +7,14 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Api\Data;
 
-interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterface
+use Magento\Framework\Api\ExtensibleDataInterface;
+
+/**
+ * Interface SizeGuideInterface
+ * Represents the size guide entity.
+ * @package TheITNerd\SizeGuide\Api\Data
+ */
+interface SizeGuideInterface extends ExtensibleDataInterface
 {
 
     public const ENTITY_ID = 'entity_id';
@@ -15,19 +22,31 @@ interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterf
     public const CONFIGURATION = 'configuration';
     public const DESCRIPTION = 'description';
     public const IMAGE = 'image';
+    public const STORE_ID = 'store_id';
 
     /**
      * Get entity_id
      * @return string|null
      */
-    public function getEntityId();
+    public function getEntityId(): string|null;
 
     /**
      * Set entity_id
      * @param string $entityId
-     * @return \TheITNerd\SizeGuide\Api\Data\SizeGuideInterface
+     * @return SizeGuideInterface
      */
-    public function setEntityId($entityId);
+    public function setEntityId(string $entityId): self;
+
+    /**
+     * @return string|null
+     */
+    public function getId(): string|null;
+
+    /**
+     * @param string $id
+     * @return string|null
+     */
+    public function setId(string $id): self;
 
     /**
      * @param string $value
@@ -38,7 +57,7 @@ interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterf
     /**
      * @return string|null
      */
-    public function getName(): string | null;
+    public function getName(): string|null;
 
     /**
      * @param string $value
@@ -49,7 +68,7 @@ interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterf
     /**
      * @return string|null
      */
-    public function getConfiguration(): string | null;
+    public function getConfiguration(): string|null;
 
     /**
      * @param string $value
@@ -60,7 +79,7 @@ interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterf
     /**
      * @return string|null
      */
-    public function getDescription(): string | null;
+    public function getDescription(): string|null;
 
     /**
      * @param string $value
@@ -71,7 +90,18 @@ interface SizeGuideInterface extends \Magento\Framework\Api\ExtensibleDataInterf
     /**
      * @return string|null
      */
-    public function getImage(): string | null;
+    public function getImage(): string|null;
+
+    /**
+     * @param int $storeId
+     * @return self
+     */
+    public function setStoreId(int $storeId): self;
+
+    /**
+     * @return int|null
+     */
+    public function getStoreId(): int |null;
 
 
     /**

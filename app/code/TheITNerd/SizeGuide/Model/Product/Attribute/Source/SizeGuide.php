@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace TheITNerd\SizeGuide\Model\Product\Attribute\Source;
 
 use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
+use Magento\Framework\Exception\LocalizedException;
 use TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\CollectionFactory;
 
 /**
@@ -21,15 +22,14 @@ class SizeGuide extends AbstractSource
      * @param CollectionFactory $collectionFactory
      */
     public function __construct(
-        private CollectionFactory $collectionFactory
+        private readonly CollectionFactory $collectionFactory
     )
     {
     }
 
     /**
-     * getAllOptions
-     *
-     * @return array
+     * @return array|array[]|null
+     * @throws LocalizedException
      */
     public function getAllOptions()
     {

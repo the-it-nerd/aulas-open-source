@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace TheITNerd\SizeGuide\Model\ResourceModel;
 
-
+use Magento\Catalog\Model\ResourceModel\AbstractResource;
 
 /**
  * Class SizeGuide
  * @package TheITNerd\SizeGuide\Model\ResourceModel
  */
-class SizeGuide extends \Magento\Catalog\Model\ResourceModel\AbstractResource
+class SizeGuide extends AbstractResource
 {
     /**
      * Define resource model

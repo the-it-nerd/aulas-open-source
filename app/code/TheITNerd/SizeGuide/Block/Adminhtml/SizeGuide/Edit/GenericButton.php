@@ -9,25 +9,31 @@ namespace TheITNerd\SizeGuide\Block\Adminhtml\SizeGuide\Edit;
 
 use Magento\Backend\Block\Widget\Context;
 
+/**
+ * Class GenericButton
+ *
+ * The GenericButton class provides common functionality for buttons in the Magento backend.
+ * It allows you to get the model ID and generate URLs easily.
+ */
 abstract class GenericButton
 {
 
-    protected $context;
 
     /**
-     * @param \Magento\Backend\Block\Widget\Context $context
+     * @param Context $context
      */
-    public function __construct(Context $context)
+    public function __construct(
+        protected readonly Context $context
+    )
     {
-        $this->context = $context;
     }
 
     /**
      * Return model ID
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getModelId()
+    public function getModelId(): string|null
     {
         return $this->context->getRequest()->getParam('entity_id');
     }
@@ -35,11 +41,11 @@ abstract class GenericButton
     /**
      * Generate url by route and parameters
      *
-     * @param   string $route
-     * @param   array $params
+     * @param string $route
+     * @param array $params
      * @return  string
      */
-    public function getUrl($route = '', $params = [])
+    public function getUrl(string $route = '', array $params = []): string
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
     }
