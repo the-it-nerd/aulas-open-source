@@ -56,7 +56,7 @@ class Remove extends \Magento\Wishlist\Controller\Index\Remove
         Action\Context $context,
         WishlistProviderInterface $wishlistProvider,
         Validator $formKeyValidator,
-        AttributeValueProvider $attributeValueProvider = null,
+        ?AttributeValueProvider $attributeValueProvider = null,
         ?RedirectInterface $redirect = null,
         ?UrlInterface $urlBuilder = null,
     )

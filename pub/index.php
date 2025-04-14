@@ -6,9 +6,6 @@
  * See COPYING.txt for license details.
  */
 
-//$_SERVER['MAGE_MODE'] = 'production';
-//$_SERVER['MAGENTO_RUN_MODE'] = 'production';
-
 use Magento\Framework\App\Bootstrap;
 
 try {

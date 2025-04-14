@@ -85,4 +85,17 @@ class CacheClient
 
         return null;
     }
+
+    /**
+     * @param string $key
+     * @param string $scope
+     * @return void
+     */
+    public function remove(string $key, string $scope = 'global'): void
+    {
+        $cacheKey = $this->addScopeToCacheKey($key, $scope);
+        if ($this->cache->load($cacheKey)) {
+            $this->cache->remove($cacheKey);
+        }
+    }
 }

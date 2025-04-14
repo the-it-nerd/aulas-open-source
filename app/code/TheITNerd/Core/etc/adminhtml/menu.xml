@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="TheItNerd_Core::core" title="The IT Nerd" translate="title" module="TheITNerd_Core" sortOrder="50" resource="Magento_Backend::content" />
-        <!--add id="Magento_Backend::theitnerd_seo" title="SEO" module="TheITNerd_Core" sortOrder="20" parent="TheItNerd_Core::core" resource="Magento_Backend::content"  />
+        <!-- add id="TheItNerd_Core::core" title="The IT Nerd" translate="title" module="TheITNerd_Core" sortOrder="50" resource="Magento_Backend::content" / -->
+        <!-- add id="Magento_Backend::theitnerd_seo" title="SEO" module="TheITNerd_Core" sortOrder="20" parent="TheItNerd_Core::core" resource="Magento_Backend::content"  />
         <add id="Magento_Backend::theitnerd_seo_template" title="Template" module="TheITNerd_Core" sortOrder="20" resource="Magento_Backend::content" parent="Magento_Backend::theitnerd_seo" action="catalog/product/index"/-->
     </menu>
 </config>

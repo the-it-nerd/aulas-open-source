@@ -29,8 +29,8 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Category\Attribute
         \Magento\Eav\Model\Config $eavConfig,
         \Magento\Eav\Model\EntityFactory $eavEntityFactory,
         protected readonly string $entityTypeCode = "",
-        \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
-        \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
+        ?\Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
+        ?\Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
     )
     {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $eavEntityFactory, $connection, $resource);

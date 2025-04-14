@@ -264,9 +264,9 @@ class Eav extends AbstractModifier
         protected string                         $entityRegistry = "",
         protected string                         $entityCode = "",
         protected string                         $entityAttributeSource = "",
-        CompositeConfigProcessor                 $wysiwygConfigProcessor = null,
-        ScopeConfigInterface                     $scopeConfig = null,
-        AttributeCollectionFactory               $attributeCollectionFactory = null,
+        ?CompositeConfigProcessor                 $wysiwygConfigProcessor = null,
+        ?ScopeConfigInterface                     $scopeConfig = null,
+        ?AttributeCollectionFactory               $attributeCollectionFactory = null,
         ?AuthorizationInterface                  $auth = null
     )
     {

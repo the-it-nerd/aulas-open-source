@@ -1,0 +1,23 @@
+{
+	auto_https off
+	frankenphp
+}
+
+
+:80 {
+	log {
+		# Redact the authorization query parameter that can be set by Mercure
+		format filter {
+			wrap console
+			fields {
+				uri query {
+					replace authorization REDACTED
+				}
+			}
+		}
+	}
+
+	root * /app/pub
+    encode zstd br gzip
+    php_server
+}

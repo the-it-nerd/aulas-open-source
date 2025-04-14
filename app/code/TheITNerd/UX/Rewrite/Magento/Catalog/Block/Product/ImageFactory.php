@@ -54,13 +54,13 @@ class ImageFactory extends \Magento\Catalog\Block\Product\ImageFactory
      * @param ReadHandler $galleryReadHandler
      */
     public function __construct(
-        ObjectManagerInterface                                                $objectManager,
-        ConfigInterface                                                       $presentationConfig,
-        AssetImageFactory                                                     $viewAssetImageFactory,
-        PlaceholderFactory                                                    $viewAssetPlaceholderFactory,
-        ParamsBuilder                                                         $imageParamsBuilder,
-        protected readonly ReadHandler $galleryReadHandler,
-        protected readonly \TheITNerd\UX\Helper\Product                       $productHelper
+        ObjectManagerInterface                          $objectManager,
+        ConfigInterface                                 $presentationConfig,
+        AssetImageFactory                               $viewAssetImageFactory,
+        PlaceholderFactory                              $viewAssetPlaceholderFactory,
+        ParamsBuilder                                   $imageParamsBuilder,
+        protected readonly ReadHandler                  $galleryReadHandler,
+        protected readonly \TheITNerd\UX\Helper\Product $productHelper
     )
     {
         $this->objectManager = $objectManager;
@@ -79,7 +79,7 @@ class ImageFactory extends \Magento\Catalog\Block\Product\ImageFactory
      * @return ImageBlock
      * @throws LocalizedException
      */
-    public function create(Product $product, string $imageId, array $attributes = null): ImageBlock
+    public function create(Product $product, string $imageId, ?array $attributes = null): ImageBlock
     {
 
         if (!$this->productHelper->canShowPLPSecondImage()) {

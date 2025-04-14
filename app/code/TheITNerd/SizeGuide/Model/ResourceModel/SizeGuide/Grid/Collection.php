@@ -39,7 +39,7 @@ class Collection extends \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Coll
         private readonly mixed $_eventObject,
                                $resourceModel,
                                $model = 'TheITNerd\SizeGuide\Ui\Component\DataProvider\Document',
-        AdapterInterface       $connection = null
+        ?AdapterInterface       $connection = null
     )
     {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory, $resourceHelper, $universalFactory, $storeManager, $connection);
@@ -96,7 +96,7 @@ class Collection extends \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Coll
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null)
+    public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null)
     {
         return $this;
     }
@@ -130,7 +130,7 @@ class Collection extends \TheITNerd\SizeGuide\Model\ResourceModel\SizeGuide\Coll
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setItems(array $items = null)
+    public function setItems(?array $items = null)
     {
         return $this;
     }

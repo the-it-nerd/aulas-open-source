@@ -25,25 +25,25 @@ class DesignAbstractionTest extends \PHPUnit\Framework\TestCase
         $appState = $objectManager->get(\Magento\Framework\App\State::class);
         $appState->setAreaCode(\Magento\Backend\App\Area\FrontNameResolver::AREA_CODE);
         $processorMock = $this->getMockBuilder(\Magento\Framework\View\Layout\ProcessorInterface::class)
-            ->setMethods(['isPageLayoutDesignAbstraction'])
+            ->onlyMethods(['isPageLayoutDesignAbstraction'])
             ->getMockForAbstractClass();
         $processorMock->expects($this->exactly(2))->method('isPageLayoutDesignAbstraction')->willReturnCallback(
-            
+
                 function ($abstraction) {
                     return $abstraction['design_abstraction'] === 'page_layout';
                 }
-            
+
         );
         $processorFactoryMock =
             $this->createPartialMock(\Magento\Framework\View\Layout\ProcessorFactory::class, ['create']);
         $processorFactoryMock->expects($this->exactly(2))->method('create')->willReturnCallback(
-            
+
                 function ($data) use ($processorMock, $layoutUtility) {
                     return $data === [] ? $processorMock : $layoutUtility->getLayoutUpdateFromFixture(
                         glob(__DIR__ . '/_files/layout/*.xml')
                     );
                 }
-            
+
         );
 
         $this->_block = new DesignAbstraction(

@@ -2,12 +2,14 @@
 
 namespace TheITNerd\Core\Model\Api;
 
+use Exception;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Exception\LocalizedException;
-use TheITNerd\Core\Model\DataObjects\AddressObjectFactory;
+use Psr\Log\LoggerInterface;
 use TheITNerd\Core\Api\Objects\AddressObjectInterface;
 use TheITNerd\Core\Api\PostcodeSearchInterface;
 use TheITNerd\Core\Model\Adapters\PostcodeClientAdapter;
+use TheITNerd\Core\Model\DataObjects\AddressObjectFactory;
 
 /**
  * Class PostcodeSearch
@@ -20,11 +22,13 @@ class PostcodeSearch implements PostcodeSearchInterface
      * @param Http $request
      * @param PostcodeClientAdapter $adapter
      * @param AddressObjectFactory $addressObjectFactory
+     * @param LoggerInterface $logger
      */
     public function __construct(
         private readonly Http                  $request,
         private readonly PostcodeClientAdapter $adapter,
-        private readonly AddressObjectFactory  $addressObjectFactory
+        private readonly AddressObjectFactory  $addressObjectFactory,
+        private readonly LoggerInterface       $logger,
     )
     {
     }
@@ -39,7 +43,13 @@ class PostcodeSearch implements PostcodeSearchInterface
             throw new LocalizedException(__('Please inform the postcode'));
         }
 
-        $address = $this->adapter->searchAddress($this->request->getParam('postcode'));
+        try {
+            $address = $this->adapter->searchAddress($this->request->getParam('postcode'));
+        } catch (Exception $e) {
+            $this->logger->critical($e->getMessage(), ['exception' => $e]);
+            return [];
+        }
+
 
         if (!$address instanceof AddressObjectInterface) {
             throw new LocalizedException(__('Something went wrong, please check the provided information and try again'));

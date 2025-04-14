@@ -2,6 +2,7 @@
 
 namespace TheITNerd\Core\Helper;
 
+use InvalidArgumentException;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\ObjectManager;
 use Magento\Store\Model\ScopeInterface;
@@ -25,11 +26,23 @@ class Config extends AbstractHelper
     }
 
     /**
-     * @return PostcodeClientInterface
+     * @return PostcodeClientInterface|null
      */
-    public function getAdapter(): PostcodeClientInterface
+    public function getAdapter(): PostcodeClientInterface | null
     {
-        return ObjectManager::getInstance()->get($this->scopeConfig->getValue(self::ADDRESS_SEARCH_API_ADAPTER_CONFIG_PATH, ScopeInterface::SCOPE_STORE));
+        $className = $this->scopeConfig->getValue(self::ADDRESS_SEARCH_API_ADAPTER_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+
+        if (!$className) {
+            throw new InvalidArgumentException(__("Postcode Adapter not set"));
+        }
+
+        $adapter = ObjectManager::getInstance()->get($className);
+
+        if(!$adapter instanceof PostcodeClientInterface) {
+            throw new InvalidArgumentException(__("Postcode Adapter must implement TheITNerd\Core\Api\Adapters\PostcodeClientInterface"));
+        }
+
+        return $adapter;
     }
 
 }

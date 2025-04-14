@@ -34,7 +34,7 @@ module.exports = {
     luma: {
         area: 'frontend',
         name: 'Magento/luma',
-        locale: 'pt_BR',
+        locale: 'en_US',
         files: [
             'css/styles-m',
             'css/styles-l'

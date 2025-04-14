@@ -6,6 +6,7 @@ namespace TheITNerd\Performance\Plugin;
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Response\Http;
+use Magento\Store\Model\StoreManagerInterface;
 use TheITNerd\Performance\Helper\Config;
 
 /**
@@ -34,10 +35,12 @@ class HttpResponsePlugin
     /**
      * @param Config $config
      * @param RequestInterface $request
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         private readonly Config           $config,
-        private readonly RequestInterface $request
+        private readonly RequestInterface $request,
+        private readonly StoreManagerInterface $storeManager
     )
     {
     }
@@ -141,6 +144,10 @@ class HttpResponsePlugin
             $matches = array_unique(array_column($matches, 2));
 
             foreach ($matches as $item) {
+                if(!str_contains($item, $this->storeManager->getStore()->getBaseUrl())) {
+                    continue;
+                }
+
                 $items[] = "<{$item}>; rel=preload; as={$type}";
             }
 

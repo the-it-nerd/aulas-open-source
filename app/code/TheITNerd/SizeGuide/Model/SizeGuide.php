@@ -55,7 +55,7 @@ class SizeGuide extends AbstractModel
         protected readonly DataObjectHelper          $dataObjectHelper,
         ResourceModel\SizeGuide                      $resource,
         array                                        $entityTypes = [],
-        AbstractDb                                   $resourceCollection = null,
+        ?AbstractDb                                   $resourceCollection = null,
         array                                        $data = []
     )
     {

@@ -1,123 +1,10 @@
 <?php
 return [
-    'scopes' => [
-        'websites' => [
-            'admin' => [
-                'website_id' => '0',
-                'code' => 'admin',
-                'name' => 'Admin',
-                'sort_order' => '0',
-                'default_group_id' => '0',
-                'is_default' => '0'
-            ],
-            'base' => [
-                'website_id' => '1',
-                'code' => 'base',
-                'name' => 'Main Website',
-                'sort_order' => '0',
-                'default_group_id' => '1',
-                'is_default' => '1'
-            ]
-        ],
-        'groups' => [
-            [
-                'group_id' => '0',
-                'website_id' => '0',
-                'name' => 'Default',
-                'root_category_id' => '0',
-                'default_store_id' => '0',
-                'code' => 'default'
-            ],
-            [
-                'group_id' => '1',
-                'website_id' => '1',
-                'name' => 'Main Website Store',
-                'root_category_id' => '2',
-                'default_store_id' => '1',
-                'code' => 'main_website_store'
-            ]
-        ],
-        'stores' => [
-            'admin' => [
-                'store_id' => '0',
-                'code' => 'admin',
-                'website_id' => '0',
-                'group_id' => '0',
-                'name' => 'Admin',
-                'sort_order' => '0',
-                'is_active' => '1'
-            ],
-            'default' => [
-                'store_id' => '1',
-                'code' => 'default',
-                'website_id' => '1',
-                'group_id' => '1',
-                'name' => 'Default Store View',
-                'sort_order' => '0',
-                'is_active' => '1'
-            ]
-        ]
-    ],
-    'system' => [
-        'default' => [
-            'general' => [
-                'locale' => [
-                    'code' => 'pt_BR'
-                ]
-            ],
-            'dev' => [
-                'static' => [
-                    'sign' => '1'
-                ],
-                'front_end_development_workflow' => [
-                    'type' => 'server_side_compilation'
-                ],
-                'template' => [
-                    'allow_symlink' => '1',
-                    'minify_html' => '0'
-                ],
-                'js' => [
-                    'merge_files' => '0',
-                    'enable_js_bundling' => '0',
-                    'minify_files' => '0',
-                    'move_script_to_bottom' => '1',
-                    'translate_strategy' => 'dictionary',
-                    'session_storage_logging' => '0',
-                    'minify_exclude' => [
-                        'tiny_mce' => '/tiny_mce/',
-                        'cardinal_commerce' => '/v1/songbird'
-                    ]
-                ],
-                'css' => [
-                    'merge_css_files' => '0',
-                    'minify_files' => '0',
-                    'use_css_critical_path' => '0',
-                    'minify_exclude' => [
-                        'tiny_mce' => '/tiny_mce/'
-                    ]
-                ]
-            ],
-            'smile_elasticsuite_core_base_settings' => [
-                'es_client' => [
-                    'servers' => 'opensearch:9200',
-                    'enable_https_mode' => '0',
-                    'http_auth_user' => '',
-                    'http_auth_pwd' => '',
-                    'enable_http_auth' => '0'
-                ]
-            ]
-        ],
-        'stores' => [
-
-        ],
-        'websites' => [
-
-        ]
-    ],
     'modules' => [
+        'Magento_Csp' => 1,
         'Magento_Store' => 1,
-        'Magento_Config' => 1,
         'Magento_AdminAnalytics' => 1,
+        'Magento_Directory' => 1,
         'Magento_AdminNotification' => 1,
         'Magento_AdobeIms' => 1,
         'Magento_AdobeImsApi' => 1,
@@ -127,12 +14,15 @@ return [
         'Magento_AdobeStockClient' => 1,
         'Magento_AdobeStockClientApi' => 1,
         'Magento_AdobeStockImage' => 1,
-        'Magento_Directory' => 1,
+        'Magento_Theme' => 1,
         'Magento_AdobeStockImageApi' => 1,
         'Magento_AdvancedPricingImportExport' => 1,
-        'Magento_Theme' => 1,
-        'Magento_Amqp' => 1,
         'Magento_Backend' => 1,
+        'Magento_Amqp' => 1,
+        'Magento_Security' => 1,
+        'Magento_ApplicationPerformanceMonitor' => 1,
+        'Magento_ApplicationPerformanceMonitorNewRelic' => 1,
+        'Magento_Config' => 1,
         'Magento_User' => 1,
         'Magento_Authorization' => 1,
         'Magento_Eav' => 1,
@@ -148,8 +38,8 @@ return [
         'Magento_Cms' => 1,
         'Magento_Catalog' => 1,
         'Magento_Rule' => 1,
-        'Magento_Security' => 1,
-        'Magento_CmsGraphQl' => 1,
+        'Magento_Integration' => 1,
+        'Magento_GraphQlResolverCache' => 1,
         'Magento_EavGraphQl' => 1,
         'Magento_Search' => 1,
         'Magento_CatalogImportExport' => 1,
@@ -170,29 +60,31 @@ return [
         'Magento_CheckoutAgreementsGraphQl' => 1,
         'Magento_CloudComponents' => 1,
         'Magento_MediaGalleryUi' => 1,
-        'Magento_CatalogGraphQl' => 1,
+        'Magento_CmsGraphQl' => 1,
         'Magento_CmsPageBuilderAnalytics' => 1,
         'Magento_Downloadable' => 1,
         'Magento_CmsUrlRewrite' => 1,
         'Magento_CmsUrlRewriteGraphQl' => 1,
-        'Magento_CompareListGraphQl' => 1,
-        'Magento_Integration' => 1,
+        'Magento_CatalogGraphQl' => 1,
+        'Magento_TwoFactorAuth' => 0,
         'Magento_Checkout' => 1,
         'Magento_UrlRewrite' => 1,
         'Magento_QuoteGraphQl' => 1,
         'Magento_ConfigurableProduct' => 1,
         'Magento_Tax' => 1,
         'Magento_Contact' => 1,
+        'Magento_ContactGraphQl' => 1,
         'Magento_Cookie' => 1,
         'Magento_Cron' => 1,
-        'Magento_Csp' => 1,
+        'Magento_GraphQlServer' => 1,
         'Magento_Widget' => 1,
         'Magento_Robots' => 1,
         'Magento_Analytics' => 1,
         'Magento_DownloadableGraphQl' => 1,
-        'Magento_CustomerGraphQl' => 1,
+        'Magento_Newsletter' => 1,
         'Magento_CustomerImportExport' => 1,
         'Magento_SampleData' => 1,
+        'Magento_DataExporter' => 1,
         'Magento_Deploy' => 1,
         'Magento_Developer' => 1,
         'Magento_Dhl' => 1,
@@ -205,7 +97,7 @@ return [
         'Magento_CatalogSampleData' => 1,
         'Magento_CatalogCustomerGraphQl' => 1,
         'Magento_Elasticsearch' => 1,
-        'Magento_Elasticsearch7' => 1,
+        'Magento_Elasticsearch8' => 1,
         'Magento_Email' => 1,
         'Magento_EncryptionKey' => 1,
         'Magento_Fedex' => 1,
@@ -215,9 +107,11 @@ return [
         'Magento_GoogleAnalytics' => 1,
         'Magento_GoogleGtag' => 1,
         'Magento_Ui' => 1,
-        'Magento_GoogleShoppingAds' => 1,
         'Magento_BundleGraphQl' => 1,
         'Magento_PageCache' => 1,
+        'Magento_GraphQlNewRelic' => 1,
+        'Magento_CatalogCmsGraphQl' => 1,
+        'Magento_AdminGraphQlServer' => 1,
         'Magento_GroupedCatalogInventory' => 1,
         'Magento_GroupedImportExport' => 1,
         'Magento_BundleSampleData' => 1,
@@ -227,6 +121,7 @@ return [
         'Magento_CardinalCommerce' => 1,
         'Magento_InstantPurchase' => 1,
         'Magento_CatalogAnalytics' => 1,
+        'Magento_IntegrationGraphQl' => 1,
         'Magento_Inventory' => 1,
         'Magento_InventoryAdminUi' => 1,
         'Magento_InventoryAdvancedCheckout' => 1,
@@ -240,6 +135,7 @@ return [
         'Magento_InventoryCatalogAdminUi' => 1,
         'Magento_InventoryCatalogApi' => 1,
         'Magento_InventoryCatalogFrontendUi' => 1,
+        'Magento_InventoryCatalogRule' => 1,
         'Magento_InventoryCatalogSearch' => 1,
         'Magento_InventoryCatalogSearchBundleProduct' => 1,
         'Magento_InventoryCatalogSearchConfigurableProduct' => 1,
@@ -347,25 +243,35 @@ return [
         'Magento_InventoryInStorePickupMultishipping' => 1,
         'Magento_MysqlMq' => 1,
         'Magento_NewRelicReporting' => 1,
-        'Magento_Newsletter' => 1,
+        'Magento_CustomerGraphQl' => 1,
         'Magento_NewsletterGraphQl' => 1,
         'Magento_OfflinePayments' => 1,
         'Magento_SalesRule' => 1,
         'Magento_OfflineShipping' => 1,
         'Magento_OpenSearch' => 1,
+        'Magento_OrderCancellation' => 1,
+        'Magento_OrderCancellationGraphQl' => 1,
+        'Magento_OrderCancellationUi' => 1,
         'Magento_Sitemap' => 1,
         'Magento_PageBuilder' => 1,
         'Magento_PageBuilderAnalytics' => 1,
+        'Magento_PageBuilderImageAttribute' => 1,
         'Magento_GraphQlCache' => 1,
         'Magento_ThemeSampleData' => 1,
         'Magento_PaymentGraphQl' => 1,
+        'Magento_ServiceProxy' => 1,
         'Magento_Vault' => 1,
+        'Magento_PaymentServicesDashboard' => 1,
+        'Magento_PaymentServicesPaypalGraphQl' => 1,
+        'Magento_QueryXml' => 1,
+        'Magento_ServicesConnector' => 1,
         'Magento_Captcha' => 1,
         'Magento_Paypal' => 1,
         'Magento_Persistent' => 1,
         'Magento_ProductAlert' => 1,
         'Magento_ConfigurableSampleData' => 1,
         'Magento_ProductVideo' => 1,
+        'Magento_ServicesId' => 1,
         'Magento_ConfigurableImportExport' => 1,
         'Magento_QuoteAnalytics' => 1,
         'Magento_QuoteBundleOptions' => 1,
@@ -381,6 +287,7 @@ return [
         'Magento_ReCaptchaMigration' => 1,
         'Magento_ReCaptchaNewsletter' => 1,
         'Magento_ReCaptchaPaypal' => 1,
+        'Magento_ReCaptchaResendConfirmationEmail' => 1,
         'Magento_ReCaptchaReview' => 1,
         'Magento_ReCaptchaSendFriend' => 1,
         'Magento_ReCaptchaStorePickup' => 1,
@@ -395,6 +302,7 @@ return [
         'Magento_ReCaptchaWebapiGraphQl' => 1,
         'Magento_ReCaptchaWebapiRest' => 1,
         'Magento_ReCaptchaWebapiUi' => 1,
+        'Magento_ReCaptchaWishlist' => 1,
         'Magento_RelatedProductGraphQl' => 1,
         'Magento_ReleaseNotification' => 1,
         'Magento_RemoteStorage' => 1,
@@ -407,11 +315,14 @@ return [
         'Magento_AwsS3' => 1,
         'Magento_Rss' => 1,
         'Magento_PageBuilderAdminAnalytics' => 1,
+        'Magento_ServicesIdGraphQlServer' => 1,
         'Magento_PaypalCaptcha' => 1,
         'Magento_SalesAnalytics' => 1,
+        'Magento_ServicesIdLayout' => 1,
         'Magento_SalesGraphQl' => 1,
         'Magento_SalesInventory' => 1,
         'Magento_OfflineShippingSampleData' => 1,
+        'Magento_SalesRuleGraphQl' => 1,
         'Magento_CatalogRuleSampleData' => 1,
         'Magento_TaxSampleData' => 1,
         'Magento_CheckoutAgreements' => 1,
@@ -421,10 +332,16 @@ return [
         'Magento_Securitytxt' => 1,
         'Magento_SendFriend' => 1,
         'Magento_SendFriendGraphQl' => 1,
+        'Magento_PaymentServicesBase' => 1,
+        'Magento_SaaSCommon' => 1,
+        'Magento_SalesDataExporter' => 1,
+        'Magento_StoreDataExporter' => 1,
+        'Magento_PaymentServicesPaypal' => 1,
         'Magento_InventoryInStorePickupSalesAdminUi' => 1,
         'Magento_AwsS3PageBuilder' => 1,
-        'Magento_InventoryGraphQl' => 1,
-        'Magento_CatalogCmsGraphQl' => 1,
+        'Magento_AsyncConfig' => 1,
+        'Magento_PaymentServicesSaaSExport' => 1,
+        'Magento_CompareListGraphQl' => 1,
         'Magento_Swagger' => 1,
         'Magento_SwaggerWebapi' => 1,
         'Magento_SwaggerWebapiAsync' => 1,
@@ -436,7 +353,7 @@ return [
         'Magento_TaxGraphQl' => 1,
         'Magento_TaxImportExport' => 1,
         'Magento_CustomerSampleData' => 1,
-        'Magento_TwoFactorAuth' => 0,
+        'Magento_InventoryGraphQl' => 1,
         'Magento_ThemeGraphQl' => 1,
         'Magento_CmsSampleData' => 1,
         'Magento_Translation' => 1,
@@ -463,34 +380,23 @@ return [
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
         'PayPal_Braintree' => 1,
+        'PayPal_BraintreeCustomerBalance' => 1,
+        'PayPal_BraintreeGiftCard' => 1,
+        'PayPal_BraintreeGiftCardAccount' => 1,
+        'PayPal_BraintreeGiftWrapping' => 1,
         'PayPal_BraintreeGraphQl' => 1,
-        'Smile_ElasticsuiteAdminNotification' => 1,
-        'Smile_ElasticsuiteCore' => 1,
-        'Smile_ElasticsuiteCatalog' => 1,
-        'Smile_ElasticsuiteCatalogGraphQl' => 1,
-        'Smile_ElasticsuiteCatalogRule' => 1,
-        'Smile_ElasticsuiteCatalogOptimizer' => 1,
-        'Smile_ElasticsuiteTracker' => 1,
-        'Smile_ElasticsuiteThesaurus' => 1,
-        'Smile_ElasticsuiteVirtualCategory' => 1,
-        'Smile_ElasticsuiteSwatches' => 1,
-        'Smile_ElasticsuiteIndices' => 1,
-        'Smile_ElasticsuiteAnalytics' => 1,
-        'Smile_ElasticsuiteRating' => 1,
-        'Temando_ShippingRemover' => 1,
+        'PayPal_BraintreeReward' => 1,
         'TheITNerd_Core' => 1,
         'TheITNerd_Brasil' => 1,
         'TheITNerd_EAV' => 1,
         'TheITNerd_Performance' => 1,
         'TheITNerd_SizeGuide' => 1,
         'TheITNerd_SocialLogin' => 1,
-        'TheITNerd_UX' => 1
-    ],
-    'admin_user' => [
-        'locale' => [
-            'code' => [
-                'en_US'
-            ]
-        ]
+        'TheITNerd_UX' => 1,
+        'Visa_Cybersource' => 1,
+        'Visa_CybersourceDecisionManager' => 1,
+        'Visa_CybersourceErrors' => 1,
+        'Visa_CybersourceGateway' => 1,
+        'Visa_CybersourcePayerAuthentication' => 1
     ]
 ];

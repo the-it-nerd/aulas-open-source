@@ -28,8 +28,8 @@ class AbstractModel extends \Magento\Catalog\Model\AbstractModel
         AttributeValueFactory      $customAttributeFactory,
         StoreManagerInterface      $storeManager,
         protected array            $entityTypes = [],
-        AbstractResource           $resource = null,
-        AbstractDb                 $resourceCollection = null,
+        ?AbstractResource           $resource = null,
+        ?AbstractDb                 $resourceCollection = null,
         array                      $data = []
     )
     {
