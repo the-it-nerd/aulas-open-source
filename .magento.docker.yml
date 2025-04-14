@@ -1,0 +1,42 @@
+name: magento
+system:
+  mode: 'development'
+services:
+  php:
+    version: '8.4'
+    extensions:
+      enabled:
+        - xsl
+        - json
+        - redis
+        - xdebug
+  mysql:
+    version: '11.4'
+    image: 'mariadb'
+  redis:
+    version: '8.0-rc1'
+    image: 'redis'
+  opensearch:
+    version: '2.5'
+    image: 'magento/magento-cloud-docker-opensearch'
+  cron:
+    jobs:
+      run:
+        schedule: "* * * * *"
+        command: "php bin/magento cron:run"
+hooks:
+  build: |
+    set -e
+    php ./vendor/bin/ece-tools run scenario/build/generate.xml
+    php ./vendor/bin/ece-tools run scenario/build/transfer.xml
+  deploy: 'php ./vendor/bin/ece-tools run scenario/deploy.xml'
+  post_deploy: 'php ./vendor/bin/ece-tools run scenario/post-deploy.xml'
+mounts:
+  var:
+    path: 'var'
+  app-etc:
+    path: 'app/etc'
+  pub-media:
+    path: 'pub/media'
+  pub-static:
+    path: 'pub/static'
