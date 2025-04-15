@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">snappoints_loyalty_rates_form.rates_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="SnapPoints\Loyalty\Block\Adminhtml\Rates\Edit\BackButton"/>
+			<button name="delete" class="SnapPoints\Loyalty\Block\Adminhtml\Rates\Edit\DeleteButton"/>
+			<button name="save" class="SnapPoints\Loyalty\Block\Adminhtml\Rates\Edit\SaveButton"/>
+			<button name="save_and_continue" class="SnapPoints\Loyalty\Block\Adminhtml\Rates\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>snappoints_loyalty_rates_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>snappoints_loyalty_rates_form.rates_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="rates_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="rates_form_data_source" class="SnapPoints\Loyalty\Model\Rates\DataProvider">
+			<settings>
+				<requestFieldName>rates_id</requestFieldName>
+				<primaryFieldName>rates_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="program_id" formElement="input" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">rates</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">program_id</label>
+				<dataScope>program_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="configuration" formElement="textarea" sortOrder="60">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">rates</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">configuration</label>
+				<dataScope>configuration</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="product_id" formElement="input" sortOrder="70">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">rates</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">product_id</label>
+				<dataScope>product_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>

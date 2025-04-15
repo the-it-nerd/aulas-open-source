@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/snappoints-loyalty/rates" method="GET">
+		<service class="SnapPoints\Loyalty\Api\RatesManagementInterface" method="getRates"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/ratesversion" method="GET">
+		<service class="SnapPoints\Loyalty\Api\RatesVersionManagementInterface" method="getRatesVersion"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/programs" method="GET">
+		<service class="SnapPoints\Loyalty\Api\ProgramsManagementInterface" method="getPrograms"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/programsversion" method="GET">
+		<service class="SnapPoints\Loyalty\Api\ProgramsVersionManagementInterface" method="getProgramsVersion"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/program" method="POST">
+		<service class="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::program_save"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/program/search" method="GET">
+		<service class="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::program_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/program/:programId" method="GET">
+		<service class="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::program_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/program/:programId" method="PUT">
+		<service class="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::program_update"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/program/:programId" method="DELETE">
+		<service class="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::program_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/rates" method="POST">
+		<service class="SnapPoints\Loyalty\Api\RatesRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::rates_save"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/rates/search" method="GET">
+		<service class="SnapPoints\Loyalty\Api\RatesRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::rates_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/rates/:ratesId" method="GET">
+		<service class="SnapPoints\Loyalty\Api\RatesRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::rates_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/rates/:ratesId" method="PUT">
+		<service class="SnapPoints\Loyalty\Api\RatesRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::rates_update"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/rates/:ratesId" method="DELETE">
+		<service class="SnapPoints\Loyalty\Api\RatesRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::rates_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/log" method="POST">
+		<service class="SnapPoints\Loyalty\Api\LogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::log_save"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/log/search" method="GET">
+		<service class="SnapPoints\Loyalty\Api\LogRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::log_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/log/:logId" method="GET">
+		<service class="SnapPoints\Loyalty\Api\LogRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::log_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/log/:logId" method="PUT">
+		<service class="SnapPoints\Loyalty\Api\LogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::log_update"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/log/:logId" method="DELETE">
+		<service class="SnapPoints\Loyalty\Api\LogRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::log_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/queue_log" method="POST">
+		<service class="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::queue_log_save"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/queue_log/search" method="GET">
+		<service class="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::queue_log_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/queue_log/:queueLogId" method="GET">
+		<service class="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::queue_log_view"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/queue_log/:queueLogId" method="PUT">
+		<service class="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::queue_log_update"/>
+		</resources>
+	</route>
+	<route url="/V1/snappoints-loyalty/queue_log/:queueLogId" method="DELETE">
+		<service class="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="SnapPoints_Loyalty::queue_log_delete"/>
+		</resources>
+	</route>
+</routes>

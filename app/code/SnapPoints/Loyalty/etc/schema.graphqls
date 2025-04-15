@@ -1,0 +1,5 @@
+
+type StoreConfig {
+    
+    general_general_enabled  : String  @doc(description: "Query by general_general_enabled.") 
+}

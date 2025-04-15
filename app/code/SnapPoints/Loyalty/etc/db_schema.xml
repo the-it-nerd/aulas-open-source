@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="snappoints_loyalty_program" resource="default" engine="innodb" comment="snappoints_loyalty_program Table">
+		<column xsi:type="int" name="program_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="program_id"/>
+		</constraint>
+		<column name="name" nullable="true" xsi:type="varchar" comment="name" default="name" length="255"/>
+		<column name="logo" nullable="true" xsi:type="text" comment="logo"/>
+		<column name="banner" nullable="true" xsi:type="text" comment="banner"/>
+		<column name="description" nullable="true" xsi:type="text" comment="description"/>
+	</table>
+	<table name="snappoints_loyalty_rates" resource="default" engine="innodb" comment="snappoints_loyalty_rates Table">
+		<column xsi:type="int" name="rates_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="rates_id"/>
+		</constraint>
+		<column name="program_id" nullable="true" xsi:type="int" comment="program_id" identity="false"/>
+		<index referenceId="SNAPPOINTS_LOYALTY_RATES_PROGRAM_ID" indexType="btree">
+			<column name="program_id"/>
+		</index>
+		<column name="configuration" nullable="true" xsi:type="text" comment="configuration"/>
+		<column name="product_id" nullable="true" xsi:type="int" comment="product_id" identity="false"/>
+		<index referenceId="SNAPPOINTS_LOYALTY_RATES_PRODUCT_ID" indexType="btree">
+			<column name="product_id"/>
+		</index>
+	</table>
+	<table name="snappoints_loyalty_log" resource="default" engine="innodb" comment="snappoints_loyalty_log Table">
+		<column xsi:type="int" name="log_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="log_id"/>
+		</constraint>
+		<column name="log_stack" nullable="true" xsi:type="text" comment="log_stack"/>
+		<column name="class" nullable="true" xsi:type="varchar" comment="class" length="255"/>
+		<column name="log" nullable="true" xsi:type="text" comment="log"/>
+		<column name="log_type" nullable="true" xsi:type="varchar" comment="log_type" length="255"/>
+	</table>
+	<table name="snappoints_loyalty_queue_log" resource="default" engine="innodb" comment="snappoints_loyalty_queue_log Table">
+		<column xsi:type="int" name="queue_log_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="queue_log_id"/>
+		</constraint>
+		<column name="queue" nullable="true" xsi:type="varchar" comment="queue" length="255"/>
+		<column name="objects" nullable="true" xsi:type="text" comment="objects"/>
+		<column name="status" nullable="true" xsi:type="varchar" comment="status" length="255"/>
+		<column name="log" nullable="true" xsi:type="text" comment="log"/>
+	</table>
+</schema>

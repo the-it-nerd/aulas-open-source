@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+	<type name="snappoints_cache_tag" translate="label,description" instance="SnapPoints\Loyalty\Model\Cache\SnapPoints">
+		<label>SnapPoints</label>
+		<description>SnapPoints Rates Cache</description>
+	</type>
+</config>

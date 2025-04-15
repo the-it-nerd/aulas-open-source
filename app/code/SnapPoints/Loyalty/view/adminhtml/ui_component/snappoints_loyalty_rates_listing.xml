@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">snappoints_loyalty_rates_listing.snappoints_loyalty_rates_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>snappoints_loyalty_rates_columns</spinner>
+		<deps>
+			<dep>snappoints_loyalty_rates_listing.snappoints_loyalty_rates_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new rates</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="snappoints_loyalty_rates_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">rates_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>SnapPoints_Loyalty::rates</aclResource>
+		<dataProvider name="snappoints_loyalty_rates_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>rates_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="snappoints_loyalty_rates_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">snappoints_loyalty_rates_listing.snappoints_loyalty_rates_listing.snappoints_loyalty_rates_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">rates_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="snappoints_loyalty/rates/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">snappoints_loyalty_rates_listing.snappoints_loyalty_rates_listing.snappoints_loyalty_rates_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>rates_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="rates_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="program_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">program_id</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<actionsColumn name="actions" class="SnapPoints\Loyalty\Ui\Component\Listing\Column\RatesActions">
+			<settings>
+				<indexField>rates_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+		<column name="configuration">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">configuration</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="product_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">product_id</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+	</columns>
+</listing>

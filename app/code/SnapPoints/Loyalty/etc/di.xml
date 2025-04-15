@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="SnapPoints\Loyalty\Api\RatesManagementInterface" type="SnapPoints\Loyalty\Model\RatesManagement"/>
+	<preference for="SnapPoints\Loyalty\Api\RatesVersionManagementInterface" type="SnapPoints\Loyalty\Model\RatesVersionManagement"/>
+	<preference for="SnapPoints\Loyalty\Api\ProgramsManagementInterface" type="SnapPoints\Loyalty\Model\ProgramsManagement"/>
+	<preference for="SnapPoints\Loyalty\Api\ProgramsVersionManagementInterface" type="SnapPoints\Loyalty\Model\ProgramsVersionManagement"/>
+	<type name="Magento\Framework\Console\CommandList">
+		<arguments>
+			<argument name="commands" xsi:type="array">
+				<item name="import" xsi:type="object">SnapPoints\Loyalty\Console\Command\Import</item>
+				<item name="rates" xsi:type="object">SnapPoints\Loyalty\Console\Command\Rates</item>
+				<item name="configurations" xsi:type="object">SnapPoints\Loyalty\Console\Command\Configurations</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" type="SnapPoints\Loyalty\Model\ProgramRepository"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\ProgramInterface" type="SnapPoints\Loyalty\Model\Program"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\ProgramSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="SnapPoints\Loyalty\Model\ResourceModel\Program\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">snappoints_loyalty_program</argument>
+			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Program\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="snappoints_loyalty_program_listing_data_source" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Program\Grid\Collection</item>
+				<item name="snappoints_loyalty_rates_listing_data_source" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Rates\Grid\Collection</item>
+				<item name="snappoints_loyalty_log_listing_data_source" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Log\Grid\Collection</item>
+				<item name="snappoints_loyalty_queue_log_listing_data_source" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\QueueLog\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="SnapPoints\Loyalty\Api\RatesRepositoryInterface" type="SnapPoints\Loyalty\Model\RatesRepository"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\RatesInterface" type="SnapPoints\Loyalty\Model\Rates"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\RatesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="SnapPoints\Loyalty\Model\ResourceModel\Rates\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">snappoints_loyalty_rates</argument>
+			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Rates\Collection</argument>
+		</arguments>
+	</virtualType>
+	<preference for="SnapPoints\Loyalty\Api\LogRepositoryInterface" type="SnapPoints\Loyalty\Model\LogRepository"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\LogInterface" type="SnapPoints\Loyalty\Model\Log"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\LogSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="SnapPoints\Loyalty\Model\ResourceModel\Log\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">snappoints_loyalty_log</argument>
+			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Log\Collection</argument>
+		</arguments>
+	</virtualType>
+	<preference for="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" type="SnapPoints\Loyalty\Model\QueueLogRepository"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\QueueLogInterface" type="SnapPoints\Loyalty\Model\QueueLog"/>
+	<preference for="SnapPoints\Loyalty\Api\Data\QueueLogSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="SnapPoints\Loyalty\Model\ResourceModel\QueueLog\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">snappoints_loyalty_queue_log</argument>
+			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\QueueLog\Collection</argument>
+		</arguments>
+	</virtualType>
+</config>

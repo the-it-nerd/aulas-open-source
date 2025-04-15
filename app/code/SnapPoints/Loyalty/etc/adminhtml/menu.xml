@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="SnapPoints::top_level" title="SnapPoints" module="SnapPoints_Loyalty" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="SnapPoints_Loyalty::snappoints_loyalty_program" title="program" module="SnapPoints_Loyalty" sortOrder="9999" resource="Magento_Backend::content" parent="SnapPoints::top_level" action="snappoints_loyalty/program/index"/>
+		<add id="SnapPoints_Loyalty::snappoints_loyalty_rates" title="rates" module="SnapPoints_Loyalty" sortOrder="9999" resource="Magento_Backend::content" parent="SnapPoints::top_level" action="snappoints_loyalty/rates/index"/>
+		<add id="SnapPoints_Loyalty::snappoints_loyalty_log" title="log" module="SnapPoints_Loyalty" sortOrder="9999" resource="Magento_Backend::content" parent="SnapPoints::top_level" action="snappoints_loyalty/log/index"/>
+		<add id="SnapPoints_Loyalty::snappoints_loyalty_queue_log" title="queue log" module="SnapPoints_Loyalty" sortOrder="9999" resource="Magento_Backend::content" parent="SnapPoints::top_level" action="snappoints_loyalty/queuelog/index"/>
+	</menu>
+</config>

@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">snappoints_loyalty_log_listing.snappoints_loyalty_log_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>snappoints_loyalty_log_columns</spinner>
+		<deps>
+			<dep>snappoints_loyalty_log_listing.snappoints_loyalty_log_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="snappoints_loyalty_log_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">log_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>SnapPoints_Loyalty::log</aclResource>
+		<dataProvider name="snappoints_loyalty_log_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>log_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="snappoints_loyalty_log_columns">
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>log_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="log_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="log_stack">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">log_stack</label>
+			</settings>
+		</column>
+		<column name="class">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">class</label>
+			</settings>
+		</column>
+		<column name="log">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">log</label>
+			</settings>
+		</column>
+		<column name="log_type">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">log_type</label>
+			</settings>
+		</column>
+	</columns>
+</listing>

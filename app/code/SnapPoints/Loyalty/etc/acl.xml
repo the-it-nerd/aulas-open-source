@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="SnapPoints_Loyalty::program" title="program" sortOrder="10">
+					<resource id="SnapPoints_Loyalty::program_save" title="Save program" sortOrder="10"/>
+					<resource id="SnapPoints_Loyalty::program_delete" title="Delete program" sortOrder="20"/>
+					<resource id="SnapPoints_Loyalty::program_update" title="Update program" sortOrder="30"/>
+					<resource id="SnapPoints_Loyalty::program_view" title="View program" sortOrder="40"/>
+				</resource>
+				<resource id="SnapPoints_Loyalty::rates" title="rates" sortOrder="10">
+					<resource id="SnapPoints_Loyalty::rates_save" title="Save rates" sortOrder="10"/>
+					<resource id="SnapPoints_Loyalty::rates_delete" title="Delete rates" sortOrder="20"/>
+					<resource id="SnapPoints_Loyalty::rates_update" title="Update rates" sortOrder="30"/>
+					<resource id="SnapPoints_Loyalty::rates_view" title="View rates" sortOrder="40"/>
+				</resource>
+				<resource id="SnapPoints_Loyalty::log" title="log" sortOrder="10">
+					<resource id="SnapPoints_Loyalty::log_save" title="Save log" sortOrder="10"/>
+					<resource id="SnapPoints_Loyalty::log_delete" title="Delete log" sortOrder="20"/>
+					<resource id="SnapPoints_Loyalty::log_update" title="Update log" sortOrder="30"/>
+					<resource id="SnapPoints_Loyalty::log_view" title="View log" sortOrder="40"/>
+				</resource>
+				<resource id="SnapPoints_Loyalty::queue_log" title="queue_log" sortOrder="10">
+					<resource id="SnapPoints_Loyalty::queue_log_save" title="Save queue_log" sortOrder="10"/>
+					<resource id="SnapPoints_Loyalty::queue_log_delete" title="Delete queue_log" sortOrder="20"/>
+					<resource id="SnapPoints_Loyalty::queue_log_update" title="Update queue_log" sortOrder="30"/>
+					<resource id="SnapPoints_Loyalty::queue_log_view" title="View queue_log" sortOrder="40"/>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="SnapPoints_Loyalty::config_snappoints_loyalty" title="general"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>
