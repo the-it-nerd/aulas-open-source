@@ -18,13 +18,13 @@ class QueueLog extends AbstractModel implements QueueLogInterface
      */
     public function _construct()
     {
-        $this->_init(\SnapPoints\Loyalty\Model\ResourceModel\QueueLog::class);
+        $this->_init(ResourceModel\QueueLog::class);
     }
 
     /**
      * @inheritDoc
      */
-    public function getQueueLogId()
+    public function getQueueLogId(): ?int
     {
         return $this->getData(self::QUEUE_LOG_ID);
     }
@@ -32,7 +32,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function setQueueLogId($queueLogId)
+    public function setQueueLogId($queueLogId): QueueLogInterface
     {
         return $this->setData(self::QUEUE_LOG_ID, $queueLogId);
     }
@@ -40,7 +40,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function getQueue()
+    public function getQueue(): ?string
     {
         return $this->getData(self::QUEUE);
     }
@@ -48,7 +48,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function setQueue($queue)
+    public function setQueue($queue): QueueLogInterface
     {
         return $this->setData(self::QUEUE, $queue);
     }
@@ -56,7 +56,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function getObjects()
+    public function getObjects(): ?string
     {
         return $this->getData(self::OBJECTS);
     }
@@ -64,7 +64,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function setObjects($objects)
+    public function setObjects($objects): QueueLogInterface
     {
         return $this->setData(self::OBJECTS, $objects);
     }
@@ -72,7 +72,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function getStatus()
+    public function getStatus(): ?string
     {
         return $this->getData(self::STATUS);
     }
@@ -80,7 +80,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function setStatus($status)
+    public function setStatus($status): QueueLogInterface
     {
         return $this->setData(self::STATUS, $status);
     }
@@ -88,7 +88,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function getLog()
+    public function getLog(): ?string
     {
         return $this->getData(self::LOG);
     }
@@ -96,7 +96,7 @@ class QueueLog extends AbstractModel implements QueueLogInterface
     /**
      * @inheritDoc
      */
-    public function setLog($log)
+    public function setLog($log): QueueLogInterface
     {
         return $this->setData(self::LOG, $log);
     }

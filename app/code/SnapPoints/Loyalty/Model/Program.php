@@ -24,7 +24,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function getProgramId()
+    public function getProgramId(): ?int
     {
         return $this->getData(self::PROGRAM_ID);
     }
@@ -32,7 +32,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function setProgramId($programId)
+    public function setProgramId($programId): ProgramInterface
     {
         return $this->setData(self::PROGRAM_ID, $programId);
     }
@@ -40,7 +40,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->getData(self::NAME);
     }
@@ -48,7 +48,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function setName($name)
+    public function setName($name): ProgramInterface
     {
         return $this->setData(self::NAME, $name);
     }
@@ -56,7 +56,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function getLogo()
+    public function getLogo(): ?string
     {
         return $this->getData(self::LOGO);
     }
@@ -64,7 +64,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function setLogo($logo)
+    public function setLogo($logo): ProgramInterface
     {
         return $this->setData(self::LOGO, $logo);
     }
@@ -72,7 +72,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function getBanner()
+    public function getBanner(): ?string
     {
         return $this->getData(self::BANNER);
     }
@@ -80,7 +80,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function setBanner($banner)
+    public function setBanner($banner): ProgramInterface
     {
         return $this->setData(self::BANNER, $banner);
     }
@@ -88,7 +88,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->getData(self::DESCRIPTION);
     }
@@ -96,7 +96,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function setDescription($description)
+    public function setDescription($description): ProgramInterface
     {
         return $this->setData(self::DESCRIPTION, $description);
     }

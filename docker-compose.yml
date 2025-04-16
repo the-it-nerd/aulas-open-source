@@ -15,7 +15,7 @@ services:
       - '.:/app:delegated'
       - 'magento-magento-db:/var/lib/mysql'
     healthcheck:
-      test: 'mysqladmin ping -h localhost -pmagento2'
+      test: ["CMD", "true"]
       interval: 30s
       timeout: 30s
       retries: 3

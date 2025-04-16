@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace SnapPoints\Loyalty\Model;
 
+use Exception;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use SnapPoints\Loyalty\Api\Data\RatesInterface;
 use SnapPoints\Loyalty\Api\Data\RatesInterfaceFactory;
+use SnapPoints\Loyalty\Api\Data\RatesSearchResultsInterface;
 use SnapPoints\Loyalty\Api\Data\RatesSearchResultsInterfaceFactory;
 use SnapPoints\Loyalty\Api\RatesRepositoryInterface;
 use SnapPoints\Loyalty\Model\ResourceModel\Rates as ResourceRates;
@@ -20,33 +23,6 @@ use SnapPoints\Loyalty\Model\ResourceModel\Rates\CollectionFactory as RatesColle
 
 class RatesRepository implements RatesRepositoryInterface
 {
-
-    /**
-     * @var RatesInterfaceFactory
-     */
-    protected $ratesFactory;
-
-    /**
-     * @var RatesCollectionFactory
-     */
-    protected $ratesCollectionFactory;
-
-    /**
-     * @var Rates
-     */
-    protected $searchResultsFactory;
-
-    /**
-     * @var CollectionProcessorInterface
-     */
-    protected $collectionProcessor;
-
-    /**
-     * @var ResourceRates
-     */
-    protected $resource;
-
-
     /**
      * @param ResourceRates $resource
      * @param RatesInterfaceFactory $ratesFactory
@@ -55,27 +31,23 @@ class RatesRepository implements RatesRepositoryInterface
      * @param CollectionProcessorInterface $collectionProcessor
      */
     public function __construct(
-        ResourceRates $resource,
-        RatesInterfaceFactory $ratesFactory,
-        RatesCollectionFactory $ratesCollectionFactory,
-        RatesSearchResultsInterfaceFactory $searchResultsFactory,
-        CollectionProcessorInterface $collectionProcessor
-    ) {
-        $this->resource = $resource;
-        $this->ratesFactory = $ratesFactory;
-        $this->ratesCollectionFactory = $ratesCollectionFactory;
-        $this->searchResultsFactory = $searchResultsFactory;
-        $this->collectionProcessor = $collectionProcessor;
+        protected readonly ResourceRates                      $resource,
+        protected readonly RatesInterfaceFactory              $ratesFactory,
+        protected readonly RatesCollectionFactory             $ratesCollectionFactory,
+        protected readonly RatesSearchResultsInterfaceFactory $searchResultsFactory,
+        protected readonly CollectionProcessorInterface       $collectionProcessor
+    )
+    {
     }
 
     /**
      * @inheritDoc
      */
-    public function save(RatesInterface $rates)
+    public function save(RatesInterface $rates): RatesInterface
     {
         try {
             $this->resource->save($rates);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new CouldNotSaveException(__(
                 'Could not save the rates: %1',
                 $exception->getMessage()
@@ -87,34 +59,22 @@ class RatesRepository implements RatesRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function get($ratesId)
-    {
-        $rates = $this->ratesFactory->create();
-        $this->resource->load($rates, $ratesId);
-        if (!$rates->getId()) {
-            throw new NoSuchEntityException(__('rates with id "%1" does not exist.', $ratesId));
-        }
-        return $rates;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getList(
-        \Magento\Framework\Api\SearchCriteriaInterface $criteria
-    ) {
+        SearchCriteriaInterface $criteria
+    ): RatesSearchResultsInterface
+    {
         $collection = $this->ratesCollectionFactory->create();
-        
+
         $this->collectionProcessor->process($criteria, $collection);
-        
+
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
-        
+
         $items = [];
         foreach ($collection as $model) {
             $items[] = $model;
         }
-        
+
         $searchResults->setItems($items);
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults;
@@ -123,13 +83,21 @@ class RatesRepository implements RatesRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function delete(RatesInterface $rates)
+    public function deleteById($ratesId): bool
+    {
+        return $this->delete($this->get($ratesId));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete(RatesInterface $rates): bool
     {
         try {
             $ratesModel = $this->ratesFactory->create();
             $this->resource->load($ratesModel, $rates->getRatesId());
             $this->resource->delete($ratesModel);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new CouldNotDeleteException(__(
                 'Could not delete the rates: %1',
                 $exception->getMessage()
@@ -141,9 +109,14 @@ class RatesRepository implements RatesRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function deleteById($ratesId)
+    public function get($ratesId): RatesInterface
     {
-        return $this->delete($this->get($ratesId));
+        $rates = $this->ratesFactory->create();
+        $this->resource->load($rates, $ratesId);
+        if (!$rates->getId()) {
+            throw new NoSuchEntityException(__('rates with id "%1" does not exist.', $ratesId));
+        }
+        return $rates;
     }
 }
 

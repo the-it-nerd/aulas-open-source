@@ -7,13 +7,15 @@ declare(strict_types=1);
 
 namespace SnapPoints\Loyalty\Model;
 
-class RatesManagement implements \SnapPoints\Loyalty\Api\RatesManagementInterface
+use SnapPoints\Loyalty\Api\RatesManagementInterface;
+
+class RatesManagement implements RatesManagementInterface
 {
 
     /**
      * {@inheritdoc}
      */
-    public function getRates($param)
+    public function getRates($param): string
     {
         return 'hello api GET return the $param ' . $param;
     }

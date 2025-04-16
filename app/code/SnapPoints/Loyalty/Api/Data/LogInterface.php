@@ -10,7 +10,7 @@ namespace SnapPoints\Loyalty\Api\Data;
 interface LogInterface
 {
 
-    public const CLASS = 'class';
+    public const CLASS_NAME = 'class_name';
     public const LOG_STACK = 'log_stack';
     public const LOG_ID = 'log_id';
     public const LOG = 'log';

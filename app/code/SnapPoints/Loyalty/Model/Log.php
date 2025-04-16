@@ -18,13 +18,13 @@ class Log extends AbstractModel implements LogInterface
      */
     public function _construct()
     {
-        $this->_init(\SnapPoints\Loyalty\Model\ResourceModel\Log::class);
+        $this->_init(ResourceModel\Log::class);
     }
 
     /**
      * @inheritDoc
      */
-    public function getLogId()
+    public function getLogId(): ?string
     {
         return $this->getData(self::LOG_ID);
     }
@@ -32,7 +32,7 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function setLogId($logId)
+    public function setLogId($logId): LogInterface
     {
         return $this->setData(self::LOG_ID, $logId);
     }
@@ -40,7 +40,7 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function getLogStack()
+    public function getLogStack(): ?string
     {
         return $this->getData(self::LOG_STACK);
     }
@@ -48,7 +48,7 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function setLogStack($logStack)
+    public function setLogStack($logStack): LogInterface
     {
         return $this->setData(self::LOG_STACK, $logStack);
     }
@@ -56,23 +56,23 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function getClass()
+    public function getClass(): ?string
     {
-        return $this->getData(self::CLASS);
+        return $this->getData(self::CLASS_NAME);
     }
 
     /**
      * @inheritDoc
      */
-    public function setClass($class)
+    public function setClass($class): LogInterface
     {
-        return $this->setData(self::CLASS, $class);
+        return $this->setData(self::CLASS_NAME, $class);
     }
 
     /**
      * @inheritDoc
      */
-    public function getLog()
+    public function getLog(): ?string
     {
         return $this->getData(self::LOG);
     }
@@ -80,7 +80,7 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function setLog($log)
+    public function setLog($log): LogInterface
     {
         return $this->setData(self::LOG, $log);
     }
@@ -88,7 +88,7 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function getLogType()
+    public function getLogType(): ?string
     {
         return $this->getData(self::LOG_TYPE);
     }
@@ -96,7 +96,7 @@ class Log extends AbstractModel implements LogInterface
     /**
      * @inheritDoc
      */
-    public function setLogType($logType)
+    public function setLogType($logType): LogInterface
     {
         return $this->setData(self::LOG_TYPE, $logType);
     }

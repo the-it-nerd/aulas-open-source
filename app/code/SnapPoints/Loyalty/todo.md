@@ -14,6 +14,8 @@ https://api.snappoints.com/documentation#/
 - which api for customers
   - /api/v1/merchants/{merchantId}/customers
   - /api/v1/users
+   
+- create client as standalone php library
 
 # DEVOPS Setup
 - git repository

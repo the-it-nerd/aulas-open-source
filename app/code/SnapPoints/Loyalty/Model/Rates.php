@@ -18,13 +18,13 @@ class Rates extends AbstractModel implements RatesInterface
      */
     public function _construct()
     {
-        $this->_init(\SnapPoints\Loyalty\Model\ResourceModel\Rates::class);
+        $this->_init(ResourceModel\Rates::class);
     }
 
     /**
      * @inheritDoc
      */
-    public function getRatesId()
+    public function getRatesId(): ?int
     {
         return $this->getData(self::RATES_ID);
     }
@@ -32,7 +32,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function setRatesId($ratesId)
+    public function setRatesId($ratesId): RatesInterface
     {
         return $this->setData(self::RATES_ID, $ratesId);
     }
@@ -40,7 +40,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function getProgramId()
+    public function getProgramId(): ?int
     {
         return $this->getData(self::PROGRAM_ID);
     }
@@ -48,7 +48,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function setProgramId($programId)
+    public function setProgramId($programId): RatesInterface
     {
         return $this->setData(self::PROGRAM_ID, $programId);
     }
@@ -56,7 +56,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function getConfiguration()
+    public function getConfiguration(): ?string
     {
         return $this->getData(self::CONFIGURATION);
     }
@@ -64,7 +64,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function setConfiguration($configuration)
+    public function setConfiguration($configuration): RatesInterface
     {
         return $this->setData(self::CONFIGURATION, $configuration);
     }
@@ -72,7 +72,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function getProductId()
+    public function getProductId(): ?int
     {
         return $this->getData(self::PRODUCT_ID);
     }
@@ -80,7 +80,7 @@ class Rates extends AbstractModel implements RatesInterface
     /**
      * @inheritDoc
      */
-    public function setProductId($productId)
+    public function setProductId($productId): RatesInterface
     {
         return $this->setData(self::PRODUCT_ID, $productId);
     }
