@@ -18,7 +18,6 @@ https://api.snappoints.com/documentation#/
 # DEVOPS Setup
 - git repository
 - packagist access
-- 
 
 # Module setup
 - PHPUnit Tests
