@@ -16,8 +16,11 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
+
     "version": "2.4.8",
     "require": {
+        "ext-dom": "*",
+        "cybersource/rest-client-php": "^0.0.60",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",
         "magento/module-bundle-sample-data": "100.4.*",
@@ -41,8 +44,7 @@
         "magento/module-wishlist-sample-data": "100.4.*",
         "magento/product-community-edition": "2.4.8",
         "magento/sample-data-media": "100.4.*",
-        "cybersource/rest-client-php": "^0.0.60",
-        "ext-dom": "*"
+        "snappoints/sdk": "^0.0.1"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -98,7 +100,12 @@
         {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:Snappoints/php-client.git"
         }
+
     ],
     "extra": {
         "magento-force": "override"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b15a5c5ef80b640fef25bf1c357163a8",
+    "content-hash": "db1d8c2683d0858f6e5a026c1f500dfe",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -182,16 +182,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.342.27",
+            "version": "3.342.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4c18299000c34ab4903100fe68721d6f26c7cdf2"
+                "reference": "dfb7a1677143f7245289c7ad7e7915dbeab05c89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4c18299000c34ab4903100fe68721d6f26c7cdf2",
-                "reference": "4c18299000c34ab4903100fe68721d6f26c7cdf2",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/dfb7a1677143f7245289c7ad7e7915dbeab05c89",
+                "reference": "dfb7a1677143f7245289c7ad7e7915dbeab05c89",
                 "shasum": ""
             },
             "require": {
@@ -273,9 +273,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.342.27"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.342.34"
             },
-            "time": "2025-04-14T18:08:09+00:00"
+            "time": "2025-04-24T18:07:33+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -8656,11 +8656,11 @@
         },
         {
             "name": "magento/module-data-exporter",
-            "version": "103.4.1",
+            "version": "103.4.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-data-exporter/magento-module-data-exporter-103.4.1.0.zip",
-                "shasum": "54bdaa40c2e3e4bccdab041c00ef41a529a5925c"
+                "url": "https://repo.magento.com/archives/magento/module-data-exporter/magento-module-data-exporter-103.4.3.0.zip",
+                "shasum": "8f4d8ac8b154cc239e3975f72c604dbf51af7201"
             },
             "require": {
                 "magento/framework": ">=103.0.4",
@@ -14781,11 +14781,11 @@
         },
         {
             "name": "magento/module-query-xml",
-            "version": "103.4.1",
+            "version": "103.4.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-query-xml/magento-module-query-xml-103.4.1.0.zip",
-                "shasum": "11df2225b348bce84396db3cc733cade877c0170"
+                "url": "https://repo.magento.com/archives/magento/module-query-xml/magento-module-query-xml-103.4.3.0.zip",
+                "shasum": "96ad09baffa16cd77c5e9626a2662c17ef3551a5"
             },
             "require": {
                 "magento/framework": ">=103.0.4",
@@ -16167,11 +16167,11 @@
         },
         {
             "name": "magento/module-saas-common",
-            "version": "103.4.1",
+            "version": "103.4.3",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-saas-common/magento-module-saas-common-103.4.1.0.zip",
-                "shasum": "7536e6055caa3db611d844a1c23c27c4578c22de"
+                "url": "https://repo.magento.com/archives/magento/module-saas-common/magento-module-saas-common-103.4.3.0.zip",
+                "shasum": "7186ce580c6067ef81fa51af7f3e904f22324b65"
             },
             "require": {
                 "magento/framework": ">=103.0.4",
@@ -16786,11 +16786,11 @@
         },
         {
             "name": "magento/module-services-id",
-            "version": "3.2.7",
+            "version": "3.3.0",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-services-id/magento-module-services-id-3.2.7.0.zip",
-                "shasum": "621545540765525f79e9e3cb9859b09ab2e5bf5b"
+                "url": "https://repo.magento.com/archives/magento/module-services-id/magento-module-services-id-3.3.0.0.zip",
+                "shasum": "cfd4d49b50cd507c00bd356a155d3158344ac805"
             },
             "require": {
                 "magento/framework": ">=102.0.0 <104.0.0",
@@ -16815,17 +16815,17 @@
         },
         {
             "name": "magento/module-services-id-graph-ql-server",
-            "version": "1.1.6",
+            "version": "1.1.7",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-services-id-graph-ql-server/magento-module-services-id-graph-ql-server-1.1.6.0.zip",
-                "shasum": "4ff4df35fd997afeac043ff678ff935cdbf39a72"
+                "url": "https://repo.magento.com/archives/magento/module-services-id-graph-ql-server/magento-module-services-id-graph-ql-server-1.1.7.0.zip",
+                "shasum": "e990be367256fc886d60ea3a7020a1d42121e73e"
             },
             "require": {
                 "magento/framework": ">=102.0.0 <104.0.0",
                 "magento/module-admin-graph-ql-server": "^1.0.4",
                 "magento/module-backend": ">=101.0.0 <103.0.0",
-                "magento/module-services-id": "^3.2.7",
+                "magento/module-services-id": "^3.3.0",
                 "magento/services-connector": "^1.3.6",
                 "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0"
             },
@@ -16846,19 +16846,19 @@
         },
         {
             "name": "magento/module-services-id-layout",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/module-services-id-layout/magento-module-services-id-layout-1.1.4.0.zip",
-                "shasum": "34b55c59193b3897987d29997868c26dcf47229e"
+                "url": "https://repo.magento.com/archives/magento/module-services-id-layout/magento-module-services-id-layout-1.1.5.0.zip",
+                "shasum": "d648de84a39811fba5a9535eaaed586064536b63"
             },
             "require": {
                 "magento/framework": ">=102.0.0 <104.0.0",
                 "magento/module-backend": ">=101.0.0 <103.0.0",
                 "magento/module-config": ">=101.1.0 <101.3.0",
                 "magento/module-graph-ql-server": "^1.0.3",
-                "magento/module-services-id": "^3.2.7",
-                "magento/module-services-id-graph-ql-server": "^1.1.6",
+                "magento/module-services-id": "^3.3.0",
+                "magento/module-services-id-graph-ql-server": "^1.1.7",
                 "magento/module-store": ">=101.0.0 <101.2.0",
                 "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0"
             },
@@ -18765,11 +18765,11 @@
         },
         {
             "name": "magento/services-id",
-            "version": "3.2.7",
+            "version": "3.3.0",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/services-id/magento-services-id-3.2.7.0.zip",
-                "shasum": "89d25841fab7856f5ebe30a7233d38e9c8c4ce6d"
+                "url": "https://repo.magento.com/archives/magento/services-id/magento-services-id-3.3.0.0.zip",
+                "shasum": "794e2fe24d2bad8b8605220eda9d8f9cb9f97596"
             },
             "require": {
                 "magento/framework": ">=102.0.0 <104.0.0",
@@ -18777,9 +18777,9 @@
                 "magento/module-backend": ">=101.0.0 <103.0.0",
                 "magento/module-config": ">=101.1.0 <101.3.0",
                 "magento/module-graph-ql-server": "^1.0.3",
-                "magento/module-services-id": "3.2.7",
-                "magento/module-services-id-graph-ql-server": "1.1.6",
-                "magento/module-services-id-layout": "1.1.4",
+                "magento/module-services-id": "3.3.0",
+                "magento/module-services-id-graph-ql-server": "1.1.7",
+                "magento/module-services-id-layout": "1.1.5",
                 "magento/module-store": ">=101.0.0 <101.2.0",
                 "magento/services-connector": "^1.3.6",
                 "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0"
@@ -21954,6 +21954,42 @@
                 "source": "https://github.com/Seldaek/signal-handler/tree/2.0.2"
             },
             "time": "2023-09-03T09:24:00+00:00"
+        },
+        {
+            "name": "snappoints/sdk",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:Snappoints/php-client.git",
+                "reference": "6dc71b4cb1cc0b705b7da9f76b3f713709bb2bcc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Snappoints/php-client/zipball/6dc71b4cb1cc0b705b7da9f76b3f713709bb2bcc",
+                "reference": "6dc71b4cb1cc0b705b7da9f76b3f713709bb2bcc",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Snappoints\\Sdk\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Raul Sakai",
+                    "email": "raul.sakai@theitnerd.io"
+                }
+            ],
+            "description": "SnapPoints PHP SDK",
+            "support": {
+                "source": "https://github.com/Snappoints/php-client/tree/0.0.1",
+                "issues": "https://github.com/Snappoints/php-client/issues"
+            },
+            "time": "2025-04-24T18:52:47+00:00"
         },
         {
             "name": "spomky-labs/aes-key-wrap",
@@ -25245,16 +25281,16 @@
         },
         {
             "name": "wikimedia/less.php",
-            "version": "v5.3.0",
+            "version": "v5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/less.php.git",
-                "reference": "d22e08f4a62439b13c996598ed63bffc89a9dec9"
+                "reference": "fb0ed6296bb69cad225dd49b7e93765aab9ae88b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/less.php/zipball/d22e08f4a62439b13c996598ed63bffc89a9dec9",
-                "reference": "d22e08f4a62439b13c996598ed63bffc89a9dec9",
+                "url": "https://api.github.com/repos/wikimedia/less.php/zipball/fb0ed6296bb69cad225dd49b7e93765aab9ae88b",
+                "reference": "fb0ed6296bb69cad225dd49b7e93765aab9ae88b",
                 "shasum": ""
             },
             "require": {
@@ -25314,9 +25350,9 @@
             ],
             "support": {
                 "issues": "https://github.com/wikimedia/less.php/issues",
-                "source": "https://github.com/wikimedia/less.php/tree/v5.3.0"
+                "source": "https://github.com/wikimedia/less.php/tree/v5.3.1"
             },
-            "time": "2025-04-08T14:31:31+00:00"
+            "time": "2025-04-16T22:21:45+00:00"
         }
     ],
     "packages-dev": [
@@ -25960,22 +25996,22 @@
         },
         {
             "name": "codeception/module-asserts",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/module-asserts.git",
-                "reference": "1b6b150b30586c3614e7e5761b31834ed7968603"
+                "reference": "c58281f3d741599c81676bcb92996cf1e22d9ffd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/module-asserts/zipball/1b6b150b30586c3614e7e5761b31834ed7968603",
-                "reference": "1b6b150b30586c3614e7e5761b31834ed7968603",
+                "url": "https://api.github.com/repos/Codeception/module-asserts/zipball/c58281f3d741599c81676bcb92996cf1e22d9ffd",
+                "reference": "c58281f3d741599c81676bcb92996cf1e22d9ffd",
                 "shasum": ""
             },
             "require": {
                 "codeception/codeception": "*@dev",
                 "codeception/lib-asserts": "^2.0",
-                "php": "^8.0"
+                "php": "^8.1"
             },
             "conflict": {
                 "codeception/codeception": "<5.0"
@@ -26011,9 +26047,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeception/module-asserts/issues",
-                "source": "https://github.com/Codeception/module-asserts/tree/3.0.0"
+                "source": "https://github.com/Codeception/module-asserts/tree/3.1.0"
             },
-            "time": "2022-02-16T19:48:08+00:00"
+            "time": "2025-04-24T17:18:25+00:00"
         },
         {
             "name": "codeception/module-webdriver",
@@ -26119,16 +26155,16 @@
         },
         {
             "name": "csharpru/vault-php",
-            "version": "4.4.0",
+            "version": "4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CSharpRU/vault-php.git",
-                "reference": "ba4cbd7b55f1ce10bc72a7e4c36cfd87a42d3573"
+                "reference": "2064cd7a377b066c6d256eef1d7f4f4ecbb927f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CSharpRU/vault-php/zipball/ba4cbd7b55f1ce10bc72a7e4c36cfd87a42d3573",
-                "reference": "ba4cbd7b55f1ce10bc72a7e4c36cfd87a42d3573",
+                "url": "https://api.github.com/repos/CSharpRU/vault-php/zipball/2064cd7a377b066c6d256eef1d7f4f4ecbb927f1",
+                "reference": "2064cd7a377b066c6d256eef1d7f4f4ecbb927f1",
                 "shasum": ""
             },
             "require": {
@@ -26145,7 +26181,7 @@
                 "cache/array-adapter": "^1.0",
                 "codeception/codeception": "^4.1",
                 "codeception/module-asserts": "^1.3",
-                "laminas/laminas-diactoros": "^2.3",
+                "laminas/laminas-diactoros": "^2.3 || ^3.0",
                 "php-vcr/php-vcr": "^1.5",
                 "symfony/event-dispatcher": "<5.0"
             },
@@ -26176,9 +26212,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CSharpRU/vault-php/issues",
-                "source": "https://github.com/CSharpRU/vault-php/tree/4.4.0"
+                "source": "https://github.com/CSharpRU/vault-php/tree/4.4.1"
             },
-            "time": "2023-11-22T11:38:41+00:00"
+            "time": "2025-04-23T08:42:13+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -26739,16 +26775,16 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v11.44.2",
+            "version": "v11.44.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "f2f537dfb2a142791d37478f34c920b44a45cea9"
+                "reference": "856b1da953e46281ba61d7c82d337072d3ee1825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/f2f537dfb2a142791d37478f34c920b44a45cea9",
-                "reference": "f2f537dfb2a142791d37478f34c920b44a45cea9",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/856b1da953e46281ba61d7c82d337072d3ee1825",
+                "reference": "856b1da953e46281ba61d7c82d337072d3ee1825",
                 "shasum": ""
             },
             "require": {
@@ -26791,20 +26827,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-03-06T14:02:47+00:00"
+            "time": "2025-03-24T11:54:20+00:00"
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v11.44.2",
+            "version": "v11.44.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
-                "reference": "911df1bda950a3b799cf80671764e34eede131c6"
+                "reference": "319b717e0587bd7c8a3b44464f0e27867b4bcda9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/conditionable/zipball/911df1bda950a3b799cf80671764e34eede131c6",
-                "reference": "911df1bda950a3b799cf80671764e34eede131c6",
+                "url": "https://api.github.com/repos/illuminate/conditionable/zipball/319b717e0587bd7c8a3b44464f0e27867b4bcda9",
+                "reference": "319b717e0587bd7c8a3b44464f0e27867b4bcda9",
                 "shasum": ""
             },
             "require": {
@@ -26837,11 +26873,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-11-21T16:28:56+00:00"
+            "time": "2025-03-24T11:54:20+00:00"
         },
         {
             "name": "illuminate/config",
-            "version": "v11.44.2",
+            "version": "v11.44.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -26889,16 +26925,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v11.44.2",
+            "version": "v11.44.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "b350a3cd8450846325cb49e1cbc1293598b18898"
+                "reference": "4b2a67d1663f50085bc91e6371492697a5d2d4e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b350a3cd8450846325cb49e1cbc1293598b18898",
-                "reference": "b350a3cd8450846325cb49e1cbc1293598b18898",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/4b2a67d1663f50085bc91e6371492697a5d2d4e8",
+                "reference": "4b2a67d1663f50085bc91e6371492697a5d2d4e8",
                 "shasum": ""
             },
             "require": {
@@ -26933,11 +26969,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-02-10T14:20:57+00:00"
+            "time": "2025-03-24T11:54:20+00:00"
         },
         {
             "name": "illuminate/macroable",
-            "version": "v11.44.2",
+            "version": "v11.44.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -27071,11 +27107,11 @@
         },
         {
             "name": "magento/ece-tools",
-            "version": "2002.2.3",
+            "version": "2002.2.4",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.2.3.0.zip",
-                "shasum": "89660c6b996993eff57dc969bea56f86c159ea72"
+                "url": "https://repo.magento.com/archives/magento/ece-tools/magento-ece-tools-2002.2.4.0.zip",
+                "shasum": "30213bc59b2ba12ecb4a00565813585a758790ee"
             },
             "require": {
                 "colinmollenhour/credis": "^1.6.0 || ^1.13",
@@ -27354,11 +27390,11 @@
         },
         {
             "name": "magento/magento-cloud-patches",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.1.5.0.zip",
-                "shasum": "fa30238bdacbc76d7a545b3f1c304090c30aa9d8"
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-patches/magento-magento-cloud-patches-1.1.6.0.zip",
+                "shasum": "7baee2ae850df929e0fc51113c514a4c492eda2f"
             },
             "require": {
                 "composer/composer": "^1.9 || ^2.8 || !=2.2.16",
@@ -28292,16 +28328,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.23",
+            "version": "1.12.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "29201e7a743a6ab36f91394eab51889a82631428"
+                "reference": "338b92068f58d9f8035b76aed6cf2b9e5624c025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/29201e7a743a6ab36f91394eab51889a82631428",
-                "reference": "29201e7a743a6ab36f91394eab51889a82631428",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/338b92068f58d9f8035b76aed6cf2b9e5624c025",
+                "reference": "338b92068f58d9f8035b76aed6cf2b9e5624c025",
                 "shasum": ""
             },
             "require": {
@@ -28346,7 +28382,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-23T14:57:32+00:00"
+            "time": "2025-04-16T13:01:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
