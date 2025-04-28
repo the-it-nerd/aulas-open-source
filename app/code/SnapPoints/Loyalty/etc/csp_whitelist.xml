@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="img-src">
+            <values>
+                <value id="creditwalk" type="host">*.creditwalk.ca</value>
+                <value id="hilton" type="host">*.hilton.com</value>
+                <value id="loyaltywallet" type="host">*.loyaltywallet.io</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

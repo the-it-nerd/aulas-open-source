@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace SnapPoints\Loyalty\Model;
 
+use DateTimeZone;
 use Magento\Framework\Model\AbstractModel;
 use SnapPoints\Loyalty\Api\Data\ProgramInterface;
 
@@ -26,7 +27,8 @@ class Program extends AbstractModel implements ProgramInterface
      */
     public function getProgramId(): ?int
     {
-        return $this->getData(self::PROGRAM_ID);
+        $value = $this->getData(self::PROGRAM_ID);
+        return $value !== null ? (int)$value : null;
     }
 
     /**
@@ -99,6 +101,178 @@ class Program extends AbstractModel implements ProgramInterface
     public function setDescription($description): ProgramInterface
     {
         return $this->setData(self::DESCRIPTION, $description);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getExternalId(): ?string
+    {
+        return $this->getData(self::EXTERNAL_ID);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setExternalId(string $value): ProgramInterface
+    {
+        return $this->setData(self::EXTERNAL_ID, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setUnit(string $value): ProgramInterface
+    {
+        return $this->setData(self::UNIT, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUnit(): ?string
+    {
+        return $this->getData(self::UNIT);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setVersion(string $value): ProgramInterface
+    {
+        return $this->setData(self::VERSION, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getVersion(): ?string
+    {
+        return $this->getData(self::VERSION);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPointsPerSpend(float $value): ProgramInterface
+    {
+        return $this->setData(self::POINTS_PER_SPEND, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPointsPerSpend(): ?float
+    {
+        $value = $this->getData(self::POINTS_PER_SPEND);
+        return $value !== null ? (float)$value : null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPointsPerSpendVersion(int $value): ProgramInterface
+    {
+        return $this->setData(self::POINTS_PER_SPEND_VERSION, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPointsPerSpendVersion(): ?int
+    {
+        $value = $this->getData(self::POINTS_PER_SPEND_VERSION);
+        return $value !== null ? (int)$value : null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPointsPerSpendCreatedAt(DateTimeZone $value): ProgramInterface
+    {
+        // Create a DateTime object with the given timezone
+        $dateTime = new \DateTime('now', $value);
+        // Format the date to a MySQL compatible datetime string
+        $formattedDate = $dateTime->format('Y-m-d H:i:s');
+        return $this->setData(self::POINTS_PER_SPEND_CREATED_AT, $formattedDate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPointsPerSpendCreatedAt(): ?DateTimeZone
+    {
+        $value = $this->getData(self::POINTS_PER_SPEND_CREATED_AT);
+        if ($value !== null && !($value instanceof DateTimeZone)) {
+            // Convert string to DateTimeZone if needed
+            try {
+                $dateTime = new \DateTime($value);
+                return $dateTime->getTimezone();
+            } catch (\Exception $e) {
+                return null;
+            }
+        }
+        return $value;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPointsPerSpendUpdatedAt(DateTimeZone $value): ProgramInterface
+    {
+        // Create a DateTime object with the given timezone
+        $dateTime = new \DateTime('now', $value);
+        // Format the date to a MySQL compatible datetime string
+        $formattedDate = $dateTime->format('Y-m-d H:i:s');
+        return $this->setData(self::POINTS_PER_SPEND_UPDATED_AT, $formattedDate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPointsPerSpendUpdatedAt(): ?DateTimeZone
+    {
+        $value = $this->getData(self::POINTS_PER_SPEND_UPDATED_AT);
+        if ($value !== null && !($value instanceof DateTimeZone)) {
+            // Convert string to DateTimeZone if needed
+            try {
+                $dateTime = new \DateTime($value);
+                return $dateTime->getTimezone();
+            } catch (\Exception $e) {
+                return null;
+            }
+        }
+        return $value;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPointsPerSpendDeletedAt(DateTimeZone $value): ProgramInterface
+    {
+        // Create a DateTime object with the given timezone
+        $dateTime = new \DateTime('now', $value);
+        // Format the date to a MySQL compatible datetime string
+        $formattedDate = $dateTime->format('Y-m-d H:i:s');
+        return $this->setData(self::POINTS_PER_SPEND_DELETED_AT, $formattedDate);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPointsPerSpendDeletedAt(): ?DateTimeZone
+    {
+        $value = $this->getData(self::POINTS_PER_SPEND_DELETED_AT);
+        if ($value !== null && !($value instanceof DateTimeZone)) {
+            // Convert string to DateTimeZone if needed
+            try {
+                $dateTime = new \DateTime($value);
+                return $dateTime->getTimezone();
+            } catch (\Exception $e) {
+                return null;
+            }
+        }
+        return $value;
     }
 }
 

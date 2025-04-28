@@ -1,10 +1,39 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
 	<default>
-		<general>
+		<snappoints>
 			<general>
 				<enabled>0</enabled>
 			</general>
-		</general>
-	</default>
+		</snappoints>
+        <snappoints_integrations>
+            <general>
+                <enabled>1</enabled>
+                <notification_emails>store@example.com</notification_emails>
+                <queue_log_retention>30</queue_log_retention>
+                <general_log_retention>90</general_log_retention>
+            </general>
+            <cron_settings>
+                <failed_jobs_schedule>*/30 * * * *</failed_jobs_schedule>
+                <notifications_schedule>0 */2 * * *</notifications_schedule>
+                <catalog_sync_schedule>0 */4 * * *</catalog_sync_schedule>
+            </cron_settings>
+        </snappoints_integrations>
+
+        <snappoints_ui>
+            <features>
+                <enable_topbar>1</enable_topbar>
+                <enable_product_cards>1</enable_product_cards>
+                <enable_pdp_widget>1</enable_pdp_widget>
+                <enable_cart_widget>1</enable_cart_widget>
+                <enable_checkout_widget>1</enable_checkout_widget>
+                <enable_customer_account>1</enable_customer_account>
+            </features>
+            <display_settings>
+                <points_label>Points</points_label>
+                <points_format>%s points</points_format>
+            </display_settings>
+        </snappoints_ui>
+
+    </default>
 </config>

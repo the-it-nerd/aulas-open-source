@@ -1,0 +1,35 @@
+<?php
+/**
+ * @var \SnapPoints\Loyalty\Block\Config\LibraryConfig $block
+ * @var \SnapPoints\Loyalty\ViewModel\Programs $model
+ */
+$model = $this->getData('programsConfig');
+?>
+<div data-mage-init='{"SnapPoints_Loyalty/js/widgets/switcher":{
+    "title": "<?= __('Change Program') ?>",
+    "actionText": "<?=  __('Confirm Selection')?>"
+}}'
+     id="SnapPointsSwitcher" class="snappoints--switcher">
+    <div class="content">
+        <form>
+            <div class="snappoints--switcher--content" >
+                <?php foreach($model->getPrograms() as $program):
+                    /**
+                     * @var \SnapPoints\Loyalty\Api\Data\ProgramInterface $program
+                     */
+                ?>
+                <label class="snappoints--switcher--content--item" data-snappoints-program="<?= $program->getProgramId() ?>">
+                    <div class="snappoints--switcher--content--item--selector">
+                        <input type="radio" name="selected-programs" value="<?= $program->getProgramId() ?>" />
+                    </div>
+                    <div class="snappoints--switcher--content--item--image">
+                        <img src="<?= $program->getLogo() ?>">
+                    </div>
+                    <div class="snappoints--switcher--content--item--points">
+                    </div>
+                </label>
+                <?php endforeach; ?>
+            </div>
+        </form>
+    </div>
+</div>

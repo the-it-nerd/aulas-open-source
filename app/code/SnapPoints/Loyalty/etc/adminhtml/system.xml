@@ -4,8 +4,8 @@
 		<tab id="snappoints" translate="label" sortOrder="30">
 			<label>SnapPoints</label>
 		</tab>
-		<section id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
-			<label>General</label>
+		<section id="snappoints" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+			<label>Configuration</label>
 			<tab>snappoints</tab>
 			<resource>SnapPoints_Loyalty::config_snappoints_loyalty</resource>
 			<group id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
@@ -15,7 +15,186 @@
 					<comment>Enable SnapPoints module fucntions</comment>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
-			</group>
+
+                <field id="production_mode" type="select" sortOrder="0" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Production Mode</label>
+                    <comment>Enable SnapPoints on production mode (sandbox if disabled)</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+
+                <!-- Production Environment Fields -->
+                <field id="production_merchant_id" type="text" sortOrder="10" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Production Merchant ID</label>
+                    <depends>
+                        <field id="*/*/production_mode">1</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="production_client_id" type="text" sortOrder="20" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Production Client ID</label>
+                    <depends>
+                        <field id="*/*/production_mode">1</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="production_client_secret" type="obscure" sortOrder="30" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Production Client Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="*/*/production_mode">1</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+
+                <!-- Sandbox Environment Fields -->
+                <field id="sandbox_merchant_id" type="text" sortOrder="40" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Sandbox Merchant ID</label>
+                    <depends>
+                        <field id="*/*/production_mode">0</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sandbox_client_id" type="text" sortOrder="50" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Sandbox Client ID</label>
+                    <depends>
+                        <field id="*/*/production_mode">0</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sandbox_client_secret" type="obscure" sortOrder="60" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+                    <label>Sandbox Client Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="*/*/production_mode">0</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+
+
+
+
+            </group>
 		</section>
-	</system>
+        <section id="snappoints_integrations" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Integrations</label>
+            <tab>snappoints</tab>
+            <resource>Snappoints_Loyalty::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Background Integrations</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable all background catalog integrations</comment>
+                </field>
+
+                <field id="notification_emails" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Emails</label>
+                    <comment>Comma-separated list of email addresses to notify on errors</comment>
+                    <validate>validate-emails</validate>
+                </field>
+
+                <field id="queue_log_retention" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Queue Log Retention (Days)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                    <comment>Number of days to keep queue logs before cleanup</comment>
+                </field>
+
+                <field id="general_log_retention" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>General Log Retention (Days)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                    <comment>Number of days to keep general logs before cleanup</comment>
+                </field>
+            </group>
+
+            <group id="cron_settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cron Settings</label>
+
+                <field id="failed_jobs_schedule" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Failed Jobs Retry Schedule</label>
+                    <comment>Cron expression for failed jobs retry (e.g., */30 * * * *)</comment>
+                    <validate>validate-cron-expression</validate>
+                </field>
+
+                <field id="notifications_schedule" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notifications Schedule</label>
+                    <comment>Cron expression for sending notifications (e.g., 0 */2 * * *)</comment>
+                    <validate>validate-cron-expression</validate>
+                </field>
+
+                <field id="catalog_sync_schedule" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Catalog Sync Schedule</label>
+                    <comment>Cron expression for catalog synchronization (e.g., 0 */4 * * *)</comment>
+                    <validate>validate-cron-expression</validate>
+                </field>
+            </group>
+        </section>
+        <section id="snappoints_ui" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>UI/UX</label>
+            <tab>snappoints</tab>
+            <resource>Snappoints_Loyalty::config</resource>
+
+            <group id="features" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Feature Settings</label>
+
+                <field id="enable_topbar" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Website Top Bar</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Display Snappoints information in the website top bar</comment>
+                </field>
+
+                <field id="enable_product_cards" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Cards Points</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show points information on product listing cards</comment>
+                </field>
+
+                <field id="enable_pdp_widget" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Detail Page Widget</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Display points information on product detail pages</comment>
+                </field>
+
+                <field id="enable_cart_widget" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Shopping Cart Widget</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show points information in the shopping cart</comment>
+                </field>
+
+                <field id="enable_checkout_widget" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Checkout Widget</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Display points information during checkout process</comment>
+                </field>
+
+                <field id="enable_customer_account" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Account Actions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable points management in customer account section</comment>
+                </field>
+            </group>
+
+            <group id="display_settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Settings</label>
+
+                <field id="points_label" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points Label</label>
+                    <comment>Label to use when displaying points (e.g., "Points", "Rewards")</comment>
+                    <depends>
+                        <field id="*/*/enable_topbar">1</field>
+                    </depends>
+                </field>
+
+                <field id="points_format" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points Format</label>
+                    <comment>Format for displaying points value (e.g., "%s points")</comment>
+                </field>
+            </group>
+        </section>
+
+    </system>
 </config>

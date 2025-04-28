@@ -1,9 +1,12 @@
 <?php
 /**
- * @var $block \SnapPoints\Loyalty\Block\Html\LibraryConfig
+ * @var $block \SnapPoints\Loyalty\Block\Config\LibraryConfig
+ * @var $config \SnapPoints\Loyalty\ViewModel\Programs
  */
+$config = $this->getData('programsConfig');
+
+echo $config->getProgramsConfigsScript();
 ?>
-<div>
-	<?= $block->getConfig() ?>
-	<?= __('Hello SnapPoints_Loyalty::html/libraryconfig.phtml') ?>
-</div>
+
+
+

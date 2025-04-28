@@ -6,9 +6,22 @@
 			<column name="program_id"/>
 		</constraint>
 		<column name="name" nullable="true" xsi:type="varchar" comment="name" default="name" length="255"/>
+        <column xsi:type="varchar" name="external_id" nullable="false" length="255" comment="External Program ID"/>
 		<column name="logo" nullable="true" xsi:type="text" comment="logo"/>
 		<column name="banner" nullable="true" xsi:type="text" comment="banner"/>
 		<column name="description" nullable="true" xsi:type="text" comment="description"/>
+        <column name="unit" nullable="true" xsi:type="text" comment="unit"/>
+        <column name="version" nullable="true" xsi:type="int" comment="version"/>
+        <column name="points_per_spend" nullable="true" xsi:type="decimal" comment="points per spend"/>
+        <column name="points_per_spend_version" nullable="true" xsi:type="int" comment="points per spend version"/>
+        <column name="points_per_spend_created_at" nullable="true" xsi:type="datetime" comment="points per spend created at"/>
+        <column name="points_per_spend_updated_at" nullable="true" xsi:type="datetime" comment="points per spend updated at"/>
+        <column name="points_per_spend_deleted_at" nullable="true" xsi:type="datetime" comment="points per spend deleted at"/>
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
+        <constraint xsi:type="unique" referenceId="SNAPPOINTS_LOYALTY_PROGRAM_EXTERNAL_ID">
+            <column name="external_id"/>
+        </constraint>
 	</table>
 	<table name="snappoints_loyalty_rates" resource="default" engine="innodb" comment="snappoints_loyalty_rates Table">
 		<column xsi:type="int" name="rates_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
@@ -24,6 +37,9 @@
 		<index referenceId="SNAPPOINTS_LOYALTY_RATES_PRODUCT_ID" indexType="btree">
 			<column name="product_id"/>
 		</index>
+
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
 	</table>
 	<table name="snappoints_loyalty_log" resource="default" engine="innodb" comment="snappoints_loyalty_log Table">
 		<column xsi:type="int" name="log_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
@@ -34,6 +50,8 @@
 		<column name="class" nullable="true" xsi:type="varchar" comment="class" length="255"/>
 		<column name="log" nullable="true" xsi:type="text" comment="log"/>
 		<column name="log_type" nullable="true" xsi:type="varchar" comment="log_type" length="255"/>
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
 	</table>
 	<table name="snappoints_loyalty_queue_log" resource="default" engine="innodb" comment="snappoints_loyalty_queue_log Table">
 		<column xsi:type="int" name="queue_log_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
@@ -44,5 +62,7 @@
 		<column name="objects" nullable="true" xsi:type="text" comment="objects"/>
 		<column name="status" nullable="true" xsi:type="varchar" comment="status" length="255"/>
 		<column name="log" nullable="true" xsi:type="text" comment="log"/>
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
 	</table>
 </schema>

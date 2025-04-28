@@ -1,0 +1,247 @@
+@modalPointsColor: #3e53c7;
+@modalPointsBGColor: #eceef9;
+
+//
+//  Common (styles-m.css)
+//  _____________________________________________
+& when (@media-common = true) {
+    .snappoints--bar {
+        position: relative;
+        font-size: @font-size__s;
+
+        &--logo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            height: 100%;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding-right: 2rem;
+            z-index: 0;
+        }
+        &--announcement {
+            min-height: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: @indent__s;
+
+            &--title {
+                margin-bottom: @indent__s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &--loader {
+                    max-height: 17px;
+                    width: auto;
+                    margin-left: @indent__s;
+                }
+            }
+
+
+
+            &--program {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &--title {
+
+                }
+
+                &--image {
+                    max-height: 25px;
+                    max-width: 100px;
+                    display: block;
+                    margin: 0 @indent__m;
+                }
+
+                &--actions {
+                    &--change {
+                        position: relative;
+                        margin-left: @indent__m;
+
+                        &:before {
+                            content: " ";
+                            width: 1px;
+                            background: @border-color__base;
+                            height: 20px;
+                            position: absolute;
+                            left: -(@indent__m/2);
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .snappoints-widget {
+        &--disclaimer {
+            margin-bottom: @indent__s;
+        }
+
+        &--container {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid @border-color__base;
+            border-radius: 5px;
+
+            &--description {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                &--logo {
+                    max-width: 125px;
+                    margin: @indent__s;
+                    padding-right: @indent__s;
+                    border-right: 1px solid @border-color__base;
+
+                    &__small {
+                        max-width: 100px;
+                    }
+                }
+
+                &--points {
+                    flex: 1;
+                }
+
+                &--action {
+                    padding-right: @indent__s;
+                }
+            }
+
+            &--items {
+                display: flex;
+                flex-direction: column;
+                border-top: 1px solid @border-color__base;
+
+                &--item {
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+
+    .snappoints--card--program {
+        border: 1px solid @border-color__base;
+        display: inline-flex;
+        padding: @indent__s;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: @indent__m;
+
+        &--image-wrapper {
+            border-right: 1px solid @border-color__base;
+            margin-right: @indent__s;
+            padding-right: @indent__s;
+            &--image {
+                max-width: 50px;
+                height: auto;
+            }
+        }
+
+
+        &--points {
+            margin: 0;
+        }
+    }
+
+    // MODAL
+    .snappoints--switcher {
+
+        &__modal {
+            .modal-inner-wrap {
+                max-width: 700px;
+            }
+
+            .modal-header {
+                .modal-title {
+                    border: 0;
+                    text-align: center;
+                }
+                margin-bottom: @indent__s;
+            }
+
+            .modal-footer {
+                border: 0 !important;
+                text-align: center !important;
+
+                .action.primary {
+                    max-height: unset;
+                    height: auto;
+                    padding: 1rem 2rem;
+                }
+            }
+        }
+
+        &--content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &--item {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid @border-color__base;
+                padding: @indent__s;
+                margin: 0 @indent__s;
+                border-radius: 5px;
+
+                &--selector {
+
+                }
+
+                &--image {
+                    img {
+                        max-height: 50px;
+                    }
+                }
+                &--points {
+                    position: absolute;
+                    bottom: -8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: @modalPointsColor;
+                    background-color: @modalPointsBGColor;
+                    border-radius: 20px;
+                    white-space: nowrap;
+                    padding: 0 @indent__s;
+                    font-size: 1.1rem;
+                    display:none
+                }
+
+                &.active {
+                    .snappoints--switcher--content--item--points {
+                        display: block
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop (style-l.css)
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .snappoints--bar {
+
+        &--announcement {
+            flex-direction: row;
+
+            &--title {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+

@@ -5,16 +5,14 @@
     "license": "OSL-3.0",
     "authors": [
         {
-            "name": "Mage2Gen",
-            "email": "info@mage2gen.com"
-        },
-        {
             "name": "Raul Sakai",
             "email": "rqsakai@gmail.com"
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "snappoints/sdk": "^0.0.1"
+    },
     "autoload": {
         "files": [
             "registration.php"

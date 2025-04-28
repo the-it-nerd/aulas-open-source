@@ -62,5 +62,13 @@ interface ProgramRepositoryInterface
      * @throws LocalizedException
      */
     public function deleteById(int $programId): bool;
+
+    /**
+     * Create or update a loyalty program.
+     * @param \Snappoints\Sdk\DataObjects\Interfaces\Objects\LoyaltyProgramInterface $program
+     * @return ProgramInterface
+     * @throws LocalizedException
+     */
+    public function upsertProgram(\Snappoints\Sdk\DataObjects\Interfaces\Objects\LoyaltyProgramInterface $program): ProgramInterface;
 }
 

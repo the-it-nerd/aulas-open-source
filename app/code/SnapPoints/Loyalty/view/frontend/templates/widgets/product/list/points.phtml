@@ -1,0 +1,13 @@
+<?php
+/** @var \Snappoints\Loyalty\Block\Product\Points $block */
+$product = $block->getProduct();
+?>
+<div class="snappoints--card" data-product-id="<?= $product->getId() ?>" data-price="<?= $product->getFinalPrice() ?>">
+    <div class="snappoints--card--program">
+        <div class="snappoints--card--program--image-wrapper">
+            <img class="snappoints--card--program--image-wrapper--image" src="https://stories-editor.hilton.com/wp-content/uploads/2022/04/honors_white_HR-1.png" loading="lazy">
+        </div>
+
+        <p class="snappoints--card--program--points">43 points</p>
+    </div>
+</div>

@@ -1,13 +1,28 @@
 <?xml version="1.0" ?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 	<body>
-		<referenceContainer name="content">
-			<block class="SnapPoints\Loyalty\Block\Html\LibraryConfig" name="html.libraryconfig" as="html_libraryconfig" template="SnapPoints_Loyalty::html/libraryconfig.phtml"/>
-		</referenceContainer>
-		<referenceBlock name="example">
-			<arguments>
-				<argument name="view_model" xsi:type="object">SnapPoints\Loyalty\ViewModel\Programs</argument>
-			</arguments>
+        <referenceBlock name="head.additional">
+			<block class="SnapPoints\Loyalty\Block\Config\LibraryConfig" name="snappoints.libraryconfig" as="snappoints_libraryconfig" template="SnapPoints_Loyalty::html/libraryconfig.phtml">
+                <arguments>
+                    <argument name="programsConfig" xsi:type="object">SnapPoints\Loyalty\ViewModel\Programs</argument>
+                </arguments>
+            </block>
 		</referenceBlock>
+
+        <referenceContainer name="global.notices">
+            <block class="SnapPoints\Loyalty\Block\Config\LibraryConfig" name="snappoints.announcement.bar" as="snappoints_announcement_bar" template="SnapPoints_Loyalty::widgets/topbar.phtml">
+                <arguments>
+                    <argument name="programsConfig" xsi:type="object">SnapPoints\Loyalty\ViewModel\Programs</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="before.body.end">
+            <block class="SnapPoints\Loyalty\Block\Config\LibraryConfig" name="snappoints.modals" as="snappoints_modals" template="SnapPoints_Loyalty::html/modals.phtml">
+                <arguments>
+                    <argument name="programsConfig" xsi:type="object">SnapPoints\Loyalty\ViewModel\Programs</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
 	</body>
 </page>

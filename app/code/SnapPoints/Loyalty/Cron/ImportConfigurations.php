@@ -14,9 +14,8 @@ use Psr\Log\LoggerInterface;
 use SnapPoints\Loyalty\Api\ProgramRepositoryInterface;
 use SnapPoints\Loyalty\Model\SDK\BaseSDKFactory;
 
-class UpdateRates
+class ImportConfigurations
 {
-
     /**
      * @param BaseSDKFactory $baseSDKFactory
      * @param StoreManagerInterface $storeManager
@@ -35,7 +34,6 @@ class UpdateRates
      * Execute the cron job to import configurations from SnapPoints API
      *
      * @return void
-     * @throws LocalizedException
      */
     public function execute(): void
     {
@@ -69,13 +67,12 @@ class UpdateRates
 
                 foreach ($programs as $program) {
                     try {
-                        $program = $this->programRepository->upsertProgram($program);
-
+                        $this->programRepository->upsertProgram($program);
                         $this->logger->info(
                             sprintf(
                                 'Successfully saved program %s [%s]',
                                 $program->getName(),
-                                $program->getProgramId()
+                                $program->getId()
                             )
                         );
                     } catch (Exception $e) {
@@ -90,7 +87,6 @@ class UpdateRates
                     }
                 }
             } catch (Exception $e) {
-                //TODO: add admin logger for theses instaces
                 $this->logger->error(
                     sprintf('Error for store %s: %s', $storeName, $e->getMessage()),
                     ['exception' => $e]
@@ -101,4 +97,3 @@ class UpdateRates
         $this->logger->info('Completed scheduled import of SnapPoints configurations');
     }
 }
-
