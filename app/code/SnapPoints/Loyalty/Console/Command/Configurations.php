@@ -8,8 +8,11 @@ declare(strict_types=1);
 namespace SnapPoints\Loyalty\Console\Command;
 
 use Exception;
+use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use SnapPoints\Loyalty\Api\ProgramRepositoryInterface;
+use SnapPoints\Loyalty\Helper\Config;
 use SnapPoints\Loyalty\Model\SDK\BaseSDKFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -25,6 +28,7 @@ class Configurations extends Command
         protected readonly BaseSDKFactory             $baseSDKFactory,
         protected readonly StoreManagerInterface      $storeManager,
         protected readonly ProgramRepositoryInterface $programRepository,
+        protected readonly WriterInterface            $configWriter,
         ?string                                       $name = null
     )
     {
@@ -42,6 +46,7 @@ class Configurations extends Command
         $force = $input->getArgument(self::FORCE);
 
         $output->writeln('<info>Running command for all stores:</info>');
+        $baseSdk = $this->baseSDKFactory->create();
         foreach ($this->storeManager->getStores() as $store) {
             try {
                 $storeId = $store->getId();
@@ -52,8 +57,6 @@ class Configurations extends Command
 
                 // Set the current store context
                 $this->storeManager->setCurrentStore($storeId);
-
-                $baseSdk = $this->baseSDKFactory->create();
 
                 // Execute your logic with the specific store context
                 $output->writeln('<info>Fetching loyalty programs...</info>');
@@ -76,7 +79,19 @@ class Configurations extends Command
                     }
                 }
 
+                $ratio = $baseSdk->getMaxGiveBackRatio()->getMaxGiveBackRatio();
+
                 $output->writeln('');
+                $output->writeln(sprintf('<info>Updating Max Give Back Ratio to %s</info>', (string)$ratio->getMaxGiveBackRatio()));
+
+                /**
+                 * TODO: Change here
+                 * 1 - We need to get the value first to confirm its different, this way we can avoid unucessary write to teh database
+                 * 2 - we need to purge config cache and fpc if the write was successful
+                 *
+                 */
+                $this->configWriter->save(Config::XML_PATH_MAX_GIVE_BACK_RATIO, (string)$ratio->getMaxGiveBackRatio(), ScopeInterface::SCOPE_WEBSITES, $store->getWebsiteId());
+
             } catch (Exception $e) {
                 $output->writeln(sprintf('<error>Error for store %s: %s</error>', $storeName, $e->getMessage()));
             }

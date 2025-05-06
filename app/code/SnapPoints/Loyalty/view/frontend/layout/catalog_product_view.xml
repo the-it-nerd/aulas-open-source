@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="product.info.main" >
-            <block class="SnapPoints\Loyalty\Block\Config\LibraryConfig" name="snappoints.pdp.card" as="snappoints_pdp_card" template="SnapPoints_Loyalty::widgets/product/view.phtml" before="product.info">
+            <block class="Magento\Catalog\Block\Product\View" name="snappoints.pdp.card" as="snappoints_pdp_card" template="SnapPoints_Loyalty::widgets/product/view.phtml" before="product.info">
                 <arguments>
                     <argument name="view_model" xsi:type="object">SnapPoints\Loyalty\ViewModel\Programs</argument>
                 </arguments>

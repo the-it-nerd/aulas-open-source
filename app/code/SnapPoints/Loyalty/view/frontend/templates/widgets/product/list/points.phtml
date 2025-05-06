@@ -2,12 +2,11 @@
 /** @var \Snappoints\Loyalty\Block\Product\Points $block */
 $product = $block->getProduct();
 ?>
-<div class="snappoints--card" data-product-id="<?= $product->getId() ?>" data-price="<?= $product->getFinalPrice() ?>">
-    <div class="snappoints--card--program">
+<div class="snappoints--card snappoints--card__loading" data-product-id="<?= $product->getId() ?>" data-price="<?= $product->getFinalPrice() ?>" data-mage-init='{"SnapPoints_Loyalty/js/widgets/product":{}}'>
+    <div class="snappoints--card--program ">
         <div class="snappoints--card--program--image-wrapper">
-            <img class="snappoints--card--program--image-wrapper--image" src="https://stories-editor.hilton.com/wp-content/uploads/2022/04/honors_white_HR-1.png" loading="lazy">
+            <img class="snappoints--card--program--image-wrapper--image" src="<?= $block->getViewFileUrl('SnapPoints_Loyalty::images/loader.svg') ?>" loading="lazy">
         </div>
-
-        <p class="snappoints--card--program--points">43 points</p>
+        <p class="snappoints--card--program--points"><img class="snappoints--card--program--image-wrapper--image" src="<?= $block->getViewFileUrl('SnapPoints_Loyalty::images/loader.svg') ?>" loading="lazy"></p>
     </div>
 </div>

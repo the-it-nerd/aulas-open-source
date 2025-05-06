@@ -6,7 +6,15 @@
 			<resource ref="anonymous"/>
 		</resources>
 	</route>
-	<route url="/V1/snappoints-loyalty/ratesversion" method="GET">
+
+    <route url="/V1/snappoints-loyalty/quote/" method="POST">
+		<service class="SnapPoints\Loyalty\Api\QuoteManagementInterface" method="getQuotation"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+
+    <route url="/V1/snappoints-loyalty/ratesversion" method="GET">
 		<service class="SnapPoints\Loyalty\Api\RatesVersionManagementInterface" method="getRatesVersion"/>
 		<resources>
 			<resource ref="anonymous"/>

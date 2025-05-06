@@ -2,10 +2,16 @@
 
 namespace SnapPoints\Loyalty\Model\SDK;
 
+use Magento\Directory\Model\Currency;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Store\Model\StoreManagerInterface;
 use SnapPoints\Loyalty\Helper\Config;
 use Snappoints\Sdk\Client\ClientFacade;
-use Snappoints\Sdk\Client\Product\Product;
-use Snappoints\Sdk\Client\Program\LoyaltyProgram;
+use Snappoints\Sdk\Client\Merchant\Customer;
+use Snappoints\Sdk\Client\Merchant\MaxGiveBackRatio;
+use Snappoints\Sdk\Client\Merchant\Product\Product;
+use Snappoints\Sdk\Client\Merchant\Program\LoyaltyProgram;
+use Snappoints\Sdk\Client\Merchant\Sales\Quotations;
 use Snappoints\Sdk\DataObjects\Entities\AuthenticationRequest;
 
 
@@ -22,11 +28,12 @@ class BaseSDK
      *
      * @param Config $config Configuration helper instance.
      * @return void
+     * @throws NoSuchEntityException
      */
     public function __construct(
-        protected readonly Config $config,
-        protected readonly \Magento\Directory\Model\Currency $currency,
-        protected readonly \Magento\Store\Model\StoreManagerInterface $storeManager,
+        protected readonly Config                $config,
+        protected readonly Currency              $currency,
+        protected readonly StoreManagerInterface $storeManager,
     )
     {
         $this->buildFacade();
@@ -36,6 +43,7 @@ class BaseSDK
      * Builds and configures the facade for the Client.
      *
      * @return ClientFacade Configured instance of the ClientFacade.
+     * @throws NoSuchEntityException
      */
     protected function buildFacade(): ClientFacade
     {
@@ -49,7 +57,12 @@ class BaseSDK
                 'merchants:products-attributes:write',
                 'merchants:products:read',
                 'merchants:products:write',
-                'merchants:loyalty-programs:read'
+                'merchants:loyalty-programs:read',
+                'merchants:points-settings:read',
+                'merchants:transactions:write',
+                'merchants:transactions:read',
+                'merchants:customers:write',
+                'merchants:customers:read'
             ]);
 
         //todo: add config to enable debug
@@ -76,5 +89,29 @@ class BaseSDK
     public function getLoyaltyProgramSDK(): LoyaltyProgram
     {
         return $this->facade->getLoyaltyProgramClient();
+    }
+
+    /**
+     * @return Quotations
+     */
+    public function getQuoteSDK(): Quotations
+    {
+        return $this->facade->getQuotationClient();
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomerSDK(): Customer
+    {
+        return $this->facade->getCustomerClient();
+    }
+
+    /**
+     * @return MaxGiveBackRatio
+     */
+    public function getMaxGiveBackRatio(): MaxGiveBackRatio
+    {
+        return $this->facade->getMaxGiveBackRatioClient();
     }
 }

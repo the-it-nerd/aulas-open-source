@@ -4,6 +4,8 @@
 		<sequence>
 			<module name="Magento_Catalog"/>
 			<module name="Magento_StoreGraphQl"/>
-		</sequence>
+            <module name="Magento_Amqp"/>
+
+        </sequence>
 	</module>
 </config>

@@ -12,7 +12,7 @@
 		<column name="description" nullable="true" xsi:type="text" comment="description"/>
         <column name="unit" nullable="true" xsi:type="text" comment="unit"/>
         <column name="version" nullable="true" xsi:type="int" comment="version"/>
-        <column name="points_per_spend" nullable="true" xsi:type="decimal" comment="points per spend"/>
+        <column name="points_per_spend" nullable="true" xsi:type="text"  comment="points per spend"/>
         <column name="points_per_spend_version" nullable="true" xsi:type="int" comment="points per spend version"/>
         <column name="points_per_spend_created_at" nullable="true" xsi:type="datetime" comment="points per spend created at"/>
         <column name="points_per_spend_updated_at" nullable="true" xsi:type="datetime" comment="points per spend updated at"/>
@@ -64,5 +64,29 @@
 		<column name="log" nullable="true" xsi:type="text" comment="log"/>
         <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
         <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
+	</table>
+
+    <table name="snappoints_loyalty_quote" resource="default" engine="innodb" comment="snappoints_loyalty_quote Table">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false" comment="Magento Quote Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id"/>
+		</constraint>
+		<column name="external_quote_id" nullable="false" xsi:type="varchar" comment="External Quote from SnapPoints API " length="255"/>
+		<column name="items" nullable="false" xsi:type="text" comment="Items JSON"/>
+		<column name="total_points" nullable="false" xsi:type="int" unsigned="true" comment="Points given to that order"/>
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
+
+        <constraint xsi:type="foreign"
+                    referenceId="SNAPPOINTS_LOYALTY_QUOTE_QUOTE_ID_QUOTE_ENTITY_ID"
+                    table="snappoints_loyalty_quote"
+                    column="quote_id"
+                    referenceTable="quote"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="SNAPPOINTS_LOYALTY_QUOTE_QUOTE_ID" indexType="btree">
+            <column name="quote_id"/>
+        </index>
 	</table>
 </schema>

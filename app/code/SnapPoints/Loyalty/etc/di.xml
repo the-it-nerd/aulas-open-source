@@ -4,11 +4,11 @@
 	<preference for="SnapPoints\Loyalty\Api\RatesVersionManagementInterface" type="SnapPoints\Loyalty\Model\RatesVersionManagement"/>
 	<preference for="SnapPoints\Loyalty\Api\ProgramsManagementInterface" type="SnapPoints\Loyalty\Model\ProgramsManagement"/>
 	<preference for="SnapPoints\Loyalty\Api\ProgramsVersionManagementInterface" type="SnapPoints\Loyalty\Model\ProgramsVersionManagement"/>
+	<preference for="SnapPoints\Loyalty\Api\QuoteManagementInterface" type="SnapPoints\Loyalty\Model\QuoteManagement"/>
+
 	<type name="Magento\Framework\Console\CommandList">
 		<arguments>
 			<argument name="commands" xsi:type="array">
-				<item name="import" xsi:type="object">SnapPoints\Loyalty\Console\Command\Import</item>
-				<item name="rates" xsi:type="object">SnapPoints\Loyalty\Console\Command\Rates</item>
 				<item name="configurations" xsi:type="object">SnapPoints\Loyalty\Console\Command\Configurations</item>
 			</argument>
 		</arguments>
@@ -59,4 +59,9 @@
 			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\QueueLog\Collection</argument>
 		</arguments>
 	</virtualType>
+
+
+    <preference for="SnapPoints\Loyalty\Api\Data\QuoteInterface" type="SnapPoints\Loyalty\Model\Quote"/>
+    <preference for="SnapPoints\Loyalty\Api\QuoteRepositoryInterface" type="SnapPoints\Loyalty\Model\QuoteRepository"/>
+
 </config>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="snappoints.product.upsert" request="int">
+        <handler name="snappoints.product.upsert.handler"
+                 type="SnapPoints\Loyalty\Model\Queue\ProductUpsert\Consumer" method="process"/>
+    </topic>
+</config>
+

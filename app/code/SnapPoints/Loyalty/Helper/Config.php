@@ -17,7 +17,9 @@ class Config extends AbstractHelper
 {
     // Main Module Configuration
     private const XML_PATH_ENABLED = 'snappoints/general/enabled';
+
     private const XML_PATH_PRODUCTION_MODE = 'snappoints/general/production_mode';
+    public const XML_PATH_MAX_GIVE_BACK_RATIO = 'snappoints/general/max_give_back_ratio';
 
     // Production Credentials
     private const XML_PATH_PRODUCTION_MERCHANT_ID = 'snappoints/general/production_merchant_id';
@@ -72,7 +74,7 @@ class Config extends AbstractHelper
      */
     public function isEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLED, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLED, ScopeInterface::SCOPE_WEBSITES, $store);
     }
 
     /**
@@ -83,7 +85,7 @@ class Config extends AbstractHelper
      */
     public function isProductionMode(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_PRODUCTION_MODE, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_PRODUCTION_MODE, ScopeInterface::SCOPE_WEBSITES, $store);
     }
 
     /**
@@ -97,7 +99,7 @@ class Config extends AbstractHelper
         $path = $this->isProductionMode($store)
             ? self::XML_PATH_PRODUCTION_MERCHANT_ID
             : self::XML_PATH_SANDBOX_MERCHANT_ID;
-        return (string)$this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue($path, ScopeInterface::SCOPE_WEBSITES, $store);
     }
 
     /**
@@ -111,7 +113,7 @@ class Config extends AbstractHelper
         $path = $this->isProductionMode($store)
             ? self::XML_PATH_PRODUCTION_CLIENT_ID
             : self::XML_PATH_SANDBOX_CLIENT_ID;
-        return (string)$this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue($path, ScopeInterface::SCOPE_WEBSITES, $store);
     }
 
     /**
@@ -124,7 +126,7 @@ class Config extends AbstractHelper
         $path = $this->isProductionMode($store)
             ? self::XML_PATH_PRODUCTION_CLIENT_SECRET
             : self::XML_PATH_SANDBOX_CLIENT_SECRET;
-        $encryptedValue = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE, $store);
+        $encryptedValue = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_WEBSITES, $store);
 
         return $this->encryptor->decrypt($encryptedValue);
 
@@ -136,7 +138,7 @@ class Config extends AbstractHelper
      * @*/
     public function isIntegrationEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_INTEGRATION_ENABLED, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_INTEGRATION_ENABLED, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -147,7 +149,7 @@ class Config extends AbstractHelper
      */
     public function getNotificationEmails(?string $store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::XML_PATH_NOTIFICATION_EMAILS, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue(self::XML_PATH_NOTIFICATION_EMAILS, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -158,7 +160,7 @@ class Config extends AbstractHelper
      */
     public function getQueueLogRetention(?string $store = null): int
     {
-        return (int)$this->scopeConfig->getValue(self::XML_PATH_QUEUE_LOG_RETENTION, ScopeInterface::SCOPE_STORE, $store);
+        return (int)$this->scopeConfig->getValue(self::XML_PATH_QUEUE_LOG_RETENTION, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -169,7 +171,7 @@ class Config extends AbstractHelper
      */
     public function getGeneralLogRetention(?string $store = null): int
     {
-        return (int)$this->scopeConfig->getValue(self::XML_PATH_GENERAL_LOG_RETENTION, ScopeInterface::SCOPE_STORE, $store);
+        return (int)$this->scopeConfig->getValue(self::XML_PATH_GENERAL_LOG_RETENTION, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -180,7 +182,7 @@ class Config extends AbstractHelper
      */
     public function getFailedJobsSchedule(?string $store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::XML_PATH_FAILED_JOBS_SCHEDULE, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue(self::XML_PATH_FAILED_JOBS_SCHEDULE, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -191,7 +193,7 @@ class Config extends AbstractHelper
      */
     public function getNotificationsSchedule(?string $store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::XML_PATH_NOTIFICATIONS_SCHEDULE, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue(self::XML_PATH_NOTIFICATIONS_SCHEDULE, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -202,7 +204,7 @@ class Config extends AbstractHelper
      */
     public function getCatalogSyncSchedule(?string $store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::XML_PATH_CATALOG_SYNC_SCHEDULE, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue(self::XML_PATH_CATALOG_SYNC_SCHEDULE, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -213,7 +215,7 @@ class Config extends AbstractHelper
      */
     public function isTopbarEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_TOPBAR, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_TOPBAR, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -224,7 +226,7 @@ class Config extends AbstractHelper
      */
     public function isPdpWidgetEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_PDP_WIDGET, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_PDP_WIDGET, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -235,7 +237,7 @@ class Config extends AbstractHelper
      */
     public function isCartWidgetEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CART_WIDGET, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CART_WIDGET, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -246,7 +248,7 @@ class Config extends AbstractHelper
      */
     public function isCheckoutWidgetEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CHECKOUT_WIDGET, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CHECKOUT_WIDGET, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -255,7 +257,7 @@ class Config extends AbstractHelper
      */
     public function isCustomerAccountEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CUSTOMER_ACCOUNT, ScopeInterface::SCOPE_STORE, $store);
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CUSTOMER_ACCOUNT, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -264,7 +266,7 @@ class Config extends AbstractHelper
      */
     public function getPointsLabel(?string $store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::XML_PATH_POINTS_LABEL, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue(self::XML_PATH_POINTS_LABEL, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -275,7 +277,16 @@ class Config extends AbstractHelper
      */
     public function getPointsFormat(?string $store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::XML_PATH_POINTS_FORMAT, ScopeInterface::SCOPE_STORE, $store);
+        return (string)$this->scopeConfig->getValue(self::XML_PATH_POINTS_FORMAT, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * @param string|null $website
+     * @return float
+     */
+    public function getMaxGiveBackRatio(?string $website = null): float
+    {
+        return (float)$this->scopeConfig->getValue(self::XML_PATH_MAX_GIVE_BACK_RATIO, ScopeInterface::SCOPE_WEBSITES, $website);
     }
 
 }

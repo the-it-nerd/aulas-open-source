@@ -7,6 +7,9 @@ define([
     const model = {
         selectedProgram: customerData.get('snapPointsSelectedProgram'),
         refreshProgramCache: () =>  customerData.reload(['snapPointsSelectedProgram'], true),
+        getSelectedProgram: function() {
+          return this.getProgram(this.selectedProgram().programId);
+        },
         getProgram: (programID) =>{
             if (programID === 'first_available') {
                 return window.snapPointsPrograms.programs[0];
@@ -15,19 +18,29 @@ define([
             return window.snapPointsPrograms.programs.filter(program => parseInt(program.programId) === parseInt(programID))[0];
         },
 
-        calculatePointsPerSpend: (programPointsPerSpend, spend)  =>{
-            //TODO this is not working, should be in a separate action?
-            const maxGiveBackRatio = 6;
-            if (!programPointsPerSpend || maxGiveBackRatio) return 0;
+        calculatePointsPerSpend: (programPointsPerSpend, spend, productId)  =>{
+            if (!programPointsPerSpend || !window.snapPointsPrograms.maxGiveBackRatio) return 0;
 
-            const value = (programPointsPerSpend * maxGiveBackRatio / 0.01).toFixed(1);
-            return Number(value) % 1 === 0 ? parseInt(value) : value;
+            let rate = (programPointsPerSpend * window.snapPointsPrograms.maxGiveBackRatio / 0.01).toFixed(1);
+            rate = Number(rate) % 1 === 0 ? parseInt(rate) : rate
+
+            if(spend) {
+                return (spend * rate).toFixed(1);
+            }
+
+            return rate;
         }
     }
 
     const initVar = window.localStorage.getItem('snapPointsInit');
 
     if (!initVar) {
+        model.refreshProgramCache();
+        window.localStorage.setItem('snapPointsInit', Date.now());
+    }
+
+    if(!model.selectedProgram().hasOwnProperty('programId'))
+    {
         model.refreshProgramCache();
         window.localStorage.setItem('snapPointsInit', Date.now());
     }

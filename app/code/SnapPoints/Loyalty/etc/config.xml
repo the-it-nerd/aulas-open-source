@@ -4,6 +4,7 @@
 		<snappoints>
 			<general>
 				<enabled>0</enabled>
+				<max_give_back_ratio>0</max_give_back_ratio>
 			</general>
 		</snappoints>
         <snappoints_integrations>

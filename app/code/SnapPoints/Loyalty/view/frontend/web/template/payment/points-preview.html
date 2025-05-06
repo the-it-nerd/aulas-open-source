@@ -1,4 +1,5 @@
 <div class="snappoints-widget">
+    <!-- ko if: selectedProgramObject() -->
     <div class="snappoints-widget--disclaimer">
         <span data-bind="text: getMessage()"></span>
         <a href="javascript:void(0)" data-bind="i18n: 'how it works'"></a>
@@ -6,23 +7,37 @@
     <div class="snappoints-widget--container">
         <div class="snappoints-widget--container--description">
             <div class="snappoints-widget--container--description--logo">
-                <img src="https://stories-editor.hilton.com/wp-content/uploads/2022/04/honors_white_HR-1.png">
-            </div>
-            <div class="snappoints-widget--container--description--points">
-                2,246 points
-            </div>
-            <div class="snappoints-widget--container--description--action">
-                <a class="snappoints-widget--container--description--action--change" href="javascript:void(0)" data-bind="i18n: 'Change'"></a>
-                <a class="snappoints-widget--container--description--action--details" href="javascript:void(0)" data-bind="i18n: 'Details'"></a><a></a>
+                <img data-bind="attr: {src: selectedProgramObject().logo}" >
             </div>
 
+            <!-- ko if: snapModel() -->
+            <div class="snappoints-widget--container--description--points">
+                <span class="snappoints-widget--container--description--points--points" data-bind="text: snapModel().totalPoints"></span>
+                <span class="snappoints-widget--container--description--points--label" data-bind="i18n: selectedProgramObject().unit"></span>
+            </div>
+
+
+            <div class="snappoints-widget--container--description--action">
+                <a class="snappoints-widget--container--description--action--change" data-trigger="change-snappoints" href="javascript:void(0)" data-bind="i18n: 'Change'"></a>
+                <a class="snappoints-widget--container--description--action--details" data-trigger="details-snappoints"  href="javascript:void(0)" data-bind="i18n: 'Details'"></a><a></a>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: snapModel() -->
+            <img data-bind="attr: {src: getLoaderImage()}" class="snappoints-widget--loader"/>
+            <!-- /ko -->
+
         </div>
-        <div class="snappoints-widget--container--items">
+        <!-- ko if: snapModel() -->
+        <div class="snappoints-widget--container--items" data-bind="foreach: snapModel().items">
             <div class="snappoints-widget--container--items--item">
-                <span class="snappoints-widget--container--items--item--product">Placeholder Product</span>
-                <span class="snappoints-widget--container--items--item--points">2,246 points</span>
+                <span class="snappoints-widget--container--items--item--product" data-bind="text: $parent.getItemDescription(variantId)"></span>
+                <span class="snappoints-widget--container--items--item--points" ><!-- ko text: pointsPerItem --><!-- /ko --> <!-- ko text: $parent.selectedProgramObject().unit --><!-- /ko --></span>
+                <span class="snappoints-widget--container--items--item--qty" >x <!-- ko text: quantity --><!-- /ko --> =</span>
+                <span class="snappoints-widget--container--items--item--total-points" ><!-- ko text: totalPoints --><!-- /ko --> <!-- ko text: $parent.selectedProgramObject().unit --><!-- /ko --></span>
             </div>
         </div>
+        <!-- /ko -->
     </div>
+    <!-- /ko -->
 </div>
 

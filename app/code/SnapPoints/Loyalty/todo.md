@@ -38,26 +38,22 @@ https://api.snappoints.com/documentation#/
 - Mage-OS QA
 
 
-
-- The main functionality of selecting a default program, switching programs, and having the main top bar, with local caching and session usage is done
-- Product listing update for the new widget (QA)
-- PDP update to use the new js widget (WIP)
-- Checkout update to use the new js widget (Backlog)
-- Import the max give back ratio (Backlog)
-
-
 Magento 2 Snappoints Module - Status Update
 Current Status:
 - Core module structure, database, and admin configuration are complete.
 - PHP SDK (Alpha) for loyalty programs is implemented, including secure key storage.
 - Frontend widget locations defined and implemented.
 - The process for loading program/points updates is built and under.
-
-WIP:
 - Finalize frontend implementation & points calculation.
+- Checkout update to use the new js widget, done but will wait for the quote data to generate the correct points
+- Import the max give back ratio
+
+- WIP:
+- Fixing the Points calculation model
+- Tue, Apr 29: Build Magento -> Snappoints product importer and product point calculation.
+- 
 
 Next Steps:
-- Tue, Apr 29: Build Magento -> Snappoints product importer and product point calculation.
 - Thu, May 1: Build Snappoints order processing flow.
 - Mon, May 5: First integrated test.
 

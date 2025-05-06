@@ -133,17 +133,17 @@ interface ProgramInterface
 
     /**
      * Set points per spend value
-     * @param float $value
+     * @param string $value
      * @return self
      */
-    public function setPointsPerSpend(float $value): self;
+    public function setPointsPerSpend(string $value): self;
 
     /**
      * Get points per spend.
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getPointsPerSpend(): ?float;
+    public function getPointsPerSpend(): ?string;
 
     /**
      * Set points per spend version

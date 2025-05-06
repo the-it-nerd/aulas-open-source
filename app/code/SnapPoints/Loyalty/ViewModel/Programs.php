@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace SnapPoints\Loyalty\ViewModel;
 
+use Magento\Framework\View\Asset\Repository as AssetRepository;
 use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
@@ -15,6 +16,7 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Framework\View\Helper\SecureHtmlRenderer;
 use Magento\Store\Model\StoreManagerInterface;
 use SnapPoints\Loyalty\Api\Data\ProgramInterface;
+use SnapPoints\Loyalty\Helper\Config;
 use SnapPoints\Loyalty\Model\ResourceModel\Program\Collection;
 use SnapPoints\Loyalty\Model\ResourceModel\Program\CollectionFactory;
 
@@ -26,12 +28,17 @@ class Programs extends DataObject implements ArgumentInterface
      * @param SecureHtmlRenderer $secureRenderer
      * @param FormKey $formKey
      * @param StoreManagerInterface $storeManager
+     * @param Config $config
+     * @param AssetRepository $assetRepo
      */
     public function __construct(
         protected readonly CollectionFactory     $collectionFactory,
         protected readonly SecureHtmlRenderer    $secureRenderer,
         protected readonly FormKey               $formKey,
         protected readonly StoreManagerInterface $storeManager,
+        protected readonly Config                $config,
+        protected readonly AssetRepository       $assetRepo
+
     )
     {
         parent::__construct();
@@ -45,6 +52,7 @@ class Programs extends DataObject implements ArgumentInterface
      * Retrieves the JavaScript script configuration for programs.
      *
      * @return string The JavaScript script containing program configuration data.
+     * @throws LocalizedException
      */
     public function getProgramsConfigsScript(): string
     {
@@ -62,7 +70,11 @@ class Programs extends DataObject implements ArgumentInterface
     {
         $data = [
             'currency' => $this->storeManager->getStore()->getBaseCurrencyCode(),
-            'programs' => []
+            'maxGiveBackRatio' => $this->config->getMaxGiveBackRatio(),
+            'programs' => [],
+            'assets' => [
+                'loader' => $this->assetRepo->getUrl('SnapPoints_Loyalty::images/loader.svg')
+            ]
         ];
 
         foreach ($this->getPrograms() as $program) {

@@ -154,7 +154,7 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function setPointsPerSpend(float $value): ProgramInterface
+    public function setPointsPerSpend(string $value): ProgramInterface
     {
         return $this->setData(self::POINTS_PER_SPEND, $value);
     }
@@ -162,10 +162,9 @@ class Program extends AbstractModel implements ProgramInterface
     /**
      * @inheritDoc
      */
-    public function getPointsPerSpend(): ?float
+    public function getPointsPerSpend(): ?string
     {
-        $value = $this->getData(self::POINTS_PER_SPEND);
-        return $value !== null ? (float)$value : null;
+        return $this->getData(self::POINTS_PER_SPEND);
     }
 
     /**

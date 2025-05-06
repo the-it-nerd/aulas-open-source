@@ -1,18 +1,25 @@
-<div class="snappoints-widget">
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+$product = $block->getProduct();
+?>
+<div class="snappoints-widget" data-product-id="<?= $product->getId() ?>" data-price="<?= $product->getFinalPrice() ?>" data-mage-init='{"SnapPoints_Loyalty/js/widgets/product":{
+"pointsSelector": ".snappoints-widget--container--description--points",
+"logoSelector": ".snappoints-widget--container--description--logo img"
+}}'>
     <div class="snappoints-widget--disclaimer">
-        <span><?= __('Your custom message here how it works') ?></span>
-        <a href="javascript:void(0)"><?= __('how it works') ?></a>
+        <span class="snappoints-widget--disclaimer--text"><?= __('Loading...') ?></span>
+        <a href="javascript:void(0)" data-trigger="how-it-work-snappoints"><?= __('how it works') ?></a>
     </div>
     <div class="snappoints-widget--container">
         <div class="snappoints-widget--container--description">
             <div class="snappoints-widget--container--description--logo snappoints-widget--container--description--logo__small">
-                <img src="https://stories-editor.hilton.com/wp-content/uploads/2022/04/honors_white_HR-1.png">
+                <img src="<?= $block->getViewFileUrl('SnapPoints_Loyalty::images/loader.svg') ?>">
             </div>
             <div class="snappoints-widget--container--description--points">
-                2,246 points
+                <img src="<?= $block->getViewFileUrl('SnapPoints_Loyalty::images/loader.svg') ?>">
             </div>
             <div class="snappoints-widget--container--description--action">
-                <a class="snappoints-widget--container--description--action--change" href="javascript:void(0)" ><?= __('Change') ?></a>
+                <a class="snappoints-widget--container--description--action--change" href="javascript:void(0)" data-trigger="change-snappoints"><?= __('Change') ?></a>
             </div>
 
         </div>
