@@ -64,4 +64,7 @@
     <preference for="SnapPoints\Loyalty\Api\Data\QuoteInterface" type="SnapPoints\Loyalty\Model\Quote"/>
     <preference for="SnapPoints\Loyalty\Api\QuoteRepositoryInterface" type="SnapPoints\Loyalty\Model\QuoteRepository"/>
 
+    <preference for="SnapPoints\Loyalty\Api\Data\TransactionInterface" type="SnapPoints\Loyalty\Model\Transaction"/>
+    <preference for="SnapPoints\Loyalty\Api\TransactionRepositoryInterface" type="SnapPoints\Loyalty\Model\TransactionRepository"/>
+
 </config>

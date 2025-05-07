@@ -112,6 +112,10 @@ class Quote extends AbstractModel implements QuoteInterface
      */
     public function generateHashFromMagentoQuote(CartInterface $cart, int $programId): string
     {
+        if(is_null($this->getQuoteId())) {
+            $this->setQuoteId($cart->getId());
+        }
+
         if ($cart->getId() !== $this->getQuoteId()) {
             throw new LocalizedException(__('The Platform and SnapPoints Object quote ids dos not match'));
         }
@@ -157,6 +161,22 @@ class Quote extends AbstractModel implements QuoteInterface
     public function setHash(string $value): QuoteInterface
     {
         return $this->setData(self::HASH, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getProgramId(): ?string
+    {
+        return $this->getData(self::PROGRAM_ID);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setProgramId(string $value): QuoteInterface
+    {
+        return $this->setData(self::PROGRAM_ID, $value);
     }
 }
 

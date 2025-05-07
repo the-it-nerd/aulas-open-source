@@ -76,10 +76,8 @@ class Quote extends BaseSDK
             //TODO this needs to come from a config?
             ->setProcessingDays(45)
             ->setOrderedAt(new DateTime('now', new DateTimeZone($timezone)))
-            //TODO get from the api request, replace the email?
             ->setLoyaltyProgramId($program->getExternalId());
 
-        //TODO save quote on the database
         return $this->getQuoteSDK()->createTransaction($quote);
 
     }

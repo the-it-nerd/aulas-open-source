@@ -92,7 +92,15 @@ class Program extends AbstractModel implements ProgramInterface
      */
     public function getDescription(): ?string
     {
-        return $this->getData(self::DESCRIPTION);
+        $desc = $this->getData(self::DESCRIPTION);
+
+        if(is_null($desc)) {
+            $desc = '<p>The Offer (As described below) is valid on qualifying items purchased on <strong>{store_name}</strong> online store. This offer is applicable only to <strong>Aeroplan</strong> members who are in good standing in the <strong>Aeroplan Program</strong>. If you are not an Aeroplan member, you can visit the Aeroplan web site (aircanada.com/Aeroplan) and enroll today. Membership is free.</p>
+                    <p>Offer Details: Earn up to <strong>{} Aeroplan points per 1 {} spent</strong> on qualifying items purchased with <strong>{}</strong> online store. After checkout, you will receive an email inviting you to link your Aeroplan account to initiate the deposit of points. Your points will be deposited 30 days after your purchase date. <br/> Bonus Aeroplan points may take up to 8-10 weeks to be credited to Aeroplan members’ account after the completion of a transaction. <br/> Offer is non-transferable and is not redeemable for cash.</p>
+                    <p>Other Terms: Participation in these offers constitutes acceptance of <a target="_blank" href="https://www.aircanada.com/ca/en/aco/home/aeroplan/legal/terms-and-conditions.html#/">Aeroplan Terms and Conditions</a>, <a target="_blank" href="https://www.aircanada.com/ca/en/aco/home/aeroplan/legal/terms-and-conditions.html#/">Air Canada Terms and Conditions</a>, and <a target="_blank" href="https://www.snappoints.com/consumer-terms">SnapPoints Terms and Conditions</a>. Offers featuring Points may be added, removed or changed at any time. SnapPoints and Aeroplan reserve the right to terminate your participation in this Offer if you violate these Terms and Conditions, or if your use is unauthorized, fraudulent, or otherwise unlawful. <br/><br/> ®️ Aeroplan is a registered trademark of Aeroplan Inc. <br/><br/>®️ The Air Canada maple leaf logo is a registered trademark of Air Canada, used under licence by Aeroplan Inc.</p>';
+        }
+
+        return $desc;
     }
 
     /**
@@ -190,9 +198,9 @@ class Program extends AbstractModel implements ProgramInterface
     public function setPointsPerSpendCreatedAt(DateTimeZone $value): ProgramInterface
     {
         // Create a DateTime object with the given timezone
-        $dateTime = new \DateTime('now', $value);
+        $dateTime = new \DateTime("now", $value);
         // Format the date to a MySQL compatible datetime string
-        $formattedDate = $dateTime->format('Y-m-d H:i:s');
+        $formattedDate = $dateTime->format("Y-m-d H:i:s");
         return $this->setData(self::POINTS_PER_SPEND_CREATED_AT, $formattedDate);
     }
 
@@ -220,9 +228,9 @@ class Program extends AbstractModel implements ProgramInterface
     public function setPointsPerSpendUpdatedAt(DateTimeZone $value): ProgramInterface
     {
         // Create a DateTime object with the given timezone
-        $dateTime = new \DateTime('now', $value);
+        $dateTime = new \DateTime("now", $value);
         // Format the date to a MySQL compatible datetime string
-        $formattedDate = $dateTime->format('Y-m-d H:i:s');
+        $formattedDate = $dateTime->format("Y-m-d H:i:s");
         return $this->setData(self::POINTS_PER_SPEND_UPDATED_AT, $formattedDate);
     }
 
@@ -250,9 +258,9 @@ class Program extends AbstractModel implements ProgramInterface
     public function setPointsPerSpendDeletedAt(DateTimeZone $value): ProgramInterface
     {
         // Create a DateTime object with the given timezone
-        $dateTime = new \DateTime('now', $value);
+        $dateTime = new \DateTime("now", $value);
         // Format the date to a MySQL compatible datetime string
-        $formattedDate = $dateTime->format('Y-m-d H:i:s');
+        $formattedDate = $dateTime->format("Y-m-d H:i:s");
         return $this->setData(self::POINTS_PER_SPEND_DELETED_AT, $formattedDate);
     }
 

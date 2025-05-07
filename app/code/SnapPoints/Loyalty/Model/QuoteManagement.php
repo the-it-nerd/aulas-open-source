@@ -38,6 +38,7 @@ class QuoteManagement implements QuoteManagementInterface
             $newQuote = $this->quoteFactory->create();
         }
 
+        $newQuote->setProgramId($programID);
         $quote = $this->cartRepository->get($quoteID);
 
         if(!$newQuote->getHash() || $newQuote->getHash() !== $newQuote->generateHashFromMagentoQuote($quote, $programID)) {
@@ -47,7 +48,8 @@ class QuoteManagement implements QuoteManagementInterface
             $newQuote->setQuoteId((int)$quoteID)
                 ->setTotalPoints($externalQuote->getTotalPoints())
                 ->setExternalQuoteId($externalQuote->getQuoteId())
-                ->setItems($externalQuote->getItems());
+                ->setItems($externalQuote->getItems())
+                ->setProgramId($programID);
 
             $newQuote = $this->quoteRepository->save($newQuote);
         }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sales.order.info.buttons">
+            <block class="Magento\Sales\Block\Order\View" name="snappoints.order.transaction" template="SnapPoints_Loyalty::sales/transaction_information.phtml" after="-">
+                <arguments>
+                    <argument name="transactionModel" xsi:type="object">SnapPoints\Loyalty\ViewModel\Transaction</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

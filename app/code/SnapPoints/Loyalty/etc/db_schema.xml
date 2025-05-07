@@ -73,6 +73,7 @@
 		<column name="items" nullable="false" xsi:type="text" comment="Items JSON"/>
 		<column name="total_points" nullable="false" xsi:type="int" unsigned="true" comment="Points given to that order"/>
         <column name="hash" nullable="false" xsi:type="text" comment="Quote Hash"/>
+        <column name="program_id" nullable="true" xsi:type="varchar" comment="The Program" length="255"/>
         <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="created at"/>
         <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="updated at"/>
 
@@ -93,4 +94,41 @@
         </constraint>
 
 	</table>
+
+    <table name="snappoints_loyalty_transaction" resource="default" engine="innodb" comment="snappoints_loyalty_transaction Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Transaction ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <column xsi:type="varchar" name="loyalty_program_id" nullable="true" length="255" comment="Loyalty Program ID"/>
+        <column xsi:type="int" name="processing_days" nullable="true" comment="Processing Days"/>
+        <column xsi:type="text" name="items" nullable="true" comment="Items JSON"/>
+        <column xsi:type="datetime" name="ordered_at" nullable="true" comment="Ordered At"/>
+        <column xsi:type="int" name="expected_total_points" nullable="true" comment="Expected Total Points"/>
+        <column xsi:type="varchar" name="customer_id" nullable="true" length="255" comment="Customer ID"/>
+        <column xsi:type="varchar" name="key" nullable="true" length="255" comment="Key"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="true" comment="Quote ID"/>
+        <column xsi:type="varchar" name="transaction_id"  length="255" nullable="true" comment="External Transaction ID"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="true" comment="Order ID"/>
+
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+        <constraint xsi:type="foreign"
+                    referenceId="SNAPPOINTS_LOYALTY_TRANSACTION_QUOTE_ID_FK"
+                    table="snappoints_loyalty_transaction"
+                    column="quote_id"
+                    referenceTable="snappoints_loyalty_quote"
+                    referenceColumn="quote_id"
+                    onDelete="SET NULL"/>
+
+        <constraint xsi:type="foreign"
+                    referenceId="SNAPPOINTS_LOYALTY_TRANSACTION_ORDER_ID_FK"
+                    table="snappoints_loyalty_transaction"
+                    column="order_id"
+                    referenceTable="sales_order"
+                    referenceColumn="entity_id"
+                    onDelete="SET NULL"/>
+    </table>
 </schema>

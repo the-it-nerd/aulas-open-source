@@ -13,6 +13,7 @@ interface QuoteInterface
     public const QUOTE_ID  = 'quote_id';
     public const EXTERNAL_QUOTE_ID  = 'external_quote_id';
     public const TOTAL_POINTS  = 'total_points';
+    public const PROGRAM_ID  = 'program_id';
     public const HASH  = 'hash';
 
 
@@ -78,6 +79,17 @@ interface QuoteInterface
      */
     public function setHash(string $value):self;
 
+
+    /**
+     * @return string|null
+     */
+    public function getProgramId(): ? string;
+
+    /**
+     * @param string $value
+     * @return self
+     */
+    public function setProgramId(string $value): self;
 }
 
 

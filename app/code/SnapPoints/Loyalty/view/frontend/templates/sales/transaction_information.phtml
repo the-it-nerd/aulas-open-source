@@ -1,0 +1,71 @@
+<?php
+/**
+ * @var \Magento\Sales\Block\Order\View $block
+ * @var \SnapPoints\Loyalty\ViewModel\Transaction $transactionModel
+ */
+$transactionModel = $block->getData('transactionModel');
+$order = $block->getOrder();
+
+$transaction = $transactionModel->getFromMagentoOrder($order);
+$program =  null;
+if($transaction) {
+    $program = $transactionModel->getProgramFromTransaction($transaction);
+}
+?>
+
+<?php if($transaction && $program): ?>
+
+    <?php
+
+        $totalPoints = 0;
+        foreach($transaction->getItems() as $item) {
+            /**
+             * @var $item \Snappoints\Sdk\DataObjects\Entities\TransactionItem
+             */
+            $totalPoints += $item->getTotalPoints();
+        }
+
+
+    ?>
+    <div class="snappoints-widget">
+        <div class="snappoints-widget--disclaimer">
+            <span >Your custom message here</span>
+            <a href="javascript:void(0)" >how it works</a>
+        </div>
+        <div class="snappoints-widget--container">
+            <div class="snappoints-widget--container--description">
+                <div class="snappoints-widget--container--description--logo">
+                    <img src="<?= $program->getLogo() ?>">
+                </div>
+
+                <div class="snappoints-widget--container--description--points">
+                    <span class="snappoints-widget--container--description--points--points"><?= $totalPoints ?></span>
+                    <span class="snappoints-widget--container--description--points--label"><?= $program->getUnit() ?></span>
+                </div>
+
+
+                <div class="snappoints-widget--container--description--action">
+                    <a class="snappoints-widget--container--description--action--details" data-trigger="details-snappoints" href="javascript:void(0)" data-bind="i18n: 'Details'">Details</a><a></a>
+                </div>
+
+            </div>
+            <div class="snappoints-widget--container--items">
+                <?php
+                foreach($transaction->getItems() as $item):
+                /**
+                 * @var $item \Snappoints\Sdk\DataObjects\Entities\TransactionItem
+                 */
+                ?>
+
+                <div class="snappoints-widget--container--items--item">
+                    <span class="snappoints-widget--container--items--item--product" ><?= $transactionModel->getProductNameFromTransactionItemSKU($item->getVariantId(), $order) ?></span>
+                    <span class="snappoints-widget--container--items--item--points"><?= $item->getPointsPerItem() ?> <?= $program->getUnit() ?></span>
+                    <span class="snappoints-widget--container--items--item--qty">x <?= $item->getQuantity() ?> =</span>
+                    <span class="snappoints-widget--container--items--item--total-points"><?= $item->getTotalPoints() ?> <?= $program->getUnit() ?></span>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+<?php endif; ?>
