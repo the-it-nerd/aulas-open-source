@@ -1,7 +1,12 @@
 <?php
-/** @var \Magento\Catalog\Block\Product\View $block */
+/** @var \Magento\Catalog\Block\Product\View $block
+ * @var \SnapPoints\Loyalty\Helper\Config $configHelper
+ */
+$configHelper = $this->helper(\SnapPoints\Loyalty\Helper\Config::class);
+
 $product = $block->getProduct();
 ?>
+<?php if($configHelper->isPdpWidgetEnabled()): ?>
 <div class="snappoints-widget" data-product-id="<?= $product->getId() ?>" data-price="<?= $product->getFinalPrice() ?>" data-mage-init='{"SnapPoints_Loyalty/js/widgets/product":{
 "pointsSelector": ".snappoints-widget--container--description--points",
 "logoSelector": ".snappoints-widget--container--description--logo img"
@@ -25,4 +30,4 @@ $product = $block->getProduct();
         </div>
     </div>
 </div>
-
+<?php endif; ?>

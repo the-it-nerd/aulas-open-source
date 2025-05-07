@@ -1,7 +1,9 @@
 # Features
 - Implement Queue Logger
+  - Cron for archiving logs
 - Create Queue Retrier/Manager
-- Finish Admin CRUDs (everything needs to be read only)
+- Finish the product level max give back ratio rule
+- Finish Admin CRUDs For logs and queue messages (everything needs to be read only)
 
 # DEVOPS Setup
 - after code review, resetup module to work in the composer src file organization style 
@@ -10,12 +12,10 @@
 
 # Module setup
 - PHPUnit Tests
-- Cron for archiving logs
-- Admin configuration for widgets to display
-- Admin configuration for log retention
 
 
-# Ideas / Future 
+
+# Ideas / Future
 - Host logos on a single domain with image transformation is possible
 - Provide Program description through API
 - Programs custom page

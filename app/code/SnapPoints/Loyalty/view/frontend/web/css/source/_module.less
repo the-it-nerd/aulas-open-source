@@ -226,6 +226,33 @@
             }
         }
     }
+
+    .snappoints-program-details-modal {
+        &--content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: @indent__xl;
+
+            &--image {
+                display: none;
+            }
+
+            &--text {
+                &--logo {
+                    img {
+                        max-height: 80px;
+                    }
+                }
+
+                &--snap-logo {
+                    display: flex;
+                    justify-content: flex-end;
+                    padding-top: @indent__xl;
+                }
+            }
+        }
+    }
 }
 
 //
@@ -233,6 +260,19 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .snappoints-program-details-modal {
+        &--content {
+            &--image {
+                display: block;
+                min-width: 33%;
+            }
+
+            &--text {
+                padding-left: @indent__xl;
+            }
+        }
+    }
+
     .snappoints--bar {
 
         &--announcement {

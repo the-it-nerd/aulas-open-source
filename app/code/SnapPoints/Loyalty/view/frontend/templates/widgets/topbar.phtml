@@ -2,9 +2,12 @@
 /**
  * @var \SnapPoints\Loyalty\Block\Config\LibraryConfig $block
  * @var \SnapPoints\Loyalty\ViewModel\Programs $model
+ * @var \SnapPoints\Loyalty\Helper\Config $configHelper
  */
+$configHelper = $this->helper(\SnapPoints\Loyalty\Helper\Config::class);
 $model = $this->getData('programsConfig');
 ?>
+<?php if($configHelper->isTopbarEnabled()): ?>
 <div id="snappoints-top-bar" class="snappoints snappoints--bar" data-mage-init='{"SnapPoints_Loyalty/js/widgets/topbar":{}}'>
     <div class="snappoints--bar--announcement">
         <div class="snappoints--bar--announcement--select">
@@ -33,3 +36,4 @@ $model = $this->getData('programsConfig');
         </a>
     </div>
 </div>
+<?php endif; ?>

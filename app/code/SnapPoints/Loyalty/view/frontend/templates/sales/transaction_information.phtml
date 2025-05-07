@@ -2,7 +2,9 @@
 /**
  * @var \Magento\Sales\Block\Order\View $block
  * @var \SnapPoints\Loyalty\ViewModel\Transaction $transactionModel
+ * @var \SnapPoints\Loyalty\Helper\Config $configHelper
  */
+$configHelper = $this->helper(\SnapPoints\Loyalty\Helper\Config::class);
 $transactionModel = $block->getData('transactionModel');
 $order = $block->getOrder();
 
@@ -13,7 +15,10 @@ if($transaction) {
 }
 ?>
 
-<?php if($transaction && $program): ?>
+<?php if(
+    $configHelper->isCustomerAccountEnabled()
+    && $transaction
+    && $program): ?>
 
     <?php
 

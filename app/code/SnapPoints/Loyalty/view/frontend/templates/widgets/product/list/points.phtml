@@ -1,7 +1,12 @@
 <?php
-/** @var \Snappoints\Loyalty\Block\Product\Points $block */
+/**
+ * @var \Snappoints\Loyalty\Block\Product\Points $block
+ * @var \SnapPoints\Loyalty\Helper\Config $configHelper
+ */
+$configHelper = $this->helper(\SnapPoints\Loyalty\Helper\Config::class);
 $product = $block->getProduct();
 ?>
+<?php if($configHelper->isProductCardWidgetEnabled()): ?>
 <div class="snappoints--card snappoints--card__loading" data-product-id="<?= $product->getId() ?>" data-price="<?= $product->getFinalPrice() ?>" data-mage-init='{"SnapPoints_Loyalty/js/widgets/product":{}}'>
     <div class="snappoints--card--program ">
         <div class="snappoints--card--program--image-wrapper">
@@ -10,3 +15,4 @@ $product = $block->getProduct();
         <p class="snappoints--card--program--points"><img class="snappoints--card--program--image-wrapper--image" src="<?= $block->getViewFileUrl('SnapPoints_Loyalty::images/loader.svg') ?>" loading="lazy"></p>
     </div>
 </div>
+<?php endif; ?>

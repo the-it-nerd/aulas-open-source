@@ -138,7 +138,7 @@ class Config extends AbstractHelper
      * @*/
     public function isIntegrationEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_INTEGRATION_ENABLED, ScopeInterface::SCOPE_STORES, $store);
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_INTEGRATION_ENABLED, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -215,7 +215,7 @@ class Config extends AbstractHelper
      */
     public function isTopbarEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_TOPBAR, ScopeInterface::SCOPE_STORES, $store);
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_TOPBAR, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -226,7 +226,16 @@ class Config extends AbstractHelper
      */
     public function isPdpWidgetEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_PDP_WIDGET, ScopeInterface::SCOPE_STORES, $store);
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_PDP_WIDGET, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * @param string|null $store
+     * @return bool
+     */
+    public function isProductCardWidgetEnabled(?string $store = null): bool
+    {
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_PRODUCT_CARDS, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -237,7 +246,7 @@ class Config extends AbstractHelper
      */
     public function isCartWidgetEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CART_WIDGET, ScopeInterface::SCOPE_STORES, $store);
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CART_WIDGET, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -248,7 +257,7 @@ class Config extends AbstractHelper
      */
     public function isCheckoutWidgetEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CHECKOUT_WIDGET, ScopeInterface::SCOPE_STORES, $store);
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CHECKOUT_WIDGET, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -257,7 +266,7 @@ class Config extends AbstractHelper
      */
     public function isCustomerAccountEnabled(?string $store = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CUSTOMER_ACCOUNT, ScopeInterface::SCOPE_STORES, $store);
+        return $this->isEnabled($store) && $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_CUSTOMER_ACCOUNT, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**

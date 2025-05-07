@@ -69,6 +69,9 @@ class Programs extends DataObject implements ArgumentInterface
     public function getProgramsData(): array
     {
         $data = [
+            'store' => [
+                'name' => $this->storeManager->getStore()->getName()
+            ],
             'currency' => $this->storeManager->getStore()->getBaseCurrencyCode(),
             'maxGiveBackRatio' => $this->config->getMaxGiveBackRatio(),
             'programs' => [],
