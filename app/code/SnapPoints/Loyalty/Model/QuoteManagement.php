@@ -32,23 +32,25 @@ class QuoteManagement implements QuoteManagementInterface
             $quoteID = $this->maskedQuoteIdToQuoteId->execute($quoteID);
         }
 
-
         try {
             $newQuote = $this->quoteRepository->getByMagentoQuoteId($quoteID);
         } catch (NoSuchEntityException $e) {
             $newQuote = $this->quoteFactory->create();
         }
 
-        //TODO: validate hash of sku x value x quantity x discount to create new SnapPointsQuote
         $quote = $this->cartRepository->get($quoteID);
-        $externalQuote = $this->quoteSDK->syncQuote($quote, $programID);
 
-        $newQuote->setQuoteId((int)$quoteID)
-            ->setTotalPoints($externalQuote->getTotalPoints())
-            ->setExternalQuoteId($externalQuote->getQuoteId())
-            ->setItems($externalQuote->getItems());
+        if(!$newQuote->getHash() || $newQuote->getHash() !== $newQuote->generateHashFromMagentoQuote($quote, $programID)) {
+            $newQuote->generateHash($quote, $programID);
+            $externalQuote = $this->quoteSDK->syncQuote($quote, $programID);
 
-        $newQuote = $this->quoteRepository->save($newQuote);
+            $newQuote->setQuoteId((int)$quoteID)
+                ->setTotalPoints($externalQuote->getTotalPoints())
+                ->setExternalQuoteId($externalQuote->getQuoteId())
+                ->setItems($externalQuote->getItems());
+
+            $newQuote = $this->quoteRepository->save($newQuote);
+        }
 
         return [$newQuote->toDataObject()->toArray()];
     }

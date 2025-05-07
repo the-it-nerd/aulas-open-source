@@ -15,66 +15,71 @@ define([
         snapModel: snapQuoteModel.snapPointsQuote,
         initialized: ko.observable(false),
         selectedProgram: programModel.selectedProgram,
-        lastSelectedProgram: ko.observable(false),
         selectedProgramObject: ko.observable(false),
         defaults: {
             template: 'SnapPoints_Loyalty/payment/points-preview'
         },
 
-        getLoaderImage: function() {
+        getLoaderImage: function () {
             return window.snapPointsPrograms.assets.loader;
         },
 
-        getItemDescription: function(sku) {
+        getItemDescription: function (sku) {
             let item = this.cart.getItems().filter((item) => item.sku === sku);
 
-            if(item.length > 0) {
+            if (item.length > 0) {
                 return item[0].name;
             }
 
             return sku;
         },
 
-        initialize: function() {
-
-            let self = this;
+        initialize: function () {
             this._super();
 
-            if(programModel.getSelectedProgram()) {
-                this.selectedProgramObject(programModel.getSelectedProgram());
-                this.lastSelectedProgram(this.selectedProgramObject().programId);
-            }
-
-            programModel.selectedProgram.subscribe((value) => {
-                console.log(value);
-                self.selectedProgramObject(programModel.getSelectedProgram());
-
-                if(self.lastSelectedProgram().programId !== value.programId) {
-                    self.lastSelectedProgram(value.programId);
-                    self._getQuote();
-                }
-            });
-
+            this._bindUpdates();
             this._initQuote();
         },
 
-        _getQuote: async function() {
-            return await checkoutManager.getQuote();
+        _bindUpdates: function () {
+            if (programModel.getSelectedProgram()) {
+                this.selectedProgramObject(programModel.getSelectedProgram());
+            }
+
+            let self = this;
+            programModel.selectedProgram.subscribe((value) => {
+                self.selectedProgramObject(programModel.getSelectedProgram());
+
+                if (snapQuoteModel.needsHashUpdate()) {
+                    self._getQuote();
+                }
+            });
         },
 
-        _initQuote: function() {
-            if(checkoutManager._getCustomerEmail()) {
+        _getQuote: async function () {
+            const response = await checkoutManager.getQuote();
+
+            snapQuoteModel.updateQuoteHash();
+
+            return response;
+        },
+
+        _initQuote: function () {
+            if (checkoutManager._getCustomerEmail() && snapQuoteModel.needsHashUpdate()) {
                 this._getQuote();
             } else {
                 let self = this;
-                this.cart.shippingMethod.subscribe(async (newValue) =>  {
-                    await self._getQuote();
+                this.cart.shippingMethod.subscribe(async (newValue) => {
+
+                    if(snapQuoteModel.needsHashUpdate() || !self.snapModel()) {
+                        await self._getQuote();
+                    }
                     self.initialize(true);
                 })
             }
         },
 
-        getMessage: function() {
+        getMessage: function () {
             return 'Your custom message here';
         }
     });

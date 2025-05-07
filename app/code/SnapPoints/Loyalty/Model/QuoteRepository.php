@@ -128,7 +128,7 @@ class QuoteRepository implements QuoteRepositoryInterface
     {
         $quote = $this->quoteFactory->create();
         $this->resource->load($quote, $quoteId, 'quote_id');
-        if (!$quote->getId()) {
+        if (!$quote->getEntityId()) {
             throw new NoSuchEntityException(__('Quote with quote id "%1" does not exist.', $quoteId));
         }
         return $quote;
