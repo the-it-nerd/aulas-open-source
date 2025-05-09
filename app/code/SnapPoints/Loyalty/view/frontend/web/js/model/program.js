@@ -1,7 +1,8 @@
 // app/code/YourVendor/YourModule/view/frontend/web/js/view/payment/custom-message.js
 define([
-    'Magento_Customer/js/customer-data'
-], function (customerData) {
+    'Magento_Customer/js/customer-data',
+    'SnapPoints_Loyalty/js/model/rules'
+], function (customerData, rulesModel) {
     'use strict';
 
     const model = {
@@ -18,10 +19,16 @@ define([
             return window.snapPointsPrograms.programs.filter(program => parseInt(program.programId) === parseInt(programID))[0];
         },
 
-        calculatePointsPerSpend: (programPointsPerSpend, spend, productId)  =>{
+        calculatePointsPerSpend: async (programPointsPerSpend, spend, productId)  => {
             if (!programPointsPerSpend || !window.snapPointsPrograms.maxGiveBackRatio) return 0;
 
-            let rate = (programPointsPerSpend * window.snapPointsPrograms.maxGiveBackRatio / 0.01).toFixed(1);
+            let productRate = await rulesModel.getRatioRuleByProductId(productId);
+
+            if(productRate === null) {
+                productRate = window.snapPointsPrograms.maxGiveBackRatio;
+            }
+
+            let rate = (programPointsPerSpend * productRate / 0.01).toFixed(1);
             rate = Number(rate) % 1 === 0 ? parseInt(rate) : rate
 
             if(spend) {

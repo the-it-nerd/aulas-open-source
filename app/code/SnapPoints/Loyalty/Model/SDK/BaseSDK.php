@@ -72,6 +72,14 @@ class BaseSDK
     }
 
     /**
+     * @return \Snappoints\Sdk\Client\Merchant\Product\PointsSettingsRules
+     */
+    public function getPointsRulesSDK(): \Snappoints\Sdk\Client\Merchant\Product\PointsSettingsRules
+    {
+        return $this->facade->getPointsSettingsRulesClient();
+    }
+
+    /**
      * Retrieves the Product SDK client instance.
      *
      * @return Product The Product SDK client.

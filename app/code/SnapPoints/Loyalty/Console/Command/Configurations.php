@@ -23,7 +23,13 @@ class Configurations extends Command
 {
     private const FORCE = "force";
 
-
+    /**
+     * @param BaseSDKFactory $baseSDKFactory
+     * @param StoreManagerInterface $storeManager
+     * @param ProgramRepositoryInterface $programRepository
+     * @param WriterInterface $configWriter
+     * @param string|null $name
+     */
     public function __construct(
         protected readonly BaseSDKFactory             $baseSDKFactory,
         protected readonly StoreManagerInterface      $storeManager,
@@ -88,7 +94,6 @@ class Configurations extends Command
                  * TODO: Change here
                  * 1 - We need to get the value first to confirm its different, this way we can avoid unucessary write to teh database
                  * 2 - we need to purge config cache and fpc if the write was successful
-                 *
                  */
                 $this->configWriter->save(Config::XML_PATH_MAX_GIVE_BACK_RATIO, (string)$ratio->getMaxGiveBackRatio(), ScopeInterface::SCOPE_WEBSITES, $store->getWebsiteId());
 

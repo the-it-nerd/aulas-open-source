@@ -14,10 +14,15 @@ define([
         cart: snapQuoteModel.cart,
         snapModel: snapQuoteModel.snapPointsQuote,
         initialized: ko.observable(false),
+        showProducts: ko.observable(false),
         selectedProgram: programModel.selectedProgram,
         selectedProgramObject: ko.observable(false),
         defaults: {
             template: 'SnapPoints_Loyalty/payment/points-preview'
+        },
+
+        toggleProducts: function() {
+          this.showProducts(!this.showProducts());
         },
 
         getLoaderImage: function () {

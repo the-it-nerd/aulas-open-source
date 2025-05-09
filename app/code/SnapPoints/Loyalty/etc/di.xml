@@ -9,10 +9,12 @@
 	<type name="Magento\Framework\Console\CommandList">
 		<arguments>
 			<argument name="commands" xsi:type="array">
-				<item name="configurations" xsi:type="object">SnapPoints\Loyalty\Console\Command\Configurations</item>
+				<item name="snappointsConfigurations" xsi:type="object">SnapPoints\Loyalty\Console\Command\Configurations</item>
+				<item name="snappointsRules" xsi:type="object">SnapPoints\Loyalty\Console\Command\Rules</item>
 			</argument>
 		</arguments>
 	</type>
+
 	<preference for="SnapPoints\Loyalty\Api\ProgramRepositoryInterface" type="SnapPoints\Loyalty\Model\ProgramRepository"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\ProgramInterface" type="SnapPoints\Loyalty\Model\Program"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\ProgramSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
@@ -32,6 +34,7 @@
 			</argument>
 		</arguments>
 	</type>
+
 	<preference for="SnapPoints\Loyalty\Api\RatesRepositoryInterface" type="SnapPoints\Loyalty\Model\RatesRepository"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\RatesInterface" type="SnapPoints\Loyalty\Model\Rates"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\RatesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
@@ -41,6 +44,7 @@
 			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Rates\Collection</argument>
 		</arguments>
 	</virtualType>
+
 	<preference for="SnapPoints\Loyalty\Api\LogRepositoryInterface" type="SnapPoints\Loyalty\Model\LogRepository"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\LogInterface" type="SnapPoints\Loyalty\Model\Log"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\LogSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
@@ -50,6 +54,7 @@
 			<argument name="resourceModel" xsi:type="string">SnapPoints\Loyalty\Model\ResourceModel\Log\Collection</argument>
 		</arguments>
 	</virtualType>
+
 	<preference for="SnapPoints\Loyalty\Api\QueueLogRepositoryInterface" type="SnapPoints\Loyalty\Model\QueueLogRepository"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\QueueLogInterface" type="SnapPoints\Loyalty\Model\QueueLog"/>
 	<preference for="SnapPoints\Loyalty\Api\Data\QueueLogSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
@@ -63,8 +68,15 @@
 
     <preference for="SnapPoints\Loyalty\Api\Data\QuoteInterface" type="SnapPoints\Loyalty\Model\Quote"/>
     <preference for="SnapPoints\Loyalty\Api\QuoteRepositoryInterface" type="SnapPoints\Loyalty\Model\QuoteRepository"/>
+    <preference for="SnapPoints\Loyalty\Api\Data\PointsSettingRuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
     <preference for="SnapPoints\Loyalty\Api\Data\TransactionInterface" type="SnapPoints\Loyalty\Model\Transaction"/>
     <preference for="SnapPoints\Loyalty\Api\TransactionRepositoryInterface" type="SnapPoints\Loyalty\Model\TransactionRepository"/>
+    <preference for="SnapPoints\Loyalty\Api\Data\PointsSettingRuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="SnapPoints\Loyalty\Api\Data\PointsSettingRuleInterface" type="SnapPoints\Loyalty\Model\PointsSettingRule"/>
+    <preference for="SnapPoints\Loyalty\Api\PointsSettingRuleRepositoryInterface" type="SnapPoints\Loyalty\Model\PointsSettingRuleRepository"/>
+    <preference for="SnapPoints\Loyalty\Api\PointsSettingRuleManagementInterface" type="SnapPoints\Loyalty\Model\PointsSettingRuleManagement"/>
+    <preference for="SnapPoints\Loyalty\Api\Data\PointsSettingRuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
 </config>

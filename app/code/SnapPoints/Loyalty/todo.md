@@ -1,21 +1,26 @@
-# Features
-- Implement Queue Logger
+# On queue
+- First integrated test (WIP)
+- Implement Queue Logger on the queues publishers and consumers
   - Cron for archiving logs
 - Create Queue Retrier/Manager
 - Finish the product level max give back ratio rule
-- Finish Admin CRUDs For logs and queue messages (everything needs to be read only)
+- Finish Admin CRUDs For logs and queue messages (everything needs to be read-only)
 
 # DEVOPS Setup
-- after code review, resetup module to work in the composer src file organization style 
-- make git repository 
-- packagist access and create the SDK and the Magento module entries
+- Code reviews (PHP & JS).
+- PHP unit tests.
+- Frontend/UX review (Mobile-first).
+- Versioning review (2.4.7/PHP 8.3 & 2.4.6/PHP 8.2).
+- Move magento module to src compose structure
+- Publish SDK & Module (Public Repos & Magento Marketplace).
 
 # Module setup
 - PHPUnit Tests
 
-
-
 # Ideas / Future
+- new widgets
+  - mini cart
+  - cart page subtotals
 - Host logos on a single domain with image transformation is possible
 - Provide Program description through API
 - Programs custom page
@@ -40,13 +45,4 @@ Current Status:
 - Tue, Apr 29: Build Magento -> Snappoints product importer and product point calculation.
 - 
 
-Next Steps:
-- Thu, May 1: Build Snappoints order processing flow.
-- Mon, May 5: First integrated test.
 
-Other Pending Items:
-- Code reviews (PHP & JS).
-- PHP unit tests.
-- Frontend/UX review (Mobile-first).
-- Versioning review (2.4.7/PHP 8.3 & 2.4.6/PHP 8.2).
-- Publish SDK & Module (Public Repos & Magento Marketplace).

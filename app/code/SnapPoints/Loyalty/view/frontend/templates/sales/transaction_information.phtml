@@ -33,10 +33,6 @@ if($transaction) {
 
     ?>
     <div class="snappoints-widget">
-        <div class="snappoints-widget--disclaimer">
-            <span >Your custom message here</span>
-            <a href="javascript:void(0)" >how it works</a>
-        </div>
         <div class="snappoints-widget--container">
             <div class="snappoints-widget--container--description">
                 <div class="snappoints-widget--container--description--logo">
@@ -50,11 +46,11 @@ if($transaction) {
 
 
                 <div class="snappoints-widget--container--description--action">
-                    <a class="snappoints-widget--container--description--action--details" data-trigger="details-snappoints" href="javascript:void(0)" data-bind="i18n: 'Details'">Details</a><a></a>
+                    <a class="snappoints-widget--container--description--action--details" data-trigger="details-snappoints" href="javascript:void(0)" onclick="jQuery(this).closest('.snappoints-widget--container').find('.snappoints-widget--container--items').slideToggle()"><?= __('Details') ?></a><a></a>
                 </div>
 
             </div>
-            <div class="snappoints-widget--container--items">
+            <div class="snappoints-widget--container--items" style="display: none">
                 <?php
                 foreach($transaction->getItems() as $item):
                 /**

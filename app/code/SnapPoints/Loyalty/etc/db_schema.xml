@@ -131,4 +131,35 @@
                     referenceColumn="entity_id"
                     onDelete="SET NULL"/>
     </table>
+
+    <table name="snappoints_loyalty_points_setting_rules" resource="default" engine="innodb" comment="snappoints_loyalty_transaction Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <column xsi:type="varchar" name="external_id" nullable="true" length="255" comment="External ID"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
+        <column xsi:type="decimal" precision="10" scale="10" name="give_back_ratio" nullable="true" comment="Give Back Ratio"/>
+        <column xsi:type="datetime" name="from_date" nullable="true" comment="From Date"/>
+        <column xsi:type="int" name="processing_days" nullable="true" comment="Processing Days"/>
+        <column xsi:type="text" name="include" nullable="true" comment="Include Items JSON"/>
+        <column xsi:type="text" name="exclude" nullable="true" comment="Exclude Items JSON"/>
+        <column xsi:type="varchar" name="applicable_to" nullable="true" length="255" comment="Applicable To"/>
+        <column xsi:type="varchar" name="status" nullable="true" length="255" comment="Status"/>
+        <column xsi:type="int" name="version" nullable="true"  comment="Version"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="true" comment="Website ID"/>
+
+        <column name="created_at" nullable="true" xsi:type="datetime" on_update="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+        <constraint xsi:type="foreign"
+                    referenceId="SNAPPOINTS_LOYALTY_POINTS_RULES_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="snappoints_loyalty_points_setting_rules"
+                    column="website_id"
+                    referenceTable="store_website"
+                    referenceColumn="website_id"
+                    onDelete="CASCADE"/>
+
+    </table>
 </schema>

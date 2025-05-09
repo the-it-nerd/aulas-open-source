@@ -2,7 +2,7 @@
     <!-- ko if: selectedProgramObject() -->
     <div class="snappoints-widget--disclaimer">
         <span data-bind="text: getMessage()"></span>
-        <a href="javascript:void(0)" data-bind="i18n: 'how it works'"></a>
+        <a href="javascript:void(0)" data-trigger="how-it-work-snappoints" data-bind="i18n: 'how it works'"></a>
     </div>
     <div class="snappoints-widget--container">
         <div class="snappoints-widget--container--description">
@@ -19,7 +19,7 @@
 
             <div class="snappoints-widget--container--description--action">
                 <a class="snappoints-widget--container--description--action--change" data-trigger="change-snappoints" href="javascript:void(0)" data-bind="i18n: 'Change'"></a>
-                <a class="snappoints-widget--container--description--action--details" data-trigger="how-it-work-snappoints"  href="javascript:void(0)" data-bind="i18n: 'Details'"></a><a></a>
+                <a class="snappoints-widget--container--description--action--details"   href="javascript:void(0)" data-bind="i18n: 'Details', click: toggleProducts"></a><a></a>
             </div>
             <!-- /ko -->
             <!-- ko ifnot: snapModel() -->
@@ -28,7 +28,7 @@
 
         </div>
         <!-- ko if: snapModel() -->
-        <div class="snappoints-widget--container--items" data-bind="foreach: snapModel().items">
+        <div class="snappoints-widget--container--items" data-bind="foreach: snapModel().items, visible: showProducts">
             <div class="snappoints-widget--container--items--item">
                 <span class="snappoints-widget--container--items--item--product" data-bind="text: $parent.getItemDescription(variantId)"></span>
                 <span class="snappoints-widget--container--items--item--points" ><!-- ko text: pointsPerItem --><!-- /ko --> <!-- ko text: $parent.selectedProgramObject().unit --><!-- /ko --></span>

@@ -112,7 +112,16 @@
                 }
 
                 &--action {
-                    padding-right: @indent__s;
+                    padding-right: @indent__l;
+                    justify-self: flex-end;
+
+                    &--details {
+                        padding-left: @indent__s;
+                    }
+                }
+
+                img{
+                    max-height: 33px;
                 }
             }
 
@@ -142,7 +151,12 @@
             padding-right: @indent__s;
             &--image {
                 max-width: 50px;
+                max-height: 16px;
                 height: auto;
+
+                &[src$="images/loader.svg"] {
+                    max-height: 16px;
+                }
             }
         }
 

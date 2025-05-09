@@ -26,16 +26,18 @@ define([
             });
         },
 
-        generatePointsData: function(selectedProgram) {
+        generatePointsData: async function(selectedProgram) {
             const program = programModel.getProgram(selectedProgram.programId);
 
-            let html  = this.options.shortTextTemplate.replace('{points}', programModel.calculatePointsPerSpend(program.pointsPerSpend, this.element.data('price'), this.element.data('productId')))
+            let value =  await programModel.calculatePointsPerSpend(program.pointsPerSpend, this.element.data('price'), this.element.data('productId'));
+
+            let html  = this.options.shortTextTemplate.replace('{points}', value)
                 .replace('{unit}', program.unit);
 
             this.element.find(this.options.pointsSelector).html(html);
             this.element.find(this.options.logoSelector).prop('src', program.logo);
 
-            html  = this.options.longTextTemplate.replace('{points}', programModel.calculatePointsPerSpend(program.pointsPerSpend, this.element.data('price'), this.element.data('productId')))
+            html  = this.options.longTextTemplate.replace('{points}', value)
                 .replace('{brand}', program.name)
                 .replace('{unit}', program.unit);
 
