@@ -64,6 +64,8 @@ define([
                 });
             }
 
+            console.log(selectedRuleRatio, window.snapPointsPrograms.maxGiveBackRatio);
+
             return selectedRuleRatio;
 
         },

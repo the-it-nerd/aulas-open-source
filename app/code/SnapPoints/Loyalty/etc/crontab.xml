@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
 	<group id="snappoints">
-		<job name="snappoints_loyalty_updaterates" instance="SnapPoints\Loyalty\Cron\UpdateRates" method="execute">
+		<job name="snappoints_loyalty_updaterates" instance="SnapPoints\Loyalty\Cron\UpdateRules" method="execute">
 			<schedule>*/10 * * * *</schedule>
 		</job>
 		<job name="snappoints_loyalty_errorsretry" instance="SnapPoints\Loyalty\Cron\ErrorsRetry" method="execute">

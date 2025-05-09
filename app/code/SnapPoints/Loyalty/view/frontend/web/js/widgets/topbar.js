@@ -25,14 +25,14 @@ define([
                 this._recalculateProgramData(value);
             });
         },
-        _recalculateProgramData: function (selectedProgram) {
+        _recalculateProgramData: async function (selectedProgram) {
             if (selectedProgram && selectedProgram.hasOwnProperty('programId')) {
                 const program = programModel.getProgram(selectedProgram.programId);
 
                 let text = this.options.textTemplate.replace('{brand}', program.name)
                     .replace('{currency}', window.snapPointsPrograms.currency)
                     .replace('{unit}', program.unit)
-                    .replace('{points}', programModel.calculatePointsPerSpend(program.pointsPerSpend, 1));
+                    .replace('{points}', await programModel.calculatePointsPerSpend(program.pointsPerSpend, 1));
 
 
                 this.element.find(this.options.titleSelector).html(text);

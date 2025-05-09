@@ -5,18 +5,18 @@
  */
 declare(strict_types=1);
 
-namespace SnapPoints\Loyalty\Console\Command;
+namespace SnapPoints\Loyalty\Cron;
 
 use Exception;
 use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
 use SnapPoints\Loyalty\Api\PointsSettingRuleRepositoryInterface;
+use SnapPoints\Loyalty\Api\ProgramRepositoryInterface;
 use SnapPoints\Loyalty\Model\SDK\BaseSDKFactory;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
-class Rules extends Command
+class UpdateRules
 {
 
     /**
@@ -24,29 +24,26 @@ class Rules extends Command
      * @param StoreManagerInterface $storeManager
      * @param PointsSettingRuleRepositoryInterface $pointsSettingRuleRepository
      * @param WriterInterface $configWriter
-     * @param string|null $name
+     * @param LoggerInterface $logger
      */
     public function __construct(
         protected readonly BaseSDKFactory                       $baseSDKFactory,
         protected readonly StoreManagerInterface                $storeManager,
         protected readonly PointsSettingRuleRepositoryInterface $pointsSettingRuleRepository,
         protected readonly WriterInterface                      $configWriter,
-        ?string                                                 $name = null
-    )
-    {
-        parent::__construct($name);
+        private readonly LoggerInterface $logger
+    ) {
     }
 
     /**
-     * @inheritdoc
+     * Execute the cron job to import configurations from SnapPoints API
+     *
+     * @return void
+     * @throws LocalizedException
      */
-    protected function execute(
-        InputInterface  $input,
-        OutputInterface $output
-    ): int
+    public function execute(): void
     {
-
-        $output->writeln('<info>Running command for all stores:</info>');
+        $this->logger->info('Running command for all stores:');
         $baseSdk = $this->baseSDKFactory->create();
 
         foreach ($this->storeManager->getWebsites() as $website) {
@@ -55,12 +52,12 @@ class Rules extends Command
                 $store = $this->storeManager->getStore($storeId);
                 $storeName = $store->getName();
                 $storeCode = $store->getCode();
-                $output->writeln(sprintf('<comment>Store: %s (ID: %s, Code: %s)</comment>', $storeName, $storeId, $storeCode));
+                $this->logger->info(sprintf('Store: %s (ID: %s, Code: %s)', $storeName, $storeId, $storeCode));
                 // Set the current store context
                 $this->storeManager->setCurrentStore($storeId);
 
                 // Execute your logic with the specific store context
-                $output->writeln('<info>Fetching Product rules...</info>');
+                $this->logger->info('Fetching loyalty programs...');
 
                 $sdk = $baseSdk->getPointsRulesSDK();
 
@@ -68,28 +65,14 @@ class Rules extends Command
                     $this->pointsSettingRuleRepository->upsertRule($rule, $website);
                 }
 
-                $output->writeln('<info>Rules were updated...</info>');
+                $this->logger->info('Rules were updated...');
 
             } catch (Exception $e) {
-                $output->writeln(sprintf('<error>Error for website %s: %s</error>', $storeName, $e->getMessage()));
+                $this->logger->info(sprintf('<error>Error for website %s: %s</error>', $storeName, $e->getMessage()));
             }
 
         }
 
-        return Command::SUCCESS;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected function configure(): void
-    {
-        $this->setName("snappoints:import:rules");
-        $this->setDescription("Import all rules from SnapPoints");
-
-        parent::configure();
     }
 }
 
-
-;

@@ -3,6 +3,9 @@
     <preference for="Magento\Catalog\Block\Product\ListProduct"
                 type="SnapPoints\Loyalty\Rewrite\Magento\Catalog\Block\Product\ListProduct" />
 
+    <preference for="Magento\CatalogWidget\Block\Product\ProductsList"
+                type="SnapPoints\Loyalty\Rewrite\Magento\CatalogWidget\Block\Product\ProductsList" />
+
     <type name="Magento\Customer\CustomerData\SectionPoolInterface">
         <arguments>
             <argument name="sectionSourceMap" xsi:type="array">
